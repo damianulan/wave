@@ -7,38 +7,69 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use App\Traits\UUID;
+
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use UUID;
+    use HasApiTokens, HasFactory, Notifiable, SoftDeletes;
 
+    protected $table = 'users';
+    protected $primaryKey = 'id';
+
+    public $timestamps = true;
     /**
      * The attributes that are mass assignable.
      *
-     * @var array<int, string>
+     * @var string[]
      */
     protected $fillable = [
         'name',
+        'surname',
         'email',
-        'password',
-    ];
+        'role',
+        'nickname',
+        'gender',
+        'birthdate' => 'datetime:d/m/Y',
+        'phone',
+        'avatar',
+        'address',
+        'zipcode',
+        'city',
+        'state',
+        'country',
+        'status',
+        'email_verified_at',
+        //settings
+        'locale',
+        'additional_notifications',
+        'client_schedules',
+        'email_notifications',
+        'news_on_updates',
 
+        'location_id'
+    ];
     /**
      * The attributes that should be hidden for serialization.
      *
-     * @var array<int, string>
+     * @var array
      */
     protected $hidden = [
         'password',
-        'remember_token',
+        'remember_token'
     ];
 
     /**
      * The attributes that should be cast.
      *
-     * @var array<string, string>
+     * @var array
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
+        'birthdate' => 'datetime:d/m/Y',
     ];
+
+    protected $dates = ['deleted_at', 'birthdate'];
 }
