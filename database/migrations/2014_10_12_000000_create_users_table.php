@@ -2,7 +2,6 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
-use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
@@ -41,8 +40,8 @@ return new class extends Migration
             $table->char('news_on_updates', 2)->nullable();
 
             //fk
-            // $table->char('location_id', 36)->nullable();
-            // $table->foreign('location_id')->references('id')->on('locations')->onDelete('cascade');
+            $table->char('location_id', 36)->nullable();
+            $table->foreign('location_id')->references('id')->on('locations')->onDelete('cascade');
 
             $table->tinyInteger('status')->default('1'); // 0 - blocked, 1 - active
             $table->tinyInteger('force_passwordchange')->default('0');
@@ -50,6 +49,7 @@ return new class extends Migration
             $table->softDeletes();
             $table->timestamps();
         });
+        
     }
 
     /**

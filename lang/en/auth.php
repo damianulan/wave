@@ -14,7 +14,17 @@ return [
     */
 
     'failed' => 'These credentials do not match our records.',
-    'password' => 'The provided password is incorrect.',
+    'password_incorrect' => 'The provided password is incorrect.',
     'throttle' => 'Too many login attempts. Please try again in :seconds seconds.',
+    'welcome' => 'Welcome back, please login to your account.',
+    'login' => 'Login',
+    'remember_me' => 'Remember me',
+    'forgot_password' => 'Forgot password?',
+    'email' => 'Email',
+    'password' => 'Password',
+    'admin_panel' => 'Administrative Panel',
+    'admin' => 'Administrator',
+    'user' => 'User',
+    'demo' => 'Demo version'
 
 ];

@@ -2,19 +2,24 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Traits\UUID;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
-use App\Traits\UUID;
-
-use Illuminate\Database\Eloquent\SoftDeletes;
+use App\Traits\HasRolesAndPermissions;
+use App\Traits\Loggable;
+use App\Traits\Taggable;
 
 class User extends Authenticatable
 {
     use UUID;
-    use HasApiTokens, HasFactory, Notifiable, SoftDeletes;
+    use HasRolesAndPermissions;
+    use HasApiTokens, HasFactory, Notifiable, SoftDeletes, Loggable;
+    //use Taggable;
 
     protected $table = 'users';
     protected $primaryKey = 'id';
@@ -42,7 +47,7 @@ class User extends Authenticatable
         'country',
         'status',
         'email_verified_at',
-        //settings
+        // settings
         'locale',
         'additional_notifications',
         'client_schedules',

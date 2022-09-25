@@ -41761,6 +41761,19 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/themes/wave-dark/app.scss":
+/*!*********************************************!*\
+  !*** ./resources/themes/wave-dark/app.scss ***!
+  \*********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
+
+
+/***/ }),
+
 /***/ "./node_modules/process/browser.js":
 /*!*****************************************!*\
   !*** ./node_modules/process/browser.js ***!
@@ -42090,6 +42103,7 @@ process.umask = function() { return 0; };
 /******/ 		// [resolve, reject, Promise] = chunk loading, 0 = chunk loaded
 /******/ 		var installedChunks = {
 /******/ 			"/themes/wave-light/app": 0,
+/******/ 			"themes/wave-dark/app": 0,
 /******/ 			"themes/wave-light/app": 0
 /******/ 		};
 /******/ 		
@@ -42140,8 +42154,9 @@ process.umask = function() { return 0; };
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module depends on other loaded chunks and execution need to be delayed
-/******/ 	__webpack_require__.O(undefined, ["themes/wave-light/app"], () => (__webpack_require__("./resources/themes/wave-light/app.js")))
-/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["themes/wave-light/app"], () => (__webpack_require__("./resources/themes/wave-light/app.scss")))
+/******/ 	__webpack_require__.O(undefined, ["themes/wave-dark/app","themes/wave-light/app"], () => (__webpack_require__("./resources/themes/wave-light/app.js")))
+/******/ 	__webpack_require__.O(undefined, ["themes/wave-dark/app","themes/wave-light/app"], () => (__webpack_require__("./resources/themes/wave-light/app.scss")))
+/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["themes/wave-dark/app","themes/wave-light/app"], () => (__webpack_require__("./resources/themes/wave-dark/app.scss")))
 /******/ 	__webpack_exports__ = __webpack_require__.O(__webpack_exports__);
 /******/ 	
 /******/ })()
