@@ -15,5 +15,9 @@ return [
 
     'previous' => '&laquo; Previous',
     'next' => 'Next &raquo;',
-
+    'back' => 'Back',
+    'actions' => 'Actions',
+    'learn_more' => 'Learn more',
+    'delete' => 'Delete',
+    'block' => 'Block',
 ];

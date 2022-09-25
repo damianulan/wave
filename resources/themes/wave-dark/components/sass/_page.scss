@@ -1,0 +1,24 @@
+html, body {
+    direction: ltr;
+}
+
+#app{
+    height: 100%;
+}
+.content {
+    padding: 0;
+    position: relative;
+    transition: 300ms ease all;
+    backface-visibility: hidden;
+    min-height: calc(100% - 4rem);
+    margin-left: 260px;
+}
+
+.content-wrapper {
+    padding: 8rem 2.2rem 0;
+    word-wrap: break-word;
+}
+
+hr {
+    box-shadow: 0 4px 20px 0 rgb(0 0 0 / 5%);
+}

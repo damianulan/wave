@@ -1,0 +1,35 @@
+// Theme variables
+$theme: "wave-light";
+
+// Body
+$body-bg: #f8fafc;
+$bg-light: #f8fafc;
+
+// Typography
+$font-family-base: 'Montserrat', 'Helvetica', sans-serif;
+$font-family-sans-serif: 'Montserrat', sans-serif;
+$font-brand: 'Poppins', 'Montserrat', sans-serif;
+$font-family-monospace: 'JetBrains Mono', monospace;
+$font-size-base: 0.9rem;
+$line-height-base: 1.6;
+
+// Paths
+$imagesPath: "/themes/"$theme"/images";
+
+// Colors
+$primary: #1873ac;
+$primary-light: #187ca1;
+$primary-dark: #125695;
+$dark: #332d2d;
+
+$theme-colors: (
+  'primary': $primary,
+  'primary-light': $primary-light,
+  'primary-dark': $primary-dark,
+  'dark': $dark,
+);
+
+$aquamarine: #7fffd4;
+
+// Component colors
+$bg-nav: #fff;

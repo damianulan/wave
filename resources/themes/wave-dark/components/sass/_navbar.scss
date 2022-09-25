@@ -1,0 +1,142 @@
+.main-menu {
+    z-index: 1031;
+    display: table-cell;
+    position: absolute;
+    background-color: $bg-nav;
+    box-shadow: 0 0 15px 0 rgb(0 0 0 / 5%);
+    transition: -0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
+    transform: translate3d(0, 0, 0);
+    backface-visibility: hidden;
+    width: 260px;
+    height: 100%;
+    padding: 2rem 0;
+    overflow: hidden;
+}
+
+.main-menu .menu-fixed {
+    position: fixed;
+}
+
+.nav-link .bi {
+    font-size: 1.3rem;
+    margin-right: 1rem;
+}
+
+.nav-pills {
+    border-radius: unset;
+}
+
+.nav-pills .nav-link {
+    border-radius: unset;
+    font-size: .8rem;
+    color: $dark;
+    padding: .8rem 2rem;
+    margin: 0;
+    background-color: transparent;
+}
+
+.nav .navigation-header {
+    color: $gray-500;
+    font-size: .7rem;
+    margin: 1.5rem 0 .1rem 2rem;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    line-height: 1.5;
+    letter-spacing: .1rem;
+    text-transform: uppercase;
+}
+
+.nav-pills .nav-link:hover {
+    transition: all .3s ease-in-out;
+}
+
+.nav-pills .nav-link.active {
+    font-weight: 600;
+    background: linear-gradient(118deg, $primary-light, $primary-dark);
+    box-shadow: 0 0 10px 1px $primary-light;
+    color: $light;
+}
+
+.nav .nav-item a {
+    transition: padding 0.35s ease 0s !important;
+}
+
+.nav .nav-item:hover > a {
+    padding-left: 2.5rem;
+    transition: padding 0.35s ease 0s !important;
+}
+
+.navbar-brand {
+    font-family: $font-brand;
+    font-size: 1.5rem;
+    font-weight: 600;
+    letter-spacing: .1rem;
+    color: $primary;
+    text-transform: lowercase;
+    margin-left: 1.5rem;
+    margin-bottom: 1.5rem;
+    transition: all .3s ease-in-out;
+}
+.navbar-brand:hover {
+    color: $primary-light;
+    transition: all .3s ease-in-out;
+}
+
+img.navbar-logo {
+    height: 15%;
+    width: 15%;
+    margin-right: .5rem;
+}
+
+.top-menu {
+    display: flex;
+    align-items: center;
+    background-color: $bg-nav;
+    z-index: 12;
+    right: 0;
+    padding: 0;
+    margin: 1.3rem 2.2rem 0;
+    width: calc(100vw - (100vw - 100%) - calc(2.2rem * 2) - 260px);
+    min-height: 4.5rem;
+    border-radius: .5rem;
+}
+
+.sticky-menu {
+    position: fixed;
+}
+
+.absolute-menu {
+    position: absolute;
+}
+
+.menu-shadow{
+    box-shadow: 0 4px 20px 0 rgb(0 0 0 / 5%);
+}
+
+.menu-container {
+    padding-left: 1rem;
+    transition: 300ms ease all;
+    margin-left: 0;
+}
+
+//@media (min-width: 992px){
+    .menu-expand {
+        flex-flow: row nowrap;
+        justify-content: flex-start;
+        flex-basis: auto;
+        flex-grow: 1;
+    }
+//}
+
+.top-menu-shadow {
+    display: block;
+    background: linear-gradient(180deg, rgba(248, 248, 248, 0.95) 44%, rgba(248, 248, 248, 0.46) 73%, rgba(255, 255, 255, 0));
+    padding-top: 2.2rem;
+    background-repeat: repeat;
+    width: 100%;
+    height: 100px;
+    position: fixed;
+    top: 0;
+    z-index: 11;
+}
