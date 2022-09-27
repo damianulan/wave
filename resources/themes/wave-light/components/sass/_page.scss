@@ -14,11 +14,43 @@ html, body {
     margin-left: 260px;
 }
 
+.blank-content {
+    overflow: overlay;
+    overflow-x: hidden;
+}
+
+.flexbox-container {
+    display: flex;
+    align-items: center;
+    height: calc(var(--vh, 1vh) * 100);
+    justify-content: center;
+}
+
 .content-wrapper {
-    padding: 8rem 2.2rem 0;
+    padding: 7.5rem 2.2rem 0;
     word-wrap: break-word;
 }
 
 hr {
     box-shadow: 0 4px 20px 0 rgb(0 0 0 / 5%);
+}
+
+.float-left {
+    float: left !important;
+}
+
+.float-right {
+    float: right !important;
+}
+
+.mr-auto, .me-auto {
+    margin-right: auto !important;
+}
+
+.bg-light {
+    background-color: $light !important;
+}
+
+.round {
+    border-radius: 1.5rem;
 }

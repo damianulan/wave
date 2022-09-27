@@ -5726,7 +5726,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-$('.form-control').select2();
 
 /***/ }),
 

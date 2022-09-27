@@ -13,6 +13,4 @@ $theme = 'wave-light';
                 @yield('content')
             </div>
         </main>
-    </div>
-</body>
-</html>
+@include('layouts.footer')

@@ -1,14 +1,14 @@
 <div class="main-menu menu-fixed">
     <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-decoration-none">
         <a class="navbar-brand" href="{{ url('/') }}">
-            <img class="navbar-logo" src="{{ asset('themes/'.$theme.'/images/icons/logo/svg/wave-logo-color.svg') }}">
+            <img class="navbar-logo" src="{{ asset('themes/'.$theme.'/images/icons/logo/png/wave-icon-color.png') }}">
             <span>{{ config('app.name') }}</span>
         </a>
         
     </a>
     <ul class="nav nav-pills flex-column mb-auto">
       <li class="nav-item">
-        <a href="#" class="nav-link active" aria-current="page">
+        <a href="#" class="nav-link active">
           <i class="bi bi-speedometer2"></i>
           Home
         </a>
