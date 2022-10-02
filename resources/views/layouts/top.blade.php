@@ -15,7 +15,7 @@
                     </li>
                 </ul>
             </div>
-            <ul class="nav float-right bookmark-icons ">
+            <ul class="nav float-right bookmark-icons">
                 <li class="nav-item d-none d-lg-block">
                     <a class="nav-link" href="">
                         <i class="bi bi-check2-square"></i>
@@ -44,13 +44,11 @@
                     </ul>
                 </li>
                 <li class="dropdown dropdown-profile dropdown-toggle nav-item">
-                    <a class="nav-link" href="#" data-mdb-toggle="dropdown" aria-expanded="false">
+                    <a class="nav-link d-flex align-items-center" href="#" data-mdb-toggle="dropdown" aria-expanded="false">
                         <div class="user-nav d-sm-flex">
                             <span class="user-name">Damian Ułan</span>
-
                         </div>
-                        <img class="round" src="{{asset('themes/wave-light/images/portrait/small/avatar-male.png')}}" width="40" height="40" alt="avatar">
-
+                        <img class="rounded-circle" src="{{asset('themes/wave-light/images/portrait/small/avatar-male.png')}}" width="40" height="40" alt="avatar">
                     </a>
                     <ul class="dropdown-menu dropdown-menu-media dropdown-menu-right">
                         <li class="dropdown-item">
