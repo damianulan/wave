@@ -10,9 +10,6 @@
     <title>{{ config('app.name') }}</title>
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset('themes/'.$theme.'/images/icons/logo/png/wave-logo-color-box.png') }}">
 
-    <!-- Fonts -->
-    <link rel="dns-prefetch" href="//fonts.gstatic.com">
-
     <!-- Theme -->
     <link rel="stylesheet" type="text/css" href="{{ asset('themes/'.$theme.'/app.css') }}">
 </head>

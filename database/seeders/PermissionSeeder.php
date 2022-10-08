@@ -16,43 +16,43 @@ class PermissionSeeder extends Seeder
     public function run()
     {
         $readClient = new Permission();
-        $readClient->name = 'Read clients';
-        $readClient->slug = 'read-clients';
+        $readClient->name = 'View clients';
+        $readClient->slug = 'clients-view';
         $readClient->save();
 
         $writeClient = new Permission();
-        $writeClient->name = 'Write clients';
-        $writeClient->slug = 'write-clients';
+        $writeClient->name = 'Edit clients';
+        $writeClient->slug = 'clients-edit';
         $writeClient->save();
 
         $createClient = new Permission();
         $createClient->name = 'Create clients';
-        $createClient->slug = 'create-clients';
+        $createClient->slug = 'clients-create';
         $createClient->save();
 
         $deleteClient = new Permission();
         $deleteClient->name = 'Delete clients';
-        $deleteClient->slug = 'delete-clients';
+        $deleteClient->slug = 'clients-delete';
         $deleteClient->save();
 
         $readuser = new Permission();
-        $readuser->name = 'Read users';
-        $readuser->slug = 'read-users';
+        $readuser->name = 'View users';
+        $readuser->slug = 'users-view';
         $readuser->save();
 
         $writeuser = new Permission();
-        $writeuser->name = 'Write users';
-        $writeuser->slug = 'write-users';
+        $writeuser->name = 'Edit users';
+        $writeuser->slug = 'users-edit';
         $writeuser->save();
 
         $createuser = new Permission();
         $createuser->name = 'Create users';
-        $createuser->slug = 'create-users';
+        $createuser->slug = 'users-create';
         $createuser->save();
 
         $deleteuser = new Permission();
         $deleteuser->name = 'Delete users';
-        $deleteuser->slug = 'delete-users';
+        $deleteuser->slug = 'users-delete';
         $deleteuser->save();
 
         $readproduct = new Permission();

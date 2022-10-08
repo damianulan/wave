@@ -1,4 +1,4 @@
-// Theme variables
+// Theme variable
 $theme: "wave-light";
 
 // Body
@@ -14,24 +14,35 @@ $font-size-base: 0.9rem;
 $line-height-base: 1.6;
 
 // Paths
-$imagesPath: "/themes/"$theme"/images";
+$imagesPath: "/themes/wave-light/images";
 
-// Colors
+// Colors HEX
 $primary: #1873ac;
 $primary-light: #187ca1;
 $primary-dark: #125695;
-$secondary: #d2f4ea;
+$primary-darker: #0c3c68;
+$secondary: #1778a0;
 $dark: #332d2d;
+
+// Colors RGB
+$primary-rgb: rgb(24, 115, 172);
+$primary-light-rgb: rgb(24, 124, 161);
+$primary-dark-rgb: rgb(18, 86, 149);
+$primary-darker-rgb: rgb(12, 60, 104);
 
 $theme-colors: (
   'primary': $primary,
   'primary-light': $primary-light,
   'primary-dark': $primary-dark,
   'dark': $dark,
-  'secondary': #d2f4ea,
+  'secondary': $primary-light,
 );
 
 $aquamarine: #7fffd4;
 
 // Component colors
 $bg-nav: #fff;
+
+// variables
+$menu-expanded-width: 260px;
+$menu-collapsed-width: 65px;

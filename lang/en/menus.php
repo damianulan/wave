@@ -43,6 +43,7 @@ return [
     'rights' => 'All rights Reserved.',
     'version' => 'Version',
     'see_repository' => 'See the repository',
+    'collapse' => 'Toggle menu',
 
     //other titles
     'maintenance' => 'Maintenance',

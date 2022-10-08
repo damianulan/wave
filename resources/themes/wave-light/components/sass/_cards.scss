@@ -1,0 +1,20 @@
+.alert-heading {
+    font-size: .9rem;
+    font-weight: 700;
+    padding-bottom: .5rem;
+}
+
+.alert {
+    box-shadow: 0 2px 15px -3px rgb(0 0 0 / 7%), 0 10px 20px -2px rgb(0 0 0 / 4%);
+}
+
+.card-header {
+    border: none;
+    margin-bottom: 1rem;
+}
+
+.card-hello {
+    background: linear-gradient(118deg, $primary-dark, $primary-light);
+    color: $light;
+    margin: 1.2rem 0;
+}

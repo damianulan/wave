@@ -1,5 +1,6 @@
 html, body {
     direction: ltr;
+    height: 100%;
 }
 
 html::-webkit-scrollbar {
@@ -22,22 +23,35 @@ html::-webkit-scrollbar {
   }
   
   html::-webkit-scrollbar-thumb:active {
-    background: rgb(68, 68, 68);
+    background: $primary;
     border-radius: 10px;
 }
 
 #app{
     height: 100%;
 }
-.content {
-    padding: 0;
-    position: relative;
-    transition: 300ms ease all;
-    backface-visibility: hidden;
-    min-height: calc(100% - 4rem);
-    margin-left: 260px;
+@media (min-width: 992px){
+    .content {
+        padding: 0;
+        position: relative;
+        transition: 300ms ease all;
+        backface-visibility: hidden;
+        min-height: calc(100% - 4rem);
+        margin-left: $menu-expanded-width;
+        transition: all .4s ease 0s;
+    }    
 }
-
+@media (max-width: 991px){
+    .content {
+        padding: 0;
+        position: relative;
+        transition: 300ms ease all;
+        backface-visibility: hidden;
+        min-height: calc(100% - 4rem);
+        margin-left: $menu-collapsed-width;
+        transition: all .4s ease 0s;
+    }  
+}
 .blank-content {
     overflow: overlay;
     overflow-x: hidden;
@@ -81,4 +95,12 @@ hr {
 
 .fs-7 {
     font-size: 0.75rem;
+}
+
+.align-items-middle {
+    vertical-align: middle;
+}
+
+.bg-login {
+    background-color: $gray-100
 }

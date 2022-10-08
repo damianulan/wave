@@ -1,29 +1,34 @@
-<nav class="top-menu sticky-menu menu-expand menu-shadow">
+<nav id="topbar" class="top-menu sticky-menu menu-expand menu-shadow <?php if(isset($_COOKIE['menu-collapsed'])&&$_COOKIE['menu-collapsed']==true){ echo 'menu-collapsed'; }?>">
     <div class="menu-wrapper">
         <div class="menu-container">
             <div class="mr-auto float-left d-flex align-items-center">
                 <ul class="nav column-flex bookmark-icons">
                     <li class="nav-item d-none d-lg-block">
-                        <a class="nav-link" href="" data-mdb-toggle="tooltip" data-mdb-placement="bottom" title="Zadania">
+                        <a id="menu-toggle" class="nav-link" data-mdb-toggle="tooltip" data-mdb-placement="bottom" title="{{__('menus.collapse')}}">
+                            <i class="bi bi-three-dots-vertical"></i>
+                        </a>
+                    </li>
+                    <li class="nav-item d-none d-lg-block">
+                        <a class="nav-link" href="#" data-mdb-toggle="tooltip" data-mdb-placement="bottom" title="{{__('menus.support')}}">
+                            <i class="bi bi-life-preserver"></i>
+                        </a>
+                    </li>
+                    <li class="nav-item d-none d-lg-block">
+                        <a class="nav-link" href="#" data-mdb-toggle="tooltip" data-mdb-placement="bottom" title="{{__('menus.todo')}}">
                             <i class="bi bi-check2-square"></i>
                         </a>
                     </li>
                     <li class="nav-item d-none d-lg-block">
-                        <a class="nav-link" href="">
-                            <i class="bi bi-check2-square"></i>
+                        <a class="nav-link" href="#" data-mdb-toggle="tooltip" data-mdb-placement="bottom" title="{{__('menus.add_client')}}">
+                            <i class="bi bi-person-plus"></i>
                         </a>
                     </li>
                 </ul>
             </div>
             <ul class="nav float-right bookmark-icons">
                 <li class="nav-item d-none d-lg-block">
-                    <a class="nav-link" href="">
-                        <i class="bi bi-check2-square"></i>
-                    </a>
-                </li>
-                <li class="nav-item d-none d-lg-block">
-                    <a class="nav-link" href="">
-                        <i class="bi bi-check2-square"></i>
+                    <a class="nav-link" href="" data-mdb-toggle="tooltip" data-mdb-placement="bottom" title="{{__('menus.fullscreen')}}">
+                        <i class="bi bi-fullscreen"></i>
                     </a>
                 </li>
                 <li class="dropdown dropdown-notification dropdown-toggle nav-item">
@@ -34,13 +39,12 @@
                     <ul class="dropdown-menu dropdown-menu-media dropdown-menu-right">
                         <li class="dropdown-menu-header">
                             <div class="dropdown-header">
-                                Notifications
+                                {{__('menus.notifications')}}
                             </div>
                         </li>
                         <li class="dropdown-item">
                             Welcome to Wave!
                         </li>
-
                     </ul>
                 </li>
                 <li class="dropdown dropdown-profile dropdown-toggle nav-item">
@@ -51,9 +55,12 @@
                         <img class="rounded-circle" src="{{asset('themes/wave-light/images/portrait/small/avatar-male.png')}}" width="40" height="40" alt="avatar">
                     </a>
                     <ul class="dropdown-menu dropdown-menu-media dropdown-menu-right">
-                        <li class="dropdown-item">
-                            Logout
-                        </li>
+                        <a class="dropdown-item" href="#">
+                            {{__('menus.profile')}}
+                        </a>
+                        <a class="dropdown-item" href="{{route('auth.logout')}}">
+                            {{__('menus.logout')}}
+                        </a>
 
                     </ul>
                 </li>

@@ -20,10 +20,10 @@ class UsersController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('role:admin', ['only' => ['index', 'create', 'store']]);
-        $this->middleware('permission:read-users', ['only' => 'show']);
-        $this->middleware('permission:write-users', ['only' => ['edit', 'update']]);
-        $this->middleware('permission:delete-users', ['only' => 'destroy']);
+        // $this->middleware('role:admin', ['only' => ['index', 'create', 'store']]);
+        // $this->middleware('permission:read-users', ['only' => 'show']);
+        // $this->middleware('permission:write-users', ['only' => ['edit', 'update']]);
+        // $this->middleware('permission:delete-users', ['only' => 'destroy']);
     }
     /**
      * Display a listing of the resource.

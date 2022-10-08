@@ -1,16 +1,100 @@
-.main-menu {
-    z-index: 1031;
-    display: table-cell;
-    position: absolute;
-    background-color: $bg-nav;
-    box-shadow: 0 0 15px 0 rgb(0 0 0 / 5%);
-    transition: -0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
-    transform: translate3d(0, 0, 0);
-    backface-visibility: hidden;
-    width: 260px;
-    height: 100%;
-    padding: 2rem 0;
-    overflow: hidden;
+nav::-webkit-scrollbar {
+    width: 10px;
+}
+
+nav::-webkit-scrollbar-track {
+background: rgb(179, 177, 177);
+border-radius: 10px;
+}
+
+nav::-webkit-scrollbar-thumb {
+background: rgb(136, 136, 136);
+border-radius: 10px;
+}
+
+nav::-webkit-scrollbar-thumb:hover {
+background: rgb(100, 100, 100);
+border-radius: 10px;
+}
+
+nav::-webkit-scrollbar-thumb:active {
+background: rgb(68, 68, 68);
+border-radius: 10px;
+}
+
+@media (min-width: 992px){
+    .main-menu {
+        z-index: 1031;
+        display: table-cell;
+        position: absolute;
+        background-color: $bg-nav;
+        box-shadow: 0 0 15px 0 rgb(0 0 0 / 5%);
+        transform: translate3d(0, 0, 0);
+        backface-visibility: hidden;
+        width: $menu-expanded-width;
+        height: max-content;
+        padding: 2rem 0;
+        overflow-x: hidden;
+        transition: all .4s ease 0s;
+    }
+
+    .top-menu {
+        display: flex;
+        align-items: center;
+        background-color: $bg-nav;
+        z-index: 12;
+        right: 0;
+        padding: 0;
+        margin: 1.3rem 2.2rem 0;
+        width: calc(100vw - (100vw - 100%) - calc(2.2rem * 2) - $menu-expanded-width);
+        min-height: 3.5rem;
+        border-radius: .5rem;
+        transition: all .4s ease 0s;
+    }
+}
+@media (max-width: 991px){
+    .main-menu {
+        z-index: 1031;
+        display: table-cell;
+        position: absolute;
+        background-color: $bg-nav;
+        box-shadow: 0 0 15px 0 rgb(0 0 0 / 5%);
+        transform: translate3d(0, 0, 0);
+        backface-visibility: hidden;
+        width: $menu-collapsed-width;
+        height: max-content;
+        padding: 1rem 0;
+        overflow-x: hidden;
+        transition: all .4s ease 0s;
+    }
+
+    .top-menu {
+        display: flex;
+        align-items: center;
+        background-color: $bg-nav;
+        z-index: 12;
+        right: 0;
+        padding: 0;
+        margin: 1.3rem 2.2rem 0;
+        width: calc(100vw - (100vw - 100%) - calc(2.2rem * 2) - $menu-collapsed-width);
+        min-height: 3.5rem;
+        border-radius: .5rem;
+        transition: all .4s ease 0s;
+    }
+
+    .nav .navigation-header {
+        display: none !important;
+    }
+}
+
+.main-menu.menu-collapsed {
+    width: $menu-collapsed-width !important;
+    transition: all .4s ease 0s;
+}
+
+.content.menu-collapsed {
+    margin-left: $menu-collapsed-width !important;
+    transition: all .4s ease 0s !important;
 }
 
 .main-menu .menu-fixed {
@@ -19,7 +103,7 @@
 
 .main-menu .nav-link .bi {
     font-size: 1.3rem;
-    margin-right: 1rem;
+    margin-right: 1.1rem;
 }
 
 .main-menu .nav-pills {
@@ -38,13 +122,22 @@
 .nav .navigation-header {
     color: $gray-500;
     font-size: .7rem;
-    margin: 1.5rem 0 .1rem 2rem;
+    margin: 1rem 0 .1rem 2rem;
     padding: 0;
     font-family: 'Poppins', sans-serif;
     font-weight: 600;
     line-height: 1.5;
     letter-spacing: .1rem;
     text-transform: uppercase;
+}
+
+#toggle-menu {
+    cursor: pointer;
+}
+
+.menu-collapsed .nav .navigation-header {
+    display: none !important;
+    transition: all .3s ease-in-out;
 }
 
 .nav-pills .nav-link:hover {
@@ -67,8 +160,9 @@
     transition: padding 0.35s ease 0s !important;
 }
 
-.nav-item.disabled {
-    cursor: not-allowed;
+.nav-link.disabled {
+    cursor: not-allowed !important;
+    color: $gray-800 !important;
 }
 
 .main-menu .navbar-brand {
@@ -77,7 +171,7 @@
     font-weight: 600;
     letter-spacing: .1rem;
     color: $primary;
-    margin-left: 1.5rem;
+    margin-left: 1rem;
     margin-bottom: 1.5rem;
     transition: all .3s ease-in-out;
 }
@@ -87,27 +181,23 @@
 }
 
 img.navbar-logo {
-    height: 20%;
-    width: 20%;
-    margin-right: .5rem;
-}
-
-.top-menu {
-    display: flex;
-    align-items: center;
-    background-color: $bg-nav;
-    z-index: 12;
-    right: 0;
-    padding: 0;
-    margin: 1.3rem 2.2rem 0;
-    width: calc(100vw - (100vw - 100%) - calc(2.2rem * 2) - 260px);
-    min-height: 3.5rem;
-    border-radius: .5rem;
+    height: 40px;
+    width: 40px;
+    margin-right: .8rem;
 }
 
 .top-menu .nav {
     flex-direction: row;
     flex-wrap: wrap;
+}
+
+.top-menu.menu-collapsed {
+    width: calc(100vw - (100vw - 100%) - calc(2.2rem * 2) - $menu-collapsed-width) !important;
+    transition: all .4s ease 0s !important;
+}
+
+#menu-toggle{
+    cursor: pointer !important;
 }
 
 .sticky-menu {
@@ -243,7 +333,6 @@ img.navbar-logo {
     white-space: nowrap;
 }
 .nav-link .badge-pill {
-    position: absolute;
     float: right;
     font-size: .6rem;
     font-weight: 600;
