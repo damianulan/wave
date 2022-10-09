@@ -7,9 +7,9 @@ return [
     'welcome2' => "Maybe a coffee first?",
     'welcome3' => "What's on your mind?",
     //---do not translate
-    'icon_welcome1' => 'icon-target',
-    'icon_welcome2' => 'icon-heart',
-    'icon_welcome3' => 'icon-help-circle',
+    'icon_welcome1' => 'bi-bullseye',
+    'icon_welcome2' => 'bi-cup-hot',
+    'icon_welcome3' => 'bi-question-circle',
 
     //---end---
 

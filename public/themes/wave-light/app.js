@@ -5782,12 +5782,12 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _components_js_base__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./components/js/base */ "./resources/themes/wave-light/components/js/base.js");
-/* harmony import */ var _components_js_base__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_components_js_base__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _components_js_navbar__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./components/js/navbar */ "./resources/themes/wave-light/components/js/navbar.js");
-/* harmony import */ var _components_js_navbar__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_components_js_navbar__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _components_js_vendors__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/js/vendors */ "./resources/themes/wave-light/components/js/vendors.js");
-/* harmony import */ var _components_js_vendors__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_components_js_vendors__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _components_js_vendors__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./components/js/vendors */ "./resources/themes/wave-light/components/js/vendors.js");
+/* harmony import */ var _components_js_vendors__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_components_js_vendors__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _components_js_base__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./components/js/base */ "./resources/themes/wave-light/components/js/base.js");
+/* harmony import */ var _components_js_base__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_components_js_base__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _components_js_navbar__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/js/navbar */ "./resources/themes/wave-light/components/js/navbar.js");
+/* harmony import */ var _components_js_navbar__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_components_js_navbar__WEBPACK_IMPORTED_MODULE_2__);
 
 
 

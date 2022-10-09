@@ -3,7 +3,7 @@
 @section('content')
 <div class="row justify-content-center">
     <div class="col-md-12">
-        <div class="alert alert-primary shadow">
+        <div class="alert alert-primary">
             <h4 class="alert-heading">
                 Alert title
             </h4>
@@ -17,11 +17,14 @@
             <div class="card-body text-center">
                 <div class="avatar-xl">
                     <div class="avatar-content text-center shadow">
-                        <i class="bi-heart"></i>
+                        <div style="width:40px;height:40px;">
+                            <i class="{{__($icon)}}"></i>
+                        </div>
+                        
                     </div>
                 </div>
-                <h2 class="text-center">Hello, Damian</h2>
-                <p class="text-center">What's the plan for today?</p>
+                <h2 class="text-center">{{__('vocabulary.hello')}}, {{auth()->user()->firstname}}</h2>
+                <p class="text-center">{{__($welcome)}}</p>
             </div>
         </div>
     </div>

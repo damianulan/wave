@@ -4,6 +4,7 @@ let mix = require('laravel-mix');
 
 // misc
 mix.copyDirectory('resources/themes/vendors', 'public/themes/vendors');
+mix.copyDirectory('resources/images', 'public/images');
 
 // theme-light
 mix.js('resources/themes/wave-light/app.js', 'public/themes/wave-light')

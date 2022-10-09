@@ -32347,7 +32347,7 @@ hr {
 }
 
 .bg-login {
-  background-color: #343a40;
+  background-color: #f8f9fa;
 }
 
 a {
@@ -32500,9 +32500,7 @@ nav::-webkit-scrollbar-thumb:active {
     -webkit-backface-visibility: hidden;
             backface-visibility: hidden;
     width: 260px;
-    height: -webkit-max-content;
-    height: -moz-max-content;
-    height: max-content;
+    height: 100%;
     padding: 2rem 0;
     overflow-x: hidden;
     transition: all 0.4s ease 0s;
@@ -32520,6 +32518,11 @@ nav::-webkit-scrollbar-thumb:active {
     border-radius: 0.5rem;
     transition: all 0.4s ease 0s;
   }
+  .footer {
+    width: calc(100vw - (100vw - 100%) - 4.4rem - 260px);
+    margin: 1.3rem 2.2rem 0;
+    background-color: #fff;
+  }
 }
 @media (max-width: 991px) {
   .main-menu {
@@ -32532,9 +32535,7 @@ nav::-webkit-scrollbar-thumb:active {
     -webkit-backface-visibility: hidden;
             backface-visibility: hidden;
     width: 65px;
-    height: -webkit-max-content;
-    height: -moz-max-content;
-    height: max-content;
+    height: 100%;
     padding: 1rem 0;
     overflow-x: hidden;
     transition: all 0.4s ease 0s;
@@ -32551,6 +32552,11 @@ nav::-webkit-scrollbar-thumb:active {
     min-height: 3.5rem;
     border-radius: 0.5rem;
     transition: all 0.4s ease 0s;
+  }
+  .footer {
+    width: calc(100vw - (100vw - 100%) - 4.4rem - 65px);
+    margin: 1.3rem 2.2rem 0;
+    background-color: #fff;
   }
   .nav .navigation-header {
     display: none !important;

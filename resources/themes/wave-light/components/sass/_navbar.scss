@@ -32,7 +32,7 @@ border-radius: 10px;
         transform: translate3d(0, 0, 0);
         backface-visibility: hidden;
         width: $menu-expanded-width;
-        height: max-content;
+        height: 100%;
         padding: 2rem 0;
         overflow-x: hidden;
         transition: all .4s ease 0s;
@@ -51,6 +51,12 @@ border-radius: 10px;
         border-radius: .5rem;
         transition: all .4s ease 0s;
     }
+    .footer{
+        display: block;
+        width: calc(100vw - (100vw - 100%) - calc(2.2rem * 2) - $menu-expanded-width);
+        margin: 1.3rem 2.2rem 0;
+        background-color: $bg-nav;
+    }
 }
 @media (max-width: 991px){
     .main-menu {
@@ -62,7 +68,7 @@ border-radius: 10px;
         transform: translate3d(0, 0, 0);
         backface-visibility: hidden;
         width: $menu-collapsed-width;
-        height: max-content;
+        height: 100%;
         padding: 1rem 0;
         overflow-x: hidden;
         transition: all .4s ease 0s;
@@ -80,6 +86,13 @@ border-radius: 10px;
         min-height: 3.5rem;
         border-radius: .5rem;
         transition: all .4s ease 0s;
+    }
+
+    .footer{
+        display: block;
+        width: calc(100vw - (100vw - 100%) - calc(2.2rem * 2) - $menu-collapsed-width);
+        margin: 1.3rem 2.2rem 0;
+        background-color: $bg-nav;
     }
 
     .nav .navigation-header {

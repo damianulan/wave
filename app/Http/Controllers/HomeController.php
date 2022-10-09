@@ -23,6 +23,19 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $title = __('menus.dashboard');
+        // --> welcome message randomizer <--
+        $random = rand(1,3);
+        $welcome = 'messages.welcome' . $random;
+        $icon = 'messages.icon_welcome' . $random;
+        // --> /welcome message randomizer <--
+        $logs = auth()->user()->getActivity(10);
+
+        return view('home', [
+            'title' => $title,
+            'welcome' => $welcome,
+            'icon' => $icon,
+            'logs' => $logs
+        ]);        
     }
 }

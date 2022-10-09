@@ -77,7 +77,7 @@
         <span>{{__('menus.administration')}}</span>
       </li>
       <li class="nav-item">
-        <a href="#" class="nav-link">
+        <a href="{{route('users.index')}}" class="nav-link {{ request()->routeIs('users.*') ? 'active' : '' }}">
             <i class="bi bi-person-badge"></i>
             {{__('menus.users')}}
         </a>
