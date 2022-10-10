@@ -24,11 +24,22 @@ $primary-darker: #0c3c68;
 $secondary: #1778a0;
 $dark: #332d2d;
 
+// Colors shades
+$primary-100: rgba(24 115 172 / 10%);
+$primary-200: rgba(24 115 172 / 20%);
+$primary-300: rgba(24 115 172 / 30%);
+$primary-400: rgba(24 115 172 / 40%);
+$primary-500: rgba(24 115 172 / 50%);
+$primary-600: rgba(24 115 172 / 60%);
+$primary-700: rgba(24 115 172 / 70%);
+$primary-800: rgba(24 115 172 / 80%);
+$primary-900: rgba(24 115 172 / 90%);
+
 // Colors RGB
-$primary-rgb: rgb(24, 115, 172);
-$primary-light-rgb: rgb(24, 124, 161);
-$primary-dark-rgb: rgb(18, 86, 149);
-$primary-darker-rgb: rgb(12, 60, 104);
+$primary-rgb: rgba(24, 115, 172);
+$primary-light-rgb: rgba(24, 124, 161);
+$primary-dark-rgb: rgba(18, 86, 149);
+$primary-darker-rgb: rgba(12, 60, 104);
 
 $theme-colors: (
   'primary': $primary,

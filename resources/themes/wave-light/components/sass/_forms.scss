@@ -15,6 +15,20 @@ a:hover {
     color: $light;
 }
 
+.btn-pagination {
+  border-radius: 40%;
+  padding: .5rem 1rem;
+}
+
+.btn-round {
+  border-radius: 2rem;
+  padding: .3rem .5rem;
+}
+
+.form-select {
+  background-color: #fff !important;
+}
+
 .divider {
     display: block;
     text-align: center;
