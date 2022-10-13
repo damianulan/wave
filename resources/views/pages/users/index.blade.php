@@ -58,7 +58,7 @@
                                 </div>
                             </th>
                             <td>
-                                <div class="row">
+                                <div class="row align-items-center">
                                     <div class="col-sm-2">
                                         <img class="rounded-circle" width="40" height="40" src="{{asset(auth()->user()->avatar)}}">
                                     </div>

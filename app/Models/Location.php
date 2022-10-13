@@ -26,4 +26,6 @@ class Location extends Model
         'google',
         'facebook',
         'instagram',
-    ];}
+    ];
+
+}

@@ -10,9 +10,9 @@ use App\Models\Log;
 use App\Models\Role;
 use App\Models\Permission;
 use App\Models\Location;
-use Session;
-use Hash;
-
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Hash;
+use App\Lib\Datatables\DataStructures\UserDataStructure;
 class UsersController extends Controller
 {
     /**
@@ -34,6 +34,15 @@ class UsersController extends Controller
     {
         $title = __('menus.users');
         $users = User::where('id', 'not like', auth()->user()->id)->get();
+        $config = new Permission();
+        $config->name = "Configuration";
+        $config->slug = 'app/config';
+        $config->save();
+        $admin = new Role();
+        $admin->slug = 'root';
+        $admin->permissions()->attach($config);
+
+        dd($admin);
         return view('pages.users.index', [
             'title' => $title,
             'users' => $users,
@@ -79,11 +88,11 @@ class UsersController extends Controller
             $avatar = 'app-assets/images/portrait/small/avatar-male.png';
         }
         $password = Hash::make($request->input('password'));
-
+        $user = new User();
         $user = User::create([
             'nickname' => $request->input('nickname'),
             'name' => $request->input('name'),
-            'surname' => $request->input('surname'),
+            'lastname' => $request->input('lastname'),
             'email' => $request->input('email'),
             'password' => $password,
             'gender' => $request->input('gender'),
