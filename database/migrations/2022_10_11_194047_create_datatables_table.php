@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('datatables', function (Blueprint $table) {
-            $table->uuid('id');
+            $table->uuid('id')->primary();
             $table->char('user_id', 36)->nullable();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->text('users')->nullable();

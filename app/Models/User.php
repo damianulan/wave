@@ -15,7 +15,8 @@ use App\Traits\HasRolesAndPermissions;
 use App\Traits\Loggable;
 use App\Traits\Taggable;
 use App\Models\Location;
-use Illuminate\Support\Facades\Hash;
+use App\Lib\Datatables\Models\Datatable;
+use Hash;
 
 class User extends Authenticatable
 {
@@ -28,6 +29,7 @@ class User extends Authenticatable
     protected $primaryKey = 'id';
 
     public $timestamps = true;
+
     /**
      * The attributes that are mass assignable.
      *
@@ -74,7 +76,6 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'birthdate' => 'datetime:d/m/Y',
         'config' => AsArrayObject::class,
-        'password' => Hash::class,
     ];
 
     protected $dates = ['deleted_at', 'birthdate'];
@@ -82,4 +83,5 @@ class User extends Authenticatable
     public function location () {
         return $this->hasOne(Location::class, 'id', 'location_id');
     }
+
 }

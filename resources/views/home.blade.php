@@ -20,7 +20,7 @@
                         <div style="width:40px;height:40px;">
                             <i class="{{__($icon)}}"></i>
                         </div>
-                        
+
                     </div>
                 </div>
                 <h2 class="text-center">{{__('vocabulary.hello')}}, {{auth()->user()->firstname}}</h2>
@@ -37,9 +37,9 @@
 
             <div class="card-body">
                 @if (session('status'))
-                    <div class="alert alert-success" role="alert">
-                        {{ session('status') }}
-                    </div>
+                <div class="alert alert-success" role="alert">
+                    {{ session('status') }}
+                </div>
                 @endif
             </div>
         </div>

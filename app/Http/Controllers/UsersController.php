@@ -12,7 +12,9 @@ use App\Models\Permission;
 use App\Models\Location;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Hash;
-use App\Lib\Datatables\DataStructures\UserDataStructure;
+use App\Lib\Structures\UserStructure;
+use App\Lib\Datatables\DatatablesController;
+
 class UsersController extends Controller
 {
     /**
@@ -34,18 +36,12 @@ class UsersController extends Controller
     {
         $title = __('menus.users');
         $users = User::where('id', 'not like', auth()->user()->id)->get();
-        $config = new Permission();
-        $config->name = "Configuration";
-        $config->slug = 'app/config';
-        $config->save();
-        $admin = new Role();
-        $admin->slug = 'root';
-        $admin->permissions()->attach($config);
 
-        dd($admin);
+        $tableView = (new DatatablesController)->get('users','default');
         return view('pages.users.index', [
             'title' => $title,
             'users' => $users,
+            'tableView' => $tableView
         ]);      
     }
 
@@ -88,27 +84,9 @@ class UsersController extends Controller
             $avatar = 'app-assets/images/portrait/small/avatar-male.png';
         }
         $password = Hash::make($request->input('password'));
+        $request->merge(['avatar' => $avatar, 'password' => $password]);
         $user = new User();
-        $user = User::create([
-            'nickname' => $request->input('nickname'),
-            'name' => $request->input('name'),
-            'lastname' => $request->input('lastname'),
-            'email' => $request->input('email'),
-            'password' => $password,
-            'gender' => $request->input('gender'),
-            'birthdate' => $request->input('birthdate'),
-            'phone' => $request->input('phone'),
-            'avatar' => $avatar,
-            'address' => $request->input('address'),
-            'zipcode' => $request->input('zipcode'),
-            'city' => $request->input('city'),
-            'state' => $request->input('state'),
-            'country' => $request->input('country'),
-            'pesel' => $request->input('pesel'),
-            'locale' => $request->input('locale'),
-            'location_id' => $request->input('location_id'),
-            'status' => '1'
-        ]);
+        $user = User::create($request->all());
         $this->fetchPermissions($user, $request);
         $user->roles()->attach($request->input('rolePicker'));
         $fullname = $user->name . ' ' . $user->surname;

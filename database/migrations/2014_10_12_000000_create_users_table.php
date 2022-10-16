@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Collection;
 
 return new class extends Migration
 {
@@ -34,7 +35,13 @@ return new class extends Migration
             $table->char('locale', 2);
 
             //settings
-            $table->text('config')->nullable();
+            $config = new Collection([
+                'additional_notifications' => 1,
+                'client_schedules' => 1,
+                'email_notifications' => 0,
+                'news_on_updates' => 0,
+            ]);
+            $table->text('config')->default($config);
             /**
              * config => [
              *      'locale': (en/pl/..)
@@ -45,6 +52,8 @@ return new class extends Migration
              * ]
              *
              */
+
+            
             //fk
             $table->char('location_id', 36)->nullable();
             $table->foreign('location_id')->references('id')->on('locations')->onDelete('cascade');

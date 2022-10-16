@@ -7,8 +7,9 @@ return [
      * --> users
      */
     'basic' => 'Basic data',
-    'firstname' => 'Name',
+    'firstname' => 'Firstname',
     'lastname' => 'Lastname',
+    'fullname' => 'Name',
     'email' => 'Email',
     'nickname' => 'Nickname',
     'status' => 'Status',

@@ -19,15 +19,15 @@ class CreateAdminUserSeeder extends Seeder
      */
     public function run()
     {
-        $rootRole = Role::where('slug','root');
-        $admin = Role::where('slug','admin');
-        $employee = Role::where('slug', 'employee');
+        $rootRole = Role::where('slug','root')->get();
+        $admin = Role::where('slug','admin')->get();
+        $employee = Role::where('slug', 'employee')->get();
 
         $root = new User();
         $root->firstname = 'Damian';
         $root->lastname = 'Ułan';
         $root->email = 'kontakt@damianulan.me';
-        $root->password = '12345678';
+        $root->password = Hash::make('12345678');
         $root->nickname = 'Damian';
         $root->gender = '1';
         $root->avatar = 'images/portrait/small/avatar-male.png';
@@ -39,7 +39,7 @@ class CreateAdminUserSeeder extends Seeder
         $admin1->firstname = 'Sys';
         $admin1->lastname = 'Admin';
         $admin1->email = 'admin@damianulan.me';
-        $admin1->password = '123456';
+        $admin1->password = Hash::make('123456');
         $admin1->nickname = 'SysAdmin';
         $admin1->gender = '1';
         $admin1->avatar = 'images/portrait/small/avatar-male.png';
@@ -51,13 +51,13 @@ class CreateAdminUserSeeder extends Seeder
         $user1->firstname = 'Test';
         $user1->lastname = 'User';
         $user1->email = 'demo@damianulan.me';
-        $user1->password = '123456';
+        $user1->password = Hash::make('123456');
         $user1->nickname = 'Test';
         $user1->gender = '0';
         $user1->avatar = 'images/portrait/small/avatar-male.png';
         $user1->locale = 'en';
         $user1->save();
-        $user1->roles()->attach($user);
+        $user1->roles()->attach($employee);
     }
 
 }

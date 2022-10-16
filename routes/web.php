@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UsersController;
+use App\Http\Controllers\RequestController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -24,6 +26,12 @@ Route::prefix('auth')->group(function (){
     Route::get('/verifyemail/{id}', [AuthController::class, 'verifyEmail'])->name('auth.verifyEmail');
     Route::get('/emailverified/{id}', [AuthController::class, 'emailVerified'])->name('auth.emailVerified');
 });
+Route::middleware('auth')->group(function (){
+    Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+    Route::resource('/users', UsersController::class);
 
-Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->middleware('auth')->name('home');
-Route::resource('/users', UsersController::class);
+    Route::prefix('/request')->controller(RequestController::class)->group(function () {
+        // Datatables
+        Route::post('/savecolumns', 'saveColumns')->name('request.saveColumns');
+    });
+});
