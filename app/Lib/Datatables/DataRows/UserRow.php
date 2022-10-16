@@ -22,8 +22,7 @@ class UserRow
                     </div>
                 </div>',
             'fullname' => $user->firstname . ' ' . $user->lastname,
-            'name' => 
-            $user->firstname . ' ' . $user->lastname,
+            'name' => $user->firstname,
         ];
     }
 }

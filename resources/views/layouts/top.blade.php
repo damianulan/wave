@@ -43,7 +43,7 @@
                         <div class="user-nav d-sm-flex">
                             <span class="user-name">{{$username}}</span>
                         </div>
-                        <img class="rounded-circle" src="{{auth()->user()->avatar}}" width="40" height="40" alt="avatar">
+                        <img class="rounded-circle" src="{{asset(auth()->user()->avatar)}}" width="40" height="40" alt="avatar">
                     </a>
                     <ul class="dropdown-menu dropdown-menu-media dropdown-menu-right">
                         <a class="dropdown-item" href="#">

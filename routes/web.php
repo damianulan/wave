@@ -33,5 +33,6 @@ Route::middleware('auth')->group(function (){
     Route::prefix('/request')->controller(RequestController::class)->group(function () {
         // Datatables
         Route::post('/savecolumns', 'saveColumns')->name('request.saveColumns');
+        Route::get('/pagination/{pagination}', 'paginationChange')->name('request.paginate');
     });
 });

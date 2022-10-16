@@ -38,8 +38,6 @@ class DatatablesController
             ]);
             return $tableview;
         }
-
-        //dd($tableview);
         return $exception;
     }
 
@@ -51,7 +49,6 @@ class DatatablesController
         if (count($hasColumns))
         {
             $savedColumns = json_decode($hasColumns[0][$view]);
-            //dd($savedColumns);
             foreach ($structure as $column => $options)
             {
                 if(in_array($column, $savedColumns)){
@@ -92,7 +89,7 @@ class DatatablesController
         ];
         $hasColumns = Datatable::where(['user_id' => auth()->user()->id])->get();
         if(count($hasColumns)){
-            $data = Datatable::findOrFail($hasColumns->id);
+            $data = Datatable::findOrFail($hasColumns[0]->id);
             $data->update($arr);
             return true;
         } else {
@@ -120,6 +117,11 @@ class DatatablesController
         }
 
         return [];
+    }
+
+    public static function paginate ($value)
+    {
+
     }
 
 }

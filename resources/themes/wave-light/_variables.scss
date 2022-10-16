@@ -10,7 +10,7 @@ $font-family-base: 'Montserrat', 'Helvetica', sans-serif;
 $font-family-sans-serif: 'Montserrat', sans-serif;
 $font-brand: 'Poppins', 'Montserrat', sans-serif;
 $font-family-monospace: 'JetBrains Mono', monospace;
-$font-size-base: 0.9rem;
+$font-size-base: 0.8rem;
 $line-height-base: 1.6;
 
 // Paths
@@ -57,3 +57,8 @@ $bg-nav: #fff;
 // variables
 $menu-expanded-width: 260px;
 $menu-collapsed-width: 65px;
+$tooltip-inner-padding-y: .3rem;
+$tooltip-inner-padding-x: .2rem;
+$tooltip-inner-font-size: .8rem;
+
+$breadcrumb-font-size: .7rem;

@@ -16,8 +16,8 @@ a:hover {
 }
 
 .btn-pagination {
-  border-radius: 40%;
   padding: .5rem 1rem;
+  margin: 0 .2rem;
 }
 
 .btn-round {
@@ -27,6 +27,24 @@ a:hover {
 
 .form-select {
   background-color: #fff !important;
+}
+
+.form-control {
+  font-size: .8rem;
+  padding: .7rem;
+  line-height: 1.25;
+  background-color: #fff;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.form-control:focus {
+  color: #4e5154;
+  box-shadow: 0 3px 10px 0 rgb(0 0 0 / 15%);
+  border-color: $primary-light;
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
 }
 
 .divider {

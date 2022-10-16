@@ -13,8 +13,14 @@ class RequestController extends Controller
     {
         $result = DatatablesController::createOrUpdateViewTemplate($request);
         if(!$result){
-            return redirect()->back()->with('error', 'You saved your columns!');
+            return redirect()->back()->with('error', __('alerts.savingcolumns_error'));
         }
-        return redirect()->back()->with('success', 'You saved your columns!');
+        return redirect()->back()->with('success', __('alerts.savingcolumns_success'));
+    }
+
+    public function paginationChange($pagination)
+    {
+        DatatablesController::paginate($pagination);
+        return redirect()->back();
     }
 }

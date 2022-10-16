@@ -31,4 +31,6 @@ return [
     'city' => 'City',
     'state' => 'State',
     'country' => 'Country',
+
+    'actions' => 'Actions',
 ];

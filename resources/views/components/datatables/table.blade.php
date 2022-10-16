@@ -23,7 +23,7 @@ $dir='asc';
             </div>
 
             <div class="offset-sm-9 col-sm-2">
-                <select class="form-select form-select-sm pagination-select float-right" aria-label=".form-select-sm example">
+                <select class="form-select form-select-sm pagination-select float-right" aria-label=".form-select-sm example" onchange="paginationSwitch(this)">
                     <option value="20" selected>20</option>
                     <option value="50">50</option>
                     <option value="100">100</option>
@@ -95,8 +95,8 @@ $dir='asc';
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="columnChooserLabel">Wybierz kolumny</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          <h5 class="modal-title" id="columnChooserLabel">{{__('menus.choose_columns')}}</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="{{__('buttons.close')}}"></button>
         </div>
         <form action="{{route('request.saveColumns')}}" method="post">
             @csrf
@@ -105,7 +105,7 @@ $dir='asc';
                 <div class="row justify-content-center">
                     <div class="col-md-12">
                         <div class="alert alert-primary fs-7">
-                            Wybierz kolumny
+                            <i class="bi bi-info-circle"></i> {{__('menus.choose_columns_info')}}
                           </div>
                     </div>
                 </div>
@@ -126,11 +126,30 @@ $dir='asc';
                 </table>
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-              <button type="submit" class="btn btn-primary">Save changes</button>
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{{__('buttons.close')}}</button>
+              <button type="submit" class="btn btn-primary">{{__('buttons.save')}}</button>
             </div>
         </form>
 
       </div>
     </div>
   </div>
+  <script>
+    @php
+        $url = url()->full();
+        $paginationRoute = '';
+        if(strpos($url, '?')){
+            $paginationRoute = $url . '&pagination=';
+        } else {
+            $paginationRoute = $url . '?pagination=';
+        }
+    @endphp
+    function paginationSwitch(selectPagination) {
+        let route = "{{$paginationRoute}}";
+        $.ajax({
+            url: "{{url()->current()}}",
+            type: 'GET',
+            data: selectPagination.value,
+        });
+    }
+  </script>

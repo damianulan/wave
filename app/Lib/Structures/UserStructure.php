@@ -26,14 +26,6 @@ class UserStructure
                 'sortable' => 'firstname',
                 'width' => '30%',
             ],
-            'actions' => [
-                'key' => false,
-                'title' => __('data.actions'),
-                'default' => false,
-                'type' => 'buttons',
-                'sortable' => false,
-                'width' => '20%',            
-            ],
         ];
     }
 
