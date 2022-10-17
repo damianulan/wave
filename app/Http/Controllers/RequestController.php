@@ -17,10 +17,4 @@ class RequestController extends Controller
         }
         return redirect()->back()->with('success', __('alerts.savingcolumns_success'));
     }
-
-    public function paginationChange($pagination)
-    {
-        DatatablesController::paginate($pagination);
-        return redirect()->back();
-    }
 }

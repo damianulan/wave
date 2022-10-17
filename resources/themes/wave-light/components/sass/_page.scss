@@ -29,6 +29,7 @@ html::-webkit-scrollbar {
 
 #app{
     height: 100%;
+    word-wrap: break-word;
 }
 @media (min-width: 992px){
     .content {
@@ -67,6 +68,10 @@ html::-webkit-scrollbar {
 .content-wrapper {
     padding: 7.5rem 2.2rem 0;
     word-wrap: break-word;
+}
+
+.text-align-end {
+    text-align: end !important;
 }
 
 hr {

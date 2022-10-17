@@ -217,7 +217,7 @@ return [
         // 'ExampleClass' => App\Example\ExampleClass::class,
     ])->toArray(),
 
-    'version' => '0.0.3 beta',
+    'version' => '0.0.3 theta',
     'year' => '2022',
 
 ];

@@ -15,6 +15,8 @@ class Filters
 {
     public static function sort(Collection $collection, $structure) : Collection 
     {
+        $params = FILTER_SANITIZE_NUMBER_INT($_GET, array('sort', 'dir'));
+        dd($params);
         if(isset($_GET['sort']) && isset($_GET['dir']) )
         {
             if ($_GET['dir'] == 'desc'){

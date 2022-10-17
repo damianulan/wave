@@ -16,13 +16,13 @@ $dir='asc';
                     <div class="col-6">
                         <button class="btn btn-round btn-primary" data-bs-toggle="modal" data-bs-target="#columnChooser"><i class="bi bi-gear"></i></button>
                     </div>
-                    <div class="col-6">
+                    <div class="col-6 text-align-end">
                         <a class="btn btn-round btn-primary" data-mdb-toggle="collapse" href="#filters" role="button" aria-expanded="false" aria-controls="filters"><i class="bi bi-filter"></i></a>
                     </div>
                 </div>
             </div>
 
-            <div class="offset-sm-9 col-sm-2">
+            <div class="offset-sm-9 col-sm-2 mt-3">
                 <select class="form-select form-select-sm pagination-select float-right" aria-label=".form-select-sm example" onchange="paginationSwitch(this)">
                     <option value="20" selected>20</option>
                     <option value="50">50</option>
@@ -135,21 +135,9 @@ $dir='asc';
     </div>
   </div>
   <script>
-    @php
-        $url = url()->full();
-        $paginationRoute = '';
-        if(strpos($url, '?')){
-            $paginationRoute = $url . '&pagination=';
-        } else {
-            $paginationRoute = $url . '?pagination=';
-        }
-    @endphp
     function paginationSwitch(selectPagination) {
-        let route = "{{$paginationRoute}}";
-        $.ajax({
-            url: "{{url()->current()}}",
-            type: 'GET',
-            data: selectPagination.value,
-        });
+        var url = new URL(window.location.href);
+        url.searchParams.set('pagination', selectPagination.value);
+        window.location.replace(url);
     }
   </script>

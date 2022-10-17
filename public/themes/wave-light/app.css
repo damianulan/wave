@@ -32257,6 +32257,7 @@ html::-webkit-scrollbar-thumb:active {
 
 #app {
   height: 100%;
+  word-wrap: break-word;
 }
 
 @media (min-width: 992px) {
@@ -32298,6 +32299,10 @@ html::-webkit-scrollbar-thumb:active {
 .content-wrapper {
   padding: 7.5rem 2.2rem 0;
   word-wrap: break-word;
+}
+
+.text-align-end {
+  text-align: end !important;
 }
 
 hr {
@@ -32470,7 +32475,7 @@ a:hover {
 
 .alert {
   box-shadow: 0 2px 15px -3px rgba(0, 0, 0, 0.07), 0 10px 20px -2px rgba(0, 0, 0, 0.04);
-  padding: 1rem 2rem;
+  padding: 1rem 1.5rem;
 }
 
 .card-header {
@@ -32611,9 +32616,8 @@ nav::-webkit-scrollbar-thumb:active {
     transition: all 0.4s ease 0s;
   }
   .footer {
-    display: block;
-    width: calc(100vw - (100vw - 100%) - 4.4rem - 260px);
-    margin: 1.3rem 2.2rem 0;
+    margin-left: 260px;
+    padding: 1rem 2rem;
     background-color: #fff;
   }
 }
@@ -32647,9 +32651,8 @@ nav::-webkit-scrollbar-thumb:active {
     transition: all 0.4s ease 0s;
   }
   .footer {
-    display: block;
-    width: calc(100vw - (100vw - 100%) - 4.4rem - 65px);
-    margin: 1.3rem 2.2rem 0;
+    margin-left: 65px;
+    padding: 0.7rem 2rem;
     background-color: #fff;
   }
   .nav .navigation-header {
@@ -32843,7 +32846,7 @@ img.navbar-logo {
   border-top-left-radius: 0.375rem;
   border-top-right-radius: 0.375rem;
   text-align: center;
-  padding: 1rem 0;
+  padding: 0.5rem 0;
   margin-bottom: 0.5rem;
 }
 

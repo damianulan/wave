@@ -52,9 +52,8 @@ border-radius: 10px;
         transition: all .4s ease 0s;
     }
     .footer{
-        display: block;
-        width: calc(100vw - (100vw - 100%) - calc(2.2rem * 2) - $menu-expanded-width);
-        margin: 1.3rem 2.2rem 0;
+        margin-left: $menu-expanded-width;
+        padding: 1rem 2rem;
         background-color: $bg-nav;
     }
 }
@@ -89,9 +88,8 @@ border-radius: 10px;
     }
 
     .footer{
-        display: block;
-        width: calc(100vw - (100vw - 100%) - calc(2.2rem * 2) - $menu-collapsed-width);
-        margin: 1.3rem 2.2rem 0;
+        margin-left: $menu-collapsed-width;
+        padding: .7rem 2rem;
         background-color: $bg-nav;
     }
 
@@ -288,7 +286,7 @@ img.navbar-logo {
     border-top-left-radius: $dropdown-border-radius;
     border-top-right-radius: $dropdown-border-radius;
     text-align: center;
-    padding: 1rem 0;
+    padding: .5rem 0;
     margin-bottom: .5rem;
 }
 
