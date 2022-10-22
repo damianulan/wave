@@ -32536,7 +32536,7 @@ table.table-wave {
   border-radius: 0.8rem;
 }
 
-th.sorting a {
+th.headers a, th.sorting a {
   color: #6c757d;
 }
 

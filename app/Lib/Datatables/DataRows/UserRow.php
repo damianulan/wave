@@ -1,15 +1,15 @@
 <?php
 
 namespace App\Lib\Datatables\DataRows;
-
 use App\Models\User;
-use Illuminate\Database\Eloquent\Collection;
 
 class UserRow
 {
 
     public static function collect(User $user):array
     {
+        $status = self::resolveStatus($user->status);
+
         return [
             'basic' => 
                 '<div class="row align-items-center">
@@ -24,6 +24,21 @@ class UserRow
             'fullname' => $user->firstname . ' ' . $user->lastname,
             'name' => $user->firstname,
             'lastname' => $user->lastname,
+            'nickname' => $user->nickname,
+            'email' => $user->email,
+            'role' => __('forms.'.$user->roles[0]->slug),
+            'status' => $status,
+
         ];
+    }
+
+    private static function resolveStatus(string $status): string
+    {
+        if($status == '1'){
+            $status = __('forms.active');
+        } else if ($status == '0'){
+            $status = __('forms.blocked');
+        }
+        return $status;
     }
 }

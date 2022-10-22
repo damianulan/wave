@@ -56,8 +56,8 @@ $dir='asc';
                         @endif
                         @foreach ($columns as $column)
                             <th class="headers{{$column['sortable'] ? ' sorting' : ''}}" scope="col" style="width:{{$column['width']}}">
-                                <a href="{{$column['sortable'] ? url()->current().'?sort='.$column['key'].'&dir='.$dir : ''}}">{{$column['title']}} 
-                                    <?php if(isset($_GET['dir'])&&$_GET['dir']=='asc'&&$column['sortable']) {echo '<i class="bi-sort-down"></i>';}else{echo '<i class="bi-sort-up"></i>';} ?>
+                                <a class="dark" href="{{$column['sortable'] ? url()->current().'?sort='.$column['key'].'&dir='.$dir : ''}}">{{$column['title']}} 
+                                    <?php if(isset($_GET['dir'])&&$_GET['dir']=='asc'&&$column['sortable']) {echo '<i class="bi-sort-down"></i>';}elseif(isset($_GET['dir'])&&$_GET['dir']=='desc'&&$column['sortable']){echo '<i class="bi-sort-up"></i>';} ?>
                                 </a>
                             </th>
                         @endforeach

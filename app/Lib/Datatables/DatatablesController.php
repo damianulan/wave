@@ -9,7 +9,9 @@ use App\Models\Datatable;
 use App\Lib\Datatables\DataRows\RowsController;
 use App\Models\User;
 
+// Structures
 use App\Lib\Structures\UserStructure;
+use App\Lib\Structures\ClientStructure;
 
 class DatatablesController
 {
@@ -19,9 +21,8 @@ class DatatablesController
             'exception' => 'exception']);
 
         $structure = $this->loadStructure($view);
-        $collection = $this->loadCollection($view);
 
-        $collection = Filters::sort($collection, $structure);
+        $collection = Filters::get($view, $structure);
 
         $columns = $this->getColumns($view, $structure);
         $rows = RowsController::get($view, $collection, $columns);
@@ -101,19 +102,11 @@ class DatatablesController
 
     private function loadStructure (string $view): array 
     {
-        if ($view === 'users')
-        {
+        if ($view === 'users'){
             return UserStructure::get();
         }
-
-        return [];
-    }
-
-    private function loadCollection (string $view): Collection 
-    {
-        if ($view === 'users')
-        {
-            return User::all();
+        else if ($view === 'clients'){
+            return ClientStructure::get();
         }
 
         return [];

@@ -2,14 +2,15 @@
 
 namespace App\Lib\Datatables\DataRows;
 
-use Illuminate\Database\Eloquent\Collection;
+// Models
+use App\Models\User;
 
-use App\Models\Datatable;
+// Models rows
 use App\Lib\Datatables\DataRows\UserRow;
 
 class RowsController 
 {
-    public static function get($view, Collection $collection, $columns): array 
+    public static function get(string $view, array $collection, $columns): array 
     {
         $dataset = [];
         if($view === 'users')
@@ -17,7 +18,8 @@ class RowsController
             foreach ($collection as $datarow)
             {
                 $subRows = [];
-                $allRows = UserRow::collect($datarow);
+                $user = User::findOrFail($datarow->id);
+                $allRows = UserRow::collect($user);
                 foreach ($allRows as $key => $row)
                 {
                     if (array_key_exists($key, $columns))

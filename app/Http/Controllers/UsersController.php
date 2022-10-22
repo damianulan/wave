@@ -52,7 +52,7 @@ class UsersController extends Controller
      */
     public function create()
     {
-        $roles = Role::all()->sortByDesc('created_at');
+        $roles = Role::where('slug', 'not like', 'root')->get();
         $locations = Location::all();
 
         $title = __('menus.add_user');
@@ -103,7 +103,7 @@ class UsersController extends Controller
     {
         if($id != auth()->user()->id){
             $user = User::findOrFail($id);
-            $role = $user->roles()->get()->first()->slug;
+            $role = $user->roles[0]->slug;
             $locations = Location::all();
             $title = $user->name . ' ' . $user->surname;
             $logs = $user->getActivity(5);
@@ -130,7 +130,7 @@ class UsersController extends Controller
 
         if($id != auth()->user()->id){
             $user = User::findOrFail($id);
-            $roles = Role::all()->sortByDesc('created_at');
+            $roles = Role::where('slug', 'not like', 'root');
             $locations = Location::all();
 
             $title = $user->name . ' ' . $user->surname;
