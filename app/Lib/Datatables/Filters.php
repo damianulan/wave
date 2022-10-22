@@ -15,15 +15,20 @@ class Filters
 {
     public static function sort(Collection $collection, $structure) : Collection 
     {
-        $params = FILTER_SANITIZE_NUMBER_INT($_GET, array('sort', 'dir'));
-        dd($params);
+        // $params = FILTER_SANITIZE_NUMBER_INT($_GET, array('sort', 'dir'));
+        // dd($params);
         if(isset($_GET['sort']) && isset($_GET['dir']) )
         {
-            if ($_GET['dir'] == 'desc'){
-                $collection->sortByDesc($structure[$_GET['sort']]['sortable']);
-            } else {
-                $collection->sortBy($structure[$_GET['sort']]['sortable']);
+            $field = $structure[$_GET['sort']]['sortable'];
+            $unsortedField = [];
+            $sortedField = new Collection();
+            foreach ($collection as $user_){
+                $user = $user_->toArray();
+                $unsortedField[$field] .= $user[$field];
             }
+            $sortedField = collect($unsortedField);
+            $sortedField->sortBy(['firstname', 'desc']);
+            dd($sortedField);
         }
 
         return $collection;
