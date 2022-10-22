@@ -4,7 +4,7 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-lg-6 col-sm-8">
-            <div class="card">
+            <div class="card m-4">
                 <div class="card-body p-0">
                     <div class="row">
                         <div class="col-lg-6 d-lg-block text-center align-self-center px-1 py-0">
@@ -20,7 +20,7 @@
                                     </div>
                                     <div class="col-6">
                                         <div class="fs-7 float-right">{{__('auth.admin_panel')}}</div><br/>
-                                        <div class="fs-7 float-right">Zapleciny</div>
+                                        <div class="fs-7 float-right">Build: {{config('app.build')}}</div>
                                     </div>
                                 </div>
 
