@@ -1,4 +1,4 @@
-// Theme variables
+// Theme variable
 $theme: "wave-light";
 
 // Body
@@ -10,26 +10,55 @@ $font-family-base: 'Montserrat', 'Helvetica', sans-serif;
 $font-family-sans-serif: 'Montserrat', sans-serif;
 $font-brand: 'Poppins', 'Montserrat', sans-serif;
 $font-family-monospace: 'JetBrains Mono', monospace;
-$font-size-base: 0.9rem;
+$font-size-base: 0.8rem;
 $line-height-base: 1.6;
 
 // Paths
-$imagesPath: "/themes/"$theme"/images";
+$imagesPath: "/themes/wave-light/images";
 
-// Colors
+// Colors HEX
 $primary: #1873ac;
 $primary-light: #187ca1;
 $primary-dark: #125695;
+$primary-darker: #0c3c68;
+$secondary: #1778a0;
 $dark: #332d2d;
+
+// Colors shades
+$primary-100: rgba(24 115 172 / 10%);
+$primary-200: rgba(24 115 172 / 20%);
+$primary-300: rgba(24 115 172 / 30%);
+$primary-400: rgba(24 115 172 / 40%);
+$primary-500: rgba(24 115 172 / 50%);
+$primary-600: rgba(24 115 172 / 60%);
+$primary-700: rgba(24 115 172 / 70%);
+$primary-800: rgba(24 115 172 / 80%);
+$primary-900: rgba(24 115 172 / 90%);
+
+// Colors RGB
+$primary-rgb: rgba(24, 115, 172);
+$primary-light-rgb: rgba(24, 124, 161);
+$primary-dark-rgb: rgba(18, 86, 149);
+$primary-darker-rgb: rgba(12, 60, 104);
 
 $theme-colors: (
   'primary': $primary,
   'primary-light': $primary-light,
   'primary-dark': $primary-dark,
   'dark': $dark,
+  'secondary': $primary-light,
 );
 
 $aquamarine: #7fffd4;
 
 // Component colors
 $bg-nav: #fff;
+
+// variables
+$menu-expanded-width: 260px;
+$menu-collapsed-width: 65px;
+$tooltip-inner-padding-y: .3rem;
+$tooltip-inner-padding-x: .2rem;
+$tooltip-inner-font-size: .8rem;
+
+$breadcrumb-font-size: .7rem;

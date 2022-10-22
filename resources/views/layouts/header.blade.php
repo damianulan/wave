@@ -8,12 +8,8 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>{{ config('app.name') }}</title>
-    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('themes/'.$theme.'/images/icons/logo/png/wave-icon-color.png') }}">
+    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('themes/'.$theme.'/images/icons/logo/png/wave-logo-color-box.png') }}">
 
-    <!-- Fonts -->
-    <link rel="dns-prefetch" href="//fonts.gstatic.com">
-
-    <!-- Scripts -->
+    <!-- Theme -->
     <link rel="stylesheet" type="text/css" href="{{ asset('themes/'.$theme.'/app.css') }}">
-    <script src="{{asset('themes/'.$theme.'/app.js')}}"></script>
 </head>

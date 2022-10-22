@@ -1,0 +1,99 @@
+a {
+    color: $primary;
+}
+
+a:hover {
+    color: $primary-dark;
+}
+
+.btn {
+    text-transform: unset;
+}
+
+.btn-primary {
+    background: linear-gradient(118deg, $primary-light, $primary-dark);
+    color: $light;
+}
+
+.btn-pagination {
+  padding: .5rem 1rem;
+  margin: 0 .2rem;
+}
+
+.btn-round {
+  border-radius: 2rem;
+  padding: .3rem .5rem;
+}
+
+.form-select {
+  background-color: #fff !important;
+}
+
+.form-control {
+  font-size: .8rem;
+  padding: .7rem;
+  line-height: 1.25;
+  background-color: #fff;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.form-control:focus {
+  color: #4e5154;
+  box-shadow: 0 3px 10px 0 rgb(0 0 0 / 15%);
+  border-color: $primary-light;
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.divider {
+    display: block;
+    text-align: center;
+    overflow: hidden;
+    white-space: nowrap;
+    margin: 1rem 0; }
+    .divider .divider-text {
+      position: relative;
+      display: inline-block;
+      font-size: .8rem;
+      color: $gray-800;
+      padding: 0 1rem;
+      background-color: #fff; }
+      .divider .divider-text i {
+        font-size: 1rem; }
+      .divider .divider-text:before, .divider .divider-text:after {
+        content: "";
+        position: absolute;
+        top: 50%;
+        width: 9999px;
+        border-top: 1px solid rgba(0, 0, 0, 0.1); }
+      .divider .divider-text:before {
+        right: 100%; }
+      .divider .divider-text:after {
+        left: 100%; }
+    .divider.divider-left .divider-text {
+      float: left;
+      padding-left: 0; }
+      .divider.divider-left .divider-text:before {
+        display: none; }
+    .divider.divider-left-center .divider-text {
+      left: -25%; }
+    .divider.divider-right .divider-text {
+      float: right;
+      padding-right: 0; }
+      .divider.divider-right .divider-text:after {
+        display: none; }
+    .divider.divider-right-center .divider-text {
+      right: -25%; }
+    .divider.divider-dotted .divider-text:before, .divider.divider-dotted .divider-text:after {
+      border-style: dotted;
+      border-width: 1px;
+      border-top-width: 0;
+      border-color: black; }
+    .divider.divider-dashed .divider-text:before, .divider.divider-dashed .divider-text:after {
+      border-style: dashed;
+      border-width: 1px;
+      border-top-width: 0;
+      border-color: black; 
+}

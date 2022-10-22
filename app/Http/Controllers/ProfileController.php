@@ -13,8 +13,6 @@ class ProfileController extends Controller
     {
         $title = __('menus.account_settings');
         $user = User::findOrFail(auth()->user()->id);
-        //dd($user->additional_notifications);
-
         return view('pages.profile.edit', [
             'title' => $title,
             'user' => $user

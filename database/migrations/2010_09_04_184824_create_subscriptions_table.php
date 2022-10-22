@@ -27,7 +27,7 @@ return new class extends Migration
         //     $table->string('address');
         //     $table->integer('nin', 10);
         //     $table->tinyInteger('policy_accepted', 1); // 0 - No, 1 - Yes
-        //     $table->text('modules'); // contains an array of settings of modules being active
+        //     $table->text('config'); // JSON serialized config attributes
         //     $table->timestamps();
         // });
     }

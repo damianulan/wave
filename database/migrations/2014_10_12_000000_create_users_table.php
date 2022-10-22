@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Collection;
 
 return new class extends Migration
 {
@@ -14,8 +15,8 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->string('name');
-            $table->string('surname');
+            $table->string('firstname');
+            $table->string('lastname');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password')->nullable();
@@ -31,14 +32,28 @@ return new class extends Migration
             $table->string('state')->nullable();
             $table->string('country')->nullable();
             $table->string('pesel', 11)->nullable();
+            $table->char('locale', 2);
 
             //settings
-            $table->char('locale', 2);
-            $table->char('additional_notifications', 2)->nullable();
-            $table->char('client_schedules', 2)->nullable();
-            $table->char('email_notifications', 2)->nullable();
-            $table->char('news_on_updates', 2)->nullable();
+            $config = new Collection([
+                'additional_notifications' => 1,
+                'client_schedules' => 1,
+                'email_notifications' => 0,
+                'news_on_updates' => 0,
+            ]);
+            $table->text('config')->default($config);
+            /**
+             * config => [
+             *      'locale': (en/pl/..)
+             *      'additional_notifications': (0,1)
+             *      'client_schedules': (0,1)
+             *      'email_notifications': (0,1)
+             *      'news_on_updates': (0,1)
+             * ]
+             *
+             */
 
+            
             //fk
             $table->char('location_id', 36)->nullable();
             $table->foreign('location_id')->references('id')->on('locations')->onDelete('cascade');

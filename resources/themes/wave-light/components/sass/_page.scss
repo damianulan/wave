@@ -1,24 +1,111 @@
 html, body {
     direction: ltr;
+    height: 100%;
+}
+
+html::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  html::-webkit-scrollbar-track {
+    background: rgb(179, 177, 177);
+    border-radius: 10px;
+  }
+  
+  html::-webkit-scrollbar-thumb {
+    background: rgb(136, 136, 136);
+    border-radius: 10px;
+  }
+  
+  html::-webkit-scrollbar-thumb:hover {
+    background: rgb(100, 100, 100);
+    border-radius: 10px;
+  }
+  
+  html::-webkit-scrollbar-thumb:active {
+    background: $primary;
+    border-radius: 10px;
 }
 
 #app{
     height: 100%;
+    word-wrap: break-word;
 }
-.content {
-    padding: 0;
-    position: relative;
-    transition: 300ms ease all;
-    backface-visibility: hidden;
-    min-height: calc(100% - 4rem);
-    margin-left: 260px;
+@media (min-width: 992px){
+    .content {
+        padding: 0;
+        position: relative;
+        transition: 300ms ease all;
+        backface-visibility: hidden;
+        min-height: calc(100% - 4rem);
+        margin-left: $menu-expanded-width;
+        transition: all .4s ease 0s;
+    }    
+}
+@media (max-width: 991px){
+    .content {
+        padding: 0;
+        position: relative;
+        transition: 300ms ease all;
+        backface-visibility: hidden;
+        min-height: calc(100% - 4rem);
+        margin-left: $menu-collapsed-width;
+        transition: all .4s ease 0s;
+    }  
+}
+.blank-content {
+    overflow: overlay;
+    overflow-x: hidden;
+}
+
+.flexbox-container {
+    display: flex;
+    align-items: center;
+    height: calc(var(--vh, 1vh) * 100);
+    justify-content: center;
 }
 
 .content-wrapper {
-    padding: 8rem 2.2rem 0;
+    padding: 7.5rem 2.2rem 0;
     word-wrap: break-word;
+}
+
+.text-align-end {
+    text-align: end !important;
 }
 
 hr {
     box-shadow: 0 4px 20px 0 rgb(0 0 0 / 5%);
+}
+
+.float-left {
+    float: left !important;
+}
+
+.float-right {
+    float: right !important;
+}
+
+.mr-auto, .me-auto {
+    margin-right: auto !important;
+}
+
+.bg-light {
+    background-color: $light !important;
+}
+
+.round {
+    border-radius: 1.5rem;
+}
+
+.fs-7 {
+    font-size: 0.75rem;
+}
+
+.align-items-middle {
+    vertical-align: middle;
+}
+
+.bg-login {
+    background-color: $gray-100
 }

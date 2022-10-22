@@ -43,6 +43,7 @@ return [
     'rights' => 'All rights Reserved.',
     'version' => 'Version',
     'see_repository' => 'See the repository',
+    'collapse' => 'Toggle menu',
 
     //other titles
     'maintenance' => 'Maintenance',
@@ -51,4 +52,8 @@ return [
     'suspended' => 'Account Suspended',
     'add_user' => 'Add user',
     'add_client' => 'Add client',
+
+    // Subtitles mixed sites
+    'choose_columns' => 'Choose columns',
+    'choose_columns_info' => 'Choose columns to view. This setting will be kept for You, when You go back here the next time.',
 ];

@@ -5726,7 +5726,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-$('.form-control').select2();
 
 /***/ }),
 
@@ -5783,8 +5782,24 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _components_js_navbar__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./components/js/navbar */ "./resources/themes/wave-light/components/js/navbar.js");
-/* harmony import */ var _components_js_navbar__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_components_js_navbar__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _components_js_vendors__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./components/js/vendors */ "./resources/themes/wave-light/components/js/vendors.js");
+/* harmony import */ var _components_js_vendors__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_components_js_vendors__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _components_js_base__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./components/js/base */ "./resources/themes/wave-light/components/js/base.js");
+/* harmony import */ var _components_js_base__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_components_js_base__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _components_js_navbar__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/js/navbar */ "./resources/themes/wave-light/components/js/navbar.js");
+/* harmony import */ var _components_js_navbar__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_components_js_navbar__WEBPACK_IMPORTED_MODULE_2__);
+
+
+
+
+/***/ }),
+
+/***/ "./resources/themes/wave-light/components/js/base.js":
+/*!***********************************************************!*\
+  !*** ./resources/themes/wave-light/components/js/base.js ***!
+  \***********************************************************/
+/***/ (() => {
+
 
 
 /***/ }),
@@ -5793,6 +5808,38 @@ __webpack_require__.r(__webpack_exports__);
 /*!*************************************************************!*\
   !*** ./resources/themes/wave-light/components/js/navbar.js ***!
   \*************************************************************/
+/***/ (() => {
+
+function setCookie(name, value, days) {
+  var expires = "";
+
+  if (days) {
+    var date = new Date();
+    date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000);
+    expires = "; expires=" + date.toUTCString();
+  }
+
+  document.cookie = name + "=" + (value || "") + expires + "; path=/";
+}
+
+function sidebarToggleAll() {
+  $('#sidebar').toggleClass('menu-collapsed');
+  $('#topbar').toggleClass('menu-collapsed');
+  $('#main').toggleClass('menu-collapsed');
+  var menuCollapsed = $('#sidebar').hasClass('menu-collapsed');
+  setCookie('menu-collapsed', menuCollapsed, 30);
+}
+
+$('#menu-toggle').click(function () {
+  sidebarToggleAll();
+});
+
+/***/ }),
+
+/***/ "./resources/themes/wave-light/components/js/vendors.js":
+/*!**************************************************************!*\
+  !*** ./resources/themes/wave-light/components/js/vendors.js ***!
+  \**************************************************************/
 /***/ (() => {
 
 
@@ -41761,19 +41808,6 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/themes/wave-dark/app.scss":
-/*!*********************************************!*\
-  !*** ./resources/themes/wave-dark/app.scss ***!
-  \*********************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-// extracted by mini-css-extract-plugin
-
-
-/***/ }),
-
 /***/ "./node_modules/process/browser.js":
 /*!*****************************************!*\
   !*** ./node_modules/process/browser.js ***!
@@ -42103,7 +42137,6 @@ process.umask = function() { return 0; };
 /******/ 		// [resolve, reject, Promise] = chunk loading, 0 = chunk loaded
 /******/ 		var installedChunks = {
 /******/ 			"/themes/wave-light/app": 0,
-/******/ 			"themes/wave-dark/app": 0,
 /******/ 			"themes/wave-light/app": 0
 /******/ 		};
 /******/ 		
@@ -42154,9 +42187,8 @@ process.umask = function() { return 0; };
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module depends on other loaded chunks and execution need to be delayed
-/******/ 	__webpack_require__.O(undefined, ["themes/wave-dark/app","themes/wave-light/app"], () => (__webpack_require__("./resources/themes/wave-light/app.js")))
-/******/ 	__webpack_require__.O(undefined, ["themes/wave-dark/app","themes/wave-light/app"], () => (__webpack_require__("./resources/themes/wave-light/app.scss")))
-/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["themes/wave-dark/app","themes/wave-light/app"], () => (__webpack_require__("./resources/themes/wave-dark/app.scss")))
+/******/ 	__webpack_require__.O(undefined, ["themes/wave-light/app"], () => (__webpack_require__("./resources/themes/wave-light/app.js")))
+/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["themes/wave-light/app"], () => (__webpack_require__("./resources/themes/wave-light/app.scss")))
 /******/ 	__webpack_exports__ = __webpack_require__.O(__webpack_exports__);
 /******/ 	
 /******/ })()

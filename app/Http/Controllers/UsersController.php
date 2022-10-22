@@ -10,8 +10,10 @@ use App\Models\Log;
 use App\Models\Role;
 use App\Models\Permission;
 use App\Models\Location;
-use Session;
-use Hash;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Hash;
+use App\Lib\Structures\UserStructure;
+use App\Lib\Datatables\DatatablesController;
 
 class UsersController extends Controller
 {
@@ -20,10 +22,10 @@ class UsersController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('role:admin', ['only' => ['index', 'create', 'store']]);
-        $this->middleware('permission:read-users', ['only' => 'show']);
-        $this->middleware('permission:write-users', ['only' => ['edit', 'update']]);
-        $this->middleware('permission:delete-users', ['only' => 'destroy']);
+        // $this->middleware('role:admin', ['only' => ['index', 'create', 'store']]);
+        // $this->middleware('permission:read-users', ['only' => 'show']);
+        // $this->middleware('permission:write-users', ['only' => ['edit', 'update']]);
+        // $this->middleware('permission:delete-users', ['only' => 'destroy']);
     }
     /**
      * Display a listing of the resource.
@@ -34,9 +36,12 @@ class UsersController extends Controller
     {
         $title = __('menus.users');
         $users = User::where('id', 'not like', auth()->user()->id)->get();
+
+        $tableView = (new DatatablesController)->get('users','default');
         return view('pages.users.index', [
             'title' => $title,
             'users' => $users,
+            'tableView' => $tableView
         ]);      
     }
 
@@ -79,27 +84,9 @@ class UsersController extends Controller
             $avatar = 'app-assets/images/portrait/small/avatar-male.png';
         }
         $password = Hash::make($request->input('password'));
-
-        $user = User::create([
-            'nickname' => $request->input('nickname'),
-            'name' => $request->input('name'),
-            'surname' => $request->input('surname'),
-            'email' => $request->input('email'),
-            'password' => $password,
-            'gender' => $request->input('gender'),
-            'birthdate' => $request->input('birthdate'),
-            'phone' => $request->input('phone'),
-            'avatar' => $avatar,
-            'address' => $request->input('address'),
-            'zipcode' => $request->input('zipcode'),
-            'city' => $request->input('city'),
-            'state' => $request->input('state'),
-            'country' => $request->input('country'),
-            'pesel' => $request->input('pesel'),
-            'locale' => $request->input('locale'),
-            'location_id' => $request->input('location_id'),
-            'status' => '1'
-        ]);
+        $request->merge(['avatar' => $avatar, 'password' => $password]);
+        $user = new User();
+        $user = User::create($request->all());
         $this->fetchPermissions($user, $request);
         $user->roles()->attach($request->input('rolePicker'));
         $fullname = $user->name . ' ' . $user->surname;

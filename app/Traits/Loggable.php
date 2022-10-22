@@ -32,7 +32,6 @@ trait Loggable
     public function getActivity($rows)
     {
         $logs = Log::select('action', 'data', 'created_at')->where('user_id', $this->id)->whereNotIn('action', ['login', 'login_failed'])->orderBy('created_at')->take($rows)->get();
-        //dd($logs);
         return $logs;
     }
 
@@ -44,7 +43,6 @@ trait Loggable
         $query = "select name from " . $log->data['table'] . " where id like '" . $log->data['id'] . "'";
         $target = DB::select($query)[0];
         return $target;
-        //dd($target);
     }
 
 }

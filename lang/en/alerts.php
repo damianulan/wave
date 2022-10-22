@@ -11,5 +11,8 @@ return [
     'email_notconfirmed' => 'Your email is not confirmed. Please check your inbox to verify. Not verified accounts will autoremove after 30 days.',
     'create_user_email_info' => 'Saving this will result with sending login details to the given email address.',
     'not_authorized' => 'You are not authorized!',
-    'not_authorized_text' => 'Your credentials are not sufficient to perfom this action.'
+    'not_authorized_text' => 'Your credentials are not sufficient to perfom this action.',
+
+    'savingcolumns_error' => 'Something went wrong during template saving. Columns will not be remembered',
+    'savingcolumns_success' => 'Your columns have been saved and will be remembered for future logins.', 
 ];

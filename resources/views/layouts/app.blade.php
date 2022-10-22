@@ -7,12 +7,10 @@ $theme = 'wave-light';
     <div id="app">
         @include('layouts.navbar')
         @include('layouts.top')
-        <main class="content">
+        <main id="main" class="content <?php if(isset($_COOKIE['menu-collapsed'])&&$_COOKIE['menu-collapsed']==true){ echo 'menu-collapsed'; }?>">
             <div class="top-menu-shadow"></div>
             <div class="content-wrapper">
                 @yield('content')
             </div>
         </main>
-    </div>
-</body>
-</html>
+@include('layouts.footer')

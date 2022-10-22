@@ -8,11 +8,15 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Casts\AsArrayObject;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use App\Traits\HasRolesAndPermissions;
 use App\Traits\Loggable;
 use App\Traits\Taggable;
+use App\Models\Location;
+use App\Lib\Datatables\Models\Datatable;
+use Hash;
 
 class User extends Authenticatable
 {
@@ -25,14 +29,15 @@ class User extends Authenticatable
     protected $primaryKey = 'id';
 
     public $timestamps = true;
+
     /**
      * The attributes that are mass assignable.
      *
      * @var string[]
      */
     protected $fillable = [
-        'name',
-        'surname',
+        'firstname',
+        'lastname',
         'email',
         'role',
         'nickname',
@@ -48,11 +53,7 @@ class User extends Authenticatable
         'status',
         'email_verified_at',
         // settings
-        'locale',
-        'additional_notifications',
-        'client_schedules',
-        'email_notifications',
-        'news_on_updates',
+        'config',
 
         'location_id'
     ];
@@ -74,7 +75,13 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
         'birthdate' => 'datetime:d/m/Y',
+        'config' => AsArrayObject::class,
     ];
 
     protected $dates = ['deleted_at', 'birthdate'];
+
+    public function location () {
+        return $this->hasOne(Location::class, 'id', 'location_id');
+    }
+
 }

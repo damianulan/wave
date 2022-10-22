@@ -1,32 +1,127 @@
-.main-menu {
-    z-index: 1031;
-    display: table-cell;
-    position: absolute;
-    background-color: $bg-nav;
-    box-shadow: 0 0 15px 0 rgb(0 0 0 / 5%);
-    transition: -0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
-    transform: translate3d(0, 0, 0);
-    backface-visibility: hidden;
-    width: 260px;
-    height: 100%;
-    padding: 2rem 0;
-    overflow: hidden;
+nav::-webkit-scrollbar {
+    width: 10px;
+}
+
+nav::-webkit-scrollbar-track {
+background: rgb(179, 177, 177);
+border-radius: 10px;
+}
+
+nav::-webkit-scrollbar-thumb {
+background: rgb(136, 136, 136);
+border-radius: 10px;
+}
+
+nav::-webkit-scrollbar-thumb:hover {
+background: rgb(100, 100, 100);
+border-radius: 10px;
+}
+
+nav::-webkit-scrollbar-thumb:active {
+background: rgb(68, 68, 68);
+border-radius: 10px;
+}
+
+@media (min-width: 992px){
+    .main-menu {
+        z-index: 1031;
+        display: table-cell;
+        position: fixed;
+        background-color: $bg-nav;
+        box-shadow: 0 0 15px 0 rgb(0 0 0 / 5%);
+        transform: translate3d(0, 0, 0);
+        backface-visibility: hidden;
+        width: $menu-expanded-width;
+        height: 100%;
+        padding: 2rem 0;
+        overflow-x: hidden;
+        transition: all .4s ease 0s;
+    }
+
+    .top-menu {
+        display: flex;
+        align-items: center;
+        background-color: $bg-nav;
+        z-index: 12;
+        right: 0;
+        padding: 0;
+        margin: 1.3rem 2.2rem 0;
+        width: calc(100vw - (100vw - 100%) - calc(2.2rem * 2) - $menu-expanded-width);
+        min-height: 3.5rem;
+        border-radius: .5rem;
+        transition: all .4s ease 0s;
+    }
+    .footer{
+        margin-left: $menu-expanded-width;
+        padding: 1rem 2rem;
+        background-color: $bg-nav;
+    }
+}
+@media (max-width: 991px){
+    .main-menu {
+        z-index: 1031;
+        display: table-cell;
+        position: absolute;
+        background-color: $bg-nav;
+        box-shadow: 0 0 15px 0 rgb(0 0 0 / 5%);
+        transform: translate3d(0, 0, 0);
+        backface-visibility: hidden;
+        width: $menu-collapsed-width;
+        height: 100%;
+        padding: 1rem 0;
+        overflow-x: hidden;
+        transition: all .4s ease 0s;
+    }
+
+    .top-menu {
+        display: flex;
+        align-items: center;
+        background-color: $bg-nav;
+        z-index: 12;
+        right: 0;
+        padding: 0;
+        margin: 1.3rem 2.2rem 0;
+        width: calc(100vw - (100vw - 100%) - calc(2.2rem * 2) - $menu-collapsed-width);
+        min-height: 3.5rem;
+        border-radius: .5rem;
+        transition: all .4s ease 0s;
+    }
+
+    .footer{
+        margin-left: $menu-collapsed-width;
+        padding: .7rem 2rem;
+        background-color: $bg-nav;
+    }
+
+    .nav .navigation-header {
+        display: none !important;
+    }
+}
+
+.main-menu.menu-collapsed {
+    width: $menu-collapsed-width !important;
+    transition: all .4s ease 0s;
+}
+
+.content.menu-collapsed {
+    margin-left: $menu-collapsed-width !important;
+    transition: all .4s ease 0s !important;
 }
 
 .main-menu .menu-fixed {
     position: fixed;
 }
 
-.nav-link .bi {
+.main-menu .nav-link .bi {
     font-size: 1.3rem;
-    margin-right: 1rem;
+    margin-right: 1.1rem;
 }
 
-.nav-pills {
+.main-menu .nav-pills {
     border-radius: unset;
 }
 
-.nav-pills .nav-link {
+.main-menu .nav-pills .nav-link {
     border-radius: unset;
     font-size: .8rem;
     color: $dark;
@@ -38,13 +133,22 @@
 .nav .navigation-header {
     color: $gray-500;
     font-size: .7rem;
-    margin: 1.5rem 0 .1rem 2rem;
+    margin: 1rem 0 .3rem 2rem;
     padding: 0;
     font-family: 'Poppins', sans-serif;
     font-weight: 600;
     line-height: 1.5;
     letter-spacing: .1rem;
     text-transform: uppercase;
+}
+
+#toggle-menu {
+    cursor: pointer;
+}
+
+.menu-collapsed .nav .navigation-header {
+    display: none !important;
+    transition: all .3s ease-in-out;
 }
 
 .nav-pills .nav-link:hover {
@@ -58,48 +162,53 @@
     color: $light;
 }
 
-.nav .nav-item a {
+.main-menu .nav .nav-item a {
     transition: padding 0.35s ease 0s !important;
 }
 
-.nav .nav-item:hover > a {
+.main-menu .nav .nav-item:hover > a {
     padding-left: 2.5rem;
     transition: padding 0.35s ease 0s !important;
 }
 
-.navbar-brand {
+.nav-link.disabled {
+    cursor: not-allowed !important;
+    color: $gray-800 !important;
+}
+
+.main-menu .navbar-brand {
     font-family: $font-brand;
     font-size: 1.5rem;
     font-weight: 600;
     letter-spacing: .1rem;
     color: $primary;
-    text-transform: lowercase;
-    margin-left: 1.5rem;
+    margin-left: 1rem;
     margin-bottom: 1.5rem;
     transition: all .3s ease-in-out;
 }
-.navbar-brand:hover {
+.main-menu .navbar-brand:hover {
     color: $primary-light;
     transition: all .3s ease-in-out;
 }
 
 img.navbar-logo {
-    height: 15%;
-    width: 15%;
-    margin-right: .5rem;
+    height: 40px;
+    width: 40px;
+    margin-right: .8rem;
 }
 
-.top-menu {
-    display: flex;
-    align-items: center;
-    background-color: $bg-nav;
-    z-index: 12;
-    right: 0;
-    padding: 0;
-    margin: 1.3rem 2.2rem 0;
-    width: calc(100vw - (100vw - 100%) - calc(2.2rem * 2) - 260px);
-    min-height: 4.5rem;
-    border-radius: .5rem;
+.top-menu .nav {
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.top-menu.menu-collapsed {
+    width: calc(100vw - (100vw - 100%) - calc(2.2rem * 2) - $menu-collapsed-width) !important;
+    transition: all .4s ease 0s !important;
+}
+
+#menu-toggle{
+    cursor: pointer !important;
 }
 
 .sticky-menu {
@@ -114,8 +223,11 @@ img.navbar-logo {
     box-shadow: 0 4px 20px 0 rgb(0 0 0 / 5%);
 }
 
-.menu-container {
-    padding-left: 1rem;
+.top-menu .menu-container {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    padding: 0 1rem;
     transition: 300ms ease all;
     margin-left: 0;
 }
@@ -139,4 +251,104 @@ img.navbar-logo {
     position: fixed;
     top: 0;
     z-index: 11;
+}
+
+.top-menu .menu-wrapper {
+    display: block;
+    width: 100%;
+}
+
+.top-menu .bookmark-icons {
+    font-size: 1.2rem !important;
+    align-items: center;
+}
+
+.top-menu .nav-link{
+    padding: .8rem 0.5rem;
+    color: $dark;
+    font-size: 1.2rem;
+    transition: all .3s ease-in-out;
+}
+
+.top-menu .nav-link:hover {
+    color: $primary;
+    transition: all .3s ease-in-out;
+}
+
+.top-menu .dropdown-toggle::after {
+    display: none !important;
+}
+
+.dropdown-notification .dropdown-header {
+    background: linear-gradient(118deg, $primary-light, $primary-dark);
+    color: $light;
+    font-size: 1rem;
+    border-top-left-radius: $dropdown-border-radius;
+    border-top-right-radius: $dropdown-border-radius;
+    text-align: center;
+    padding: .5rem 0;
+    margin-bottom: .5rem;
+}
+
+.dropdown-notification .dropdown-item:hover {
+    background: transparent;
+}
+
+.badge {
+    padding: .2rem .4rem;
+    display: inline-block;
+    font-size: 60%;
+    font-weight: 400;
+    line-height: 1;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: 0.25em;
+    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.badge-up {
+    position: absolute;
+    top: 10px;
+    right: 2px;
+}
+
+.badge-pill {
+    border-radius: 10rem;
+}
+
+.badge-primary {
+    background: linear-gradient(118deg, $primary-light, $primary-dark);
+    color: $light;
+}
+
+.dropdown .user-nav {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    float: left;
+    margin-right: .8rem;
+}
+
+.user-nav .user-name {
+    font-weight: 600;
+    font-size: .8rem;
+
+}
+
+.dropdown-profile img {
+    box-shadow: 0 4px 8px 0 rgb(0 0 0 / 12%), 0 2px 4px 0 rgb(0 0 0 / 8%);
+}
+.nav-item {
+    position: relative;
+    white-space: nowrap;
+}
+.nav-link .badge-pill {
+    float: right;
+    font-size: .6rem;
+    font-weight: 600;
+}
+
+.fade {
+    transition: opacity 0.4s ease-out;
 }
