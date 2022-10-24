@@ -43,7 +43,7 @@ table.table-wave {
     border-radius: .8rem;
 }
 
-th.sorting a {
+th.headers a, th.sorting a {
     color: $gray-600;
 }
 

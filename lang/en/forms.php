@@ -1,20 +1,14 @@
 <?php
 
 return [
+    // USER
+    'basic' => 'Basic data',
     'nickname' => 'Nickname',
     'fullname' => 'Full name',
     'name' => 'Name',
-    'surname' => 'Last name',
+    'firstname' => 'First Name',
+    'lastname' => 'Last name',
     'email' => 'Email',
-    'status' => 'Status',
-    'active' => 'Active',
-    'blocked' => 'Blocked',
-    'role' => 'Role',
-    'root' => 'SysAdmin',
-    'admin' => 'Admin',
-    'manager' => 'Manager',
-    'employee' => 'Employee',
-    'trainee' => 'Trainee',
     'user' => 'User',
     'location' => 'Location',
     'information' => 'Information',    
@@ -35,6 +29,8 @@ return [
     'state' => 'State',
     'country' => 'Country',
 
+
+    // forms
     'general' => 'General',
     'change_password' => 'Change Password',
     'info' => 'Info',
@@ -71,5 +67,19 @@ return [
     'write' => 'Write',
     'create' => 'Create',
     'delete' => 'Delete',
+    'unknown' => 'Unknown',
+
+    // status
+    'status' => 'Status',
+    'active' => 'Active',
+    'blocked' => 'Blocked',
+
+    // roles
+    'role' => 'Role',
+    'root' => 'SysAdmin',
+    'admin' => 'Admin',
+    'manager' => 'Manager',
+    'employee' => 'Employee',
+    'trainee' => 'Trainee',
 
 ];

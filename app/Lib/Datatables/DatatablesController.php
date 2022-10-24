@@ -9,7 +9,9 @@ use App\Models\Datatable;
 use App\Lib\Datatables\DataRows\RowsController;
 use App\Models\User;
 
+// Structures
 use App\Lib\Structures\UserStructure;
+use App\Lib\Structures\ClientStructure;
 
 class DatatablesController
 {
@@ -19,20 +21,21 @@ class DatatablesController
             'exception' => 'exception']);
 
         $structure = $this->loadStructure($view);
-        $collection = $this->loadCollection($view);
 
-        $collection = Filters::sort($collection, $structure);
+        $collection = Filters::get($view, $structure);
 
         $columns = $this->getColumns($view, $structure);
         $rows = RowsController::get($view, $collection, $columns);
 
-        if(empty($rows) || empty($columns)){
-
-        } else {
+        if(!empty($rows) && !empty($columns)){
+            /**
+             * Pagination
+             */
+            $pages = $this->paginate($rows);
             $tableview = view('components.datatables.table',[
                 'view' => $view,
                 'columns' => $columns,
-                'rows' => $rows,
+                'pages' => $pages,
                 'tabletype' => $tabletype,
                 'allcolumns' => $this->getAllColumnsNames($structure),
             ]);
@@ -101,27 +104,45 @@ class DatatablesController
 
     private function loadStructure (string $view): array 
     {
-        if ($view === 'users')
-        {
+        if ($view === 'users'){
             return UserStructure::get();
         }
-
-        return [];
-    }
-
-    private function loadCollection (string $view): Collection 
-    {
-        if ($view === 'users')
-        {
-            return User::all();
+        else if ($view === 'clients'){
+            return ClientStructure::get();
         }
 
         return [];
     }
 
-    public static function paginate ($value)
+    public function paginate ($rows): array
     {
+        $pagination = 2;
+        if(isset($_GET['pagination'])){
+            $pagination = (int) filter_var($_GET['pagination'], FILTER_SANITIZE_NUMBER_INT);
+        }
 
+        $pages = [];
+        $page_load = [];
+        $page_counter = 1;
+        $i = 0;
+        foreach ($rows as $rowid => $row){
+            if ($i==$pagination){
+                $pages[$page_counter] = $page_load;
+
+                $page_load = [];
+                $page_counter++;
+                $i = 0;
+            }
+            $page_load[$rowid] = $row;
+
+            $i++;
+        }
+
+        if(!empty($page_load)){
+            $pages[$page_counter] = $page_load;      
+        }
+
+        return $pages;
     }
 
 }

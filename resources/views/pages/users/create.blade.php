@@ -22,7 +22,7 @@
 @include('components.alerts')
 <div class="row mt-4">
     <div class="col-md-12">
-        <div class="card p-1">
+        <div class="card p-5">
             <div class="card-body">
                 <form method="POST" action="{{route('users.store')}}" enctype="multipart/form-data">
                     @method("POST")
@@ -38,13 +38,13 @@
                             <div class="form-group">
                                 <div class="controls">
                                     <label>{{__('forms.name')}}</label>
-                                    <input name="name" type="text" class="form-control" placeholder="{{__('forms.name')}}" required data-validation-required-message="{{__('validation.required', ['attribute' => __('forms.name')])}}">
+                                    <input name="firstname" type="text" class="form-control" placeholder="{{__('forms.name')}}" required data-validation-required-message="{{__('validation.required', ['attribute' => __('forms.name')])}}">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="controls">
-                                    <label>{{__('forms.surname')}}</label>
-                                    <input name="surname" type="text" class="form-control" placeholder="{{__('forms.surname')}}" required data-validation-required-message="This name field is required">
+                                    <label>{{__('forms.lastname')}}</label>
+                                    <input name="lastname" type="text" class="form-control" placeholder="{{__('forms.lastname')}}" required data-validation-required-message="This name field is required">
                                 </div>
                             </div>
                             <div class="form-group">
@@ -72,7 +72,7 @@
                             <div class="form-group">
                                 <label>{{__('forms.location')}}</label>
                                 <select name="location_id" class="form-control">
-                                    <option value="">{{__('vocabulary.none')}}</option>
+                                    <option value="-1">{{__('vocabulary.none')}}</option>
                                     @foreach ($locations as $location)
                                         <option value="{{$location->id}}">{{$location->name}}</option>
                                     @endforeach
@@ -282,9 +282,8 @@
                     </div>
                     <div class="row">
                         <div class="col-12 d-flex flex-sm-row flex-column justify-content-end mt-1">
-                            <button type="submit" class="btn btn-primary glow mb-1 mb-sm-0 mr-0 mr-sm-1">{{__('buttons.save')}}</button>
-                            <button type="button" class="btn btn-info glow mb-1 mb-sm-0 mr-0 mr-sm-1">{{__('buttons.reset_password')}}</button>
-                            <button type="reset" class="btn btn-outline-warning">{{__('buttons.reset_data')}}</button>
+                            <button type="submit" class="btn btn-primary glow mb-1 me-2">{{__('buttons.save')}}</button>
+                            <button type="reset" class="btn btn-secondary glow mb-1 me-2">{{__('buttons.reset_data')}}</button>
                             
                         </div>
                     </div>
