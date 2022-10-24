@@ -1,5 +1,9 @@
 @php
-$dir='asc';
+    $dir='asc';
+    $currentPage = 1;
+    if(isset($_GET['page'])){
+        $currentPage = (int) filter_var($_GET['page'], FILTER_SANITIZE_NUMBER_INT);
+    }
     if(isset($_GET['dir'])){
         if($_GET['dir'] === 'asc'){
             $dir = 'desc';
@@ -55,8 +59,14 @@ $dir='asc';
                             </th>
                         @endif
                         @foreach ($columns as $column)
+                        @php
+                            $param = '';
+                            if($column['sortable'] != false){
+                                $param = 'sort("'.$column['key'].'","'.$dir.'");';
+                            }
+                        @endphp
                             <th class="headers{{$column['sortable'] ? ' sorting' : ''}}" scope="col" style="width:{{$column['width']}}">
-                                <a class="dark" href="{{$column['sortable'] ? url()->current().'?sort='.$column['key'].'&dir='.$dir : ''}}">{{$column['title']}} 
+                                <a class="dark" onclick="{{$param}}">{{$column['title']}} 
                                     <?php if(isset($_GET['dir'])&&$_GET['dir']=='asc'&&$column['sortable']) {echo '<i class="bi-sort-down"></i>';}elseif(isset($_GET['dir'])&&$_GET['dir']=='desc'&&$column['sortable']){echo '<i class="bi-sort-up"></i>';} ?>
                                 </a>
                             </th>
@@ -64,7 +74,7 @@ $dir='asc';
                       </tr>
                     </thead>
                     <tbody>
-                        @foreach ($rows as $rowid => $row)
+                        @foreach ($pages[$currentPage] as $rowid => $row)
                             <tr class="trow" onclick="location.href='{{route('users.edit', $rowid)}}'">
                                 @if ($tabletype === 'checkable')
                                     <th scope="row">
@@ -85,7 +95,10 @@ $dir='asc';
             </div>
             <div class="row pagination-bottom mt-2">
                 <div class="col-md-12">
-                    <a class="btn btn-primary btn-pagination float-right">1</a>
+                    @foreach ($pages as $num => $page )
+                        <a class="btn btn-primary btn-pagination" onclick="page('{{$num}}');">{{$num}}</a>
+                    @endforeach
+                    
                 </div>
             </div>
         </div>
@@ -138,6 +151,19 @@ $dir='asc';
     function paginationSwitch(selectPagination) {
         var url = new URL(window.location.href);
         url.searchParams.set('pagination', selectPagination.value);
+        window.location.replace(url);
+    }
+
+    function sort(key, dir){
+        var url = new URL(window.location.href);
+        url.searchParams.set('sort', key);
+        url.searchParams.set('dir', dir);
+        window.location.replace(url);
+    }
+
+    function page(num){
+        var url = new URL(window.location.href);
+        url.searchParams.set('page', num);
         window.location.replace(url);
     }
   </script>
