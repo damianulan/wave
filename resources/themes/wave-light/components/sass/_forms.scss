@@ -4,6 +4,7 @@ a {
 
 a:hover {
     color: $primary-dark;
+    cursor: pointer !important;
 }
 
 .btn {
@@ -11,8 +12,20 @@ a:hover {
 }
 
 .btn-primary {
-    background: linear-gradient(118deg, $primary-light, $primary-dark);
-    color: $light;
+  background: linear-gradient(118deg, $primary-light, $primary-dark);
+  color: $light;
+  border: 1px $primary;
+  border-style: solid;
+}
+
+.btn-outline {
+  
+}
+
+.btn-outline-primary:hover {
+  background: linear-gradient(118deg, $primary-light, $primary-dark);
+  box-shadow: 0 8px 9px -4px rgb(24 115 172 / 30%), 0 4px 18px 0 rgb(24 115 172 / 20%);
+  transition: all 0.3s ease-in-out;
 }
 
 .btn-pagination {
@@ -96,4 +109,14 @@ a:hover {
       border-width: 1px;
       border-top-width: 0;
       border-color: black; 
+}
+
+.badge.badge-status {
+  padding: .5rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.users-view-image {
+  width: 150px;
 }

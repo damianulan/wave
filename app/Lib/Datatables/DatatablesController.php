@@ -31,11 +31,17 @@ class DatatablesController
             /**
              * Pagination
              */
-            $pages = $this->paginate($rows);
+            $pagination = 20;
+            if(isset($_GET['pagination'])){
+                $pagination = (int) filter_var($_GET['pagination'], FILTER_SANITIZE_NUMBER_INT);
+            }
+            $pages = $this->paginate($rows, $pagination);
+            /** END Pagination */
             $tableview = view('components.datatables.table',[
                 'view' => $view,
                 'columns' => $columns,
                 'pages' => $pages,
+                'pagination' => $pagination,
                 'tabletype' => $tabletype,
                 'allcolumns' => $this->getAllColumnsNames($structure),
             ]);
@@ -114,13 +120,8 @@ class DatatablesController
         return [];
     }
 
-    public function paginate ($rows): array
+    public function paginate ($rows, int $pagination): array
     {
-        $pagination = 2;
-        if(isset($_GET['pagination'])){
-            $pagination = (int) filter_var($_GET['pagination'], FILTER_SANITIZE_NUMBER_INT);
-        }
-
         $pages = [];
         $page_load = [];
         $page_counter = 1;

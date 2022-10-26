@@ -32347,6 +32347,7 @@ a {
 
 a:hover {
   color: #125695;
+  cursor: pointer !important;
 }
 
 .btn {
@@ -32356,6 +32357,14 @@ a:hover {
 .btn-primary {
   background: linear-gradient(118deg, #187ca1, #125695);
   color: #f8f9fa;
+  border: 1px #1873ac;
+  border-style: solid;
+}
+
+.btn-outline-primary:hover {
+  background: linear-gradient(118deg, #187ca1, #125695);
+  box-shadow: 0 8px 9px -4px rgba(24, 115, 172, 0.3), 0 4px 18px 0 rgba(24, 115, 172, 0.2);
+  transition: all 0.3s ease-in-out;
 }
 
 .btn-pagination {
@@ -32467,6 +32476,16 @@ a:hover {
   border-color: black;
 }
 
+.badge.badge-status {
+  padding: 0.5rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.users-view-image {
+  width: 150px;
+}
+
 .alert-heading {
   font-size: 0.9rem;
   font-weight: 700;
@@ -32562,6 +32581,13 @@ th.sorting a.active i {
   display: contents !important;
 }
 
+table.view-list td {
+  padding-bottom: 0.8rem;
+  min-width: 140px;
+  word-wrap: break-word;
+  font-size: 0.85rem;
+}
+
 nav::-webkit-scrollbar {
   width: 10px;
 }
@@ -32597,10 +32623,10 @@ nav::-webkit-scrollbar-thumb:active {
     -webkit-backface-visibility: hidden;
             backface-visibility: hidden;
     width: 260px;
-    height: 100%;
     padding: 2rem 0;
     overflow-x: hidden;
     transition: all 0.4s ease 0s;
+    height: 100%;
   }
   .top-menu {
     display: flex;
@@ -32616,9 +32642,13 @@ nav::-webkit-scrollbar-thumb:active {
     transition: all 0.4s ease 0s;
   }
   .footer {
-    margin-left: 260px;
+    display: flex;
     padding: 1rem 2rem;
     background-color: #fff;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    width: calc(100vw - (100vw - 100%) - 260px);
   }
 }
 @media (max-width: 991px) {
@@ -32632,10 +32662,10 @@ nav::-webkit-scrollbar-thumb:active {
     -webkit-backface-visibility: hidden;
             backface-visibility: hidden;
     width: 65px;
-    height: 100%;
     padding: 1rem 0;
     overflow-x: hidden;
     transition: all 0.4s ease 0s;
+    height: 100%;
   }
   .top-menu {
     display: flex;
@@ -32651,9 +32681,13 @@ nav::-webkit-scrollbar-thumb:active {
     transition: all 0.4s ease 0s;
   }
   .footer {
-    margin-left: 65px;
+    display: flex;
     padding: 0.7rem 2rem;
     background-color: #fff;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    width: calc(100vw - (100vw - 100%) - 65px);
   }
   .nav .navigation-header {
     display: none !important;

@@ -67,3 +67,10 @@ th.sorting a:hover i {
 th.sorting a.active i {
     display: contents !important;
 }
+
+table.view-list td{
+    padding-bottom: 0.8rem;
+    min-width: 140px;
+    word-wrap: break-word;
+    font-size: 0.85rem;
+}

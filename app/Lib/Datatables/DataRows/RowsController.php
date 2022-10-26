@@ -19,15 +19,17 @@ class RowsController
             {
                 $subRows = [];
                 $user = User::findOrFail($datarow->id);
-                $allRows = UserRow::collect($user);
-                foreach ($allRows as $key => $row)
-                {
-                    if (array_key_exists($key, $columns))
+                if (!$user->hasRole('root')){
+                    $allRows = UserRow::collect($user);
+                    foreach ($allRows as $key => $row)
                     {
-                        $subRows[$key] = $row;
+                        if (array_key_exists($key, $columns))
+                        {
+                            $subRows[$key] = $row;
+                        }
                     }
+                    $dataset[$datarow->id] = $subRows;
                 }
-                $dataset[$datarow->id] = $subRows;
             }
         }
         if(empty($dataset)){

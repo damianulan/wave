@@ -68,6 +68,9 @@ return [
     'create' => 'Create',
     'delete' => 'Delete',
     'unknown' => 'Unknown',
+    'actions' => 'Actions',
+    'none' => 'None',
+    'no_record' => 'No record',
 
     // status
     'status' => 'Status',

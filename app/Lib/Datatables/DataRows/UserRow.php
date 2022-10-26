@@ -2,6 +2,7 @@
 
 namespace App\Lib\Datatables\DataRows;
 use App\Models\User;
+use stdClass;
 
 class UserRow
 {
@@ -27,18 +28,21 @@ class UserRow
             'nickname' => $user->nickname,
             'email' => $user->email,
             'role' => __('forms.'.$user->roles[0]->slug),
-            'status' => $status,
+            'status' => '<span class="badge badge-status badge-'.$status->badge.'">'.$status->name.'</span>',
 
         ];
     }
 
-    private static function resolveStatus(string $status): string
+    private static function resolveStatus(string $status): stdClass
     {
+        $status_ = new stdClass();
         if($status == '1'){
-            $status = __('forms.active');
+            $status_->name = __('forms.active');
+            $status_->badge = 'primary';
         } else if ($status == '0'){
-            $status = __('forms.blocked');
+            $status_->name = __('forms.blocked');
+            $status_->badge = 'warning';
         }
-        return $status;
+        return $status_;
     }
 }

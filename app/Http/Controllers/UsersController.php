@@ -103,15 +103,13 @@ class UsersController extends Controller
     {
         if($id != auth()->user()->id){
             $user = User::findOrFail($id);
-            $role = $user->roles[0]->slug;
-            $locations = Location::all();
+            $role = __('forms.'.$user->roles[0]->slug);
             $title = $user->name . ' ' . $user->surname;
             $logs = $user->getActivity(5);
             return view('pages.users.show', [
                 'title' => $title,
                 'user' => $user,
                 'role' => $role,
-                'locations' => $locations,
                 'logs' => $logs
             ]); 
         }
