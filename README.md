@@ -6,6 +6,8 @@ Wave is a CRM application designed for beauty salons and hairdressing business m
 
 [Live demo](https://wave.damianulan.me/) -- dev
 
+[Contact me](https://damianulan.me) to contribute.
+
 ## Features
 
 - **Scheduling client appointments and calendar management.**
@@ -30,7 +32,7 @@ Wave is a CRM application designed for beauty salons and hairdressing business m
 ### Vendors
 
 - **[Bootstrap v5.2.1](https://getbootstrap.com/docs/5.2/getting-started/introduction/)**
-- **[Bootstrap icons ](https://icons.getbootstrap.com/)**
+- **[Bootstrap icons 1.9.0](https://icons.getbootstrap.com/)**
 - **[MDBootstrap v5.0.0](https://mdbootstrap.com/docs/standard/getting-started/installation/)**
 
 ## License

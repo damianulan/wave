@@ -9,6 +9,8 @@ return [
     'close' => 'Close',
     'edit' => 'Edit',
     'delete' => 'Delete',
+    'block' => 'Block',
+    'watch' => 'Watch',
     'bulk' => 'Bulk delete',
     'reset_data' => 'Reset data',
     'reset_password' => 'Reset password',
@@ -23,4 +25,5 @@ return [
     'add_new' => 'Add new',
     'send_invitation' => 'Send invitation email',
     'go_back' => 'Go Back',
+    'add_task' => 'Assign a task',
 ];

@@ -32626,7 +32626,8 @@ nav::-webkit-scrollbar-thumb:active {
     padding: 2rem 0;
     overflow-x: hidden;
     transition: all 0.4s ease 0s;
-    height: 100%;
+    right: auto;
+    left: 0;
   }
   .top-menu {
     display: flex;
@@ -32665,7 +32666,8 @@ nav::-webkit-scrollbar-thumb:active {
     padding: 1rem 0;
     overflow-x: hidden;
     transition: all 0.4s ease 0s;
-    height: 100%;
+    right: auto;
+    left: 0;
   }
   .top-menu {
     display: flex;

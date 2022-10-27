@@ -56,4 +56,5 @@ return [
     // Subtitles mixed sites
     'choose_columns' => 'Choose columns',
     'choose_columns_info' => 'Choose columns to view. This setting will be kept for You, when You go back here the next time.',
+    'filters' => 'Filters',
 ];

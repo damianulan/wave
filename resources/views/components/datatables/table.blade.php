@@ -18,7 +18,9 @@
             <div class="col-sm-1">
                 <div class="row">
                     <div class="col-6">
-                        <button class="btn btn-round btn-primary" data-bs-toggle="modal" data-bs-target="#columnChooser"><i class="bi bi-gear"></i></button>
+                        <button class="btn btn-round btn-primary" data-bs-toggle="modal" data-bs-target="#columnChooser" data-mdb-toggle="tooltip" data-mdb-placement="bottom" data-mdb-original-title="{{__('menus.choose_columns')}}">
+                            <i class="bi bi-gear"></i>
+                        </button>
                     </div>
                     <div class="col-6 text-align-end">
                         <a class="btn btn-round btn-primary" data-mdb-toggle="collapse" href="#filters" role="button" aria-expanded="false" aria-controls="filters"><i class="bi bi-filter"></i></a>

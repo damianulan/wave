@@ -39,7 +39,6 @@ class User extends Authenticatable
         'firstname',
         'lastname',
         'email',
-        'role',
         'nickname',
         'gender',
         'birthdate' => 'datetime:d/m/Y',
@@ -55,7 +54,8 @@ class User extends Authenticatable
         // settings
         'config',
 
-        'location_id'
+        'location_id',
+        'locale'
     ];
     /**
      * The attributes that should be hidden for serialization.

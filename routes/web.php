@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UsersController;
+use App\Http\Controllers\ClientsController;
 use App\Http\Controllers\RequestController;
 
 
@@ -29,6 +30,7 @@ Route::prefix('auth')->group(function (){
 Route::middleware('auth')->group(function (){
     Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
     Route::resource('/users', UsersController::class);
+    Route::resource('/clients', ClientsController::class);
 
     Route::prefix('/request')->controller(RequestController::class)->group(function () {
         // Datatables

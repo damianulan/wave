@@ -73,22 +73,22 @@ class UsersController extends Controller
     {
         $request->validate([
             'email' => 'required|email|unique:users|max:128',
-            'password' => 'required|min:6',
             'nickname' => 'required|max:10',
-            'name' => 'required',
-            'surname' => 'required',
+            'firstname' => 'required',
+            'lastname' => 'required',
             'gender' => 'required',
         ]);
-        $avatar = 'app-assets/images/portrait/small/avatar-female.png';
+
+        $avatar = 'images/portrait/small/avatar-female.png';
         if ($request->input('gender') != '0'){
-            $avatar = 'app-assets/images/portrait/small/avatar-male.png';
+            $avatar = 'images/portrait/small/avatar-male.png';
         }
-        $password = Hash::make($request->input('password'));
+        $password = Hash::make('123456');
+
         $request->merge(['avatar' => $avatar, 'password' => $password]);
         $user = new User();
-        $user = User::create($request->all());
-        $this->fetchPermissions($user, $request);
-        $user->roles()->attach($request->input('rolePicker'));
+        $user = User::create($request->except('role'));
+        $user->roles()->attach($request->input('role'));
         $fullname = $user->name . ' ' . $user->surname;
         return redirect()->route('users.index')->with('success', __('alerts.user_edited', ['user' => $fullname]));
     }
@@ -187,16 +187,6 @@ class UsersController extends Controller
         $fullname = $user->name . ' ' . $user->surname;
         $user->delete();
         return redirect()->route('users.index')->with('success', __('alerts.user_deleted', ['user' => $fullname]));;
-    }
-
-    protected function fetchPermissions(User $user, Request $request)
-    {
-        $permissions = Permission::all();
-        foreach ($permissions as $permission){
-            if($request->input($permission->slug) == "on"){
-                $user->permissions()->attach($permission);
-            }
-        }
     }
 
 }

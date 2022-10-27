@@ -32,7 +32,7 @@ return new class extends Migration
             $table->string('state')->nullable();
             $table->string('country')->nullable();
             $table->string('pesel', 11)->nullable();
-            $table->char('locale', 2);
+            $table->char('locale', 2)->default('en');
 
             //settings
             $config = new Collection([
