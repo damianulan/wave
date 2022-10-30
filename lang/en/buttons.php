@@ -10,6 +10,7 @@ return [
     'edit' => 'Edit',
     'delete' => 'Delete',
     'block' => 'Block',
+    'unblock' => 'Unblock',
     'watch' => 'Watch',
     'bulk' => 'Bulk delete',
     'reset_data' => 'Reset data',
@@ -26,4 +27,5 @@ return [
     'send_invitation' => 'Send invitation email',
     'go_back' => 'Go Back',
     'add_task' => 'Assign a task',
+    'show_logs' => 'Show logs',
 ];

@@ -24,7 +24,7 @@
     <div class="col-md-12">
         <div class="card p-5">
             <div class="card-body">
-                <form method="POST" action="{{route('users.store')}}" enctype="multipart/form-data">
+                <form class="needs-validation" method="POST" action="{{route('users.store')}}" enctype="multipart/form-data" novalidate>
                     @method("POST")
                     @csrf
                     <div class="row">
@@ -37,25 +37,30 @@
                             <div class="form-group">
                                 <div class="controls">
                                     <label for="account-nickname">{{__('forms.nickname')}}</label>
-                                    <input name="nickname" type="text" class="form-control"  id="account-nickname" placeholder="{{__('forms.nickname')}}" required data-validation-required-message="{{__('validation.required', ['attribute' => __('forms.nickname')])}}">
+                                    <input name="nickname" type="text" class="form-control"  id="account-nickname" placeholder="{{__('forms.nickname')}}" required>
+                                    <div class="valid-feedback">{{__('validation.valid-feedback')}}</div>
+                                    <div class="invalid-feedback">{{__('validation.required', ['attribute' => __('forms.nickname')])}}</div>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="controls">
                                     <label>{{__('forms.name')}}</label>
                                     <input name="firstname" type="text" class="form-control" placeholder="{{__('forms.name')}}" required data-validation-required-message="{{__('validation.required', ['attribute' => __('forms.name')])}}">
+                                    <div class="valid-feedback">{{__('validation.valid-feedback')}}</div>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="controls">
                                     <label>{{__('forms.lastname')}}</label>
-                                    <input name="lastname" type="text" class="form-control" placeholder="{{__('forms.lastname')}}" required data-validation-required-message="This name field is required">
+                                    <input name="lastname" type="text" class="form-control" placeholder="{{__('forms.lastname')}}" required data-validation-required-message="{{__('validation.required', ['attribute' => __('forms.lastname')])}}"">
+                                    <div class="valid-feedback">{{__('validation.valid-feedback')}}</div>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="controls">
                                     <label>{{__('forms.email')}}</label><a data-toggle="tooltip" data-placement="right" title="{{__('alerts.create_user_email_info')}}"> <i class="text-warning feather icon-info"></i></a>
                                     <input name="email" type="email" class="form-control" placeholder="{{__('forms.email')}}" required data-validation-required-message="This email field is required">
+                                    <div class="valid-feedback">{{__('validation.valid-feedback')}}</div>
                                 </div>
                             </div>
                         </div>
@@ -95,7 +100,7 @@
                                     <div class="form-group">
                                         <div class="controls">
                                             <label>{{__('forms.birthdate')}}</label>
-                                            <input name="birthdate" type="text" class="form-control pickadate-months-year format-picker" placeholder="{{__('forms.birthdate')}}" data-validation-required-message="This birthdate field is required">
+                                            <input name="birth" type="date" class="form-control" placeholder="dd/mm/yyyy" data-validation-required-message="This birthdate field is required">
                                         </div>
                                     </div>
                                 </div>
@@ -187,5 +192,24 @@
         </div>
     </div>
 </div>
+<script>
+    // Example starter JavaScript for disabling form submissions if there are invalid fields
+(() => {
+  'use strict';
 
+  // Fetch all the forms we want to apply custom Bootstrap validation styles to
+  const forms = document.querySelectorAll('.needs-validation');
+
+  // Loop over them and prevent submission
+  Array.prototype.slice.call(forms).forEach((form) => {
+    form.addEventListener('submit', (event) => {
+      if (!form.checkValidity()) {
+        event.preventDefault();
+        event.stopPropagation();
+      }
+      form.classList.add('was-validated');
+    }, false);
+  });
+})();
+</script>
 @endsection

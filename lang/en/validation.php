@@ -159,5 +159,6 @@ return [
     */
 
     'attributes' => [],
+    'valid-feedback' => 'Looks good!'
 
 ];

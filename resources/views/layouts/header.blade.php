@@ -7,7 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name') }}</title>
+    <title>{{ config('app.name') . ' - ' . $title }}</title>
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset('themes/'.$theme.'/images/icons/logo/png/wave-logo-color-box.png') }}">
 
     <!-- Theme -->

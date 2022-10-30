@@ -22,6 +22,10 @@ background: rgb(68, 68, 68);
 border-radius: 10px;
 }
 
+html .main-menu {
+    height: 100%;
+}
+
 @media (min-width: 992px){
     .main-menu {
         z-index: 1031;
@@ -66,7 +70,7 @@ border-radius: 10px;
     .main-menu {
         z-index: 1031;
         display: table-cell;
-        position: absolute;
+        position: fixed;
         background-color: $bg-nav;
         box-shadow: 0 0 15px 0 rgb(0 0 0 / 5%);
         transform: translate3d(0, 0, 0);

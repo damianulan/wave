@@ -27,6 +27,7 @@ return [
     'help' => 'Help',
     'knowledge_base' => 'Knowledge Base',
     'support' => 'Support',
+    'root_panel' => 'Root Panel',
     'login' => 'Login',
     'account_settings' => 'Account Settings',
     'edit' => 'Edit',

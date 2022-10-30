@@ -56,6 +56,14 @@ class UserStructure
                 'sortable' => 'email',
                 'width' => '30%',
             ],
+            'gender' => [
+                'key' => 'gender',
+                'title' => __('forms.gender'),
+                'default' => false,
+                'type' => 'dictionary',
+                'sortable' => 'gender',
+                'width' => '30%',
+            ],
             'role' => [
                 'key' => 'role',
                 'title' => __('forms.role'),

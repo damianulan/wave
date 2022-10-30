@@ -3,16 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 use App\Models\User;
-use App\Models\Log;
-use App\Models\Role;
-use App\Models\Permission;
 use App\Models\Location;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Hash;
-use App\Lib\Structures\UserStructure;
 use App\Lib\Datatables\DatatablesController;
 
 class UsersController extends Controller
@@ -26,6 +22,7 @@ class UsersController extends Controller
         // $this->middleware('permission:read-users', ['only' => 'show']);
         // $this->middleware('permission:write-users', ['only' => ['edit', 'update']]);
         // $this->middleware('permission:delete-users', ['only' => 'destroy']);
+        $this->middleware('permission:users/block', ['only' => ['block', 'unblock']]);
     }
     /**
      * Display a listing of the resource.
@@ -35,12 +32,9 @@ class UsersController extends Controller
     public function index()
     {
         $title = __('menus.users');
-        $users = User::where('id', 'not like', auth()->user()->id)->get();
-
         $tableView = (new DatatablesController)->get('users','default');
         return view('pages.users.index', [
             'title' => $title,
-            'users' => $users,
             'tableView' => $tableView
         ]);      
     }
@@ -52,13 +46,12 @@ class UsersController extends Controller
      */
     public function create()
     {
-        $roles = Role::where('slug', 'not like', 'root')->get();
         $locations = Location::all();
 
         $title = __('menus.add_user');
         return view('pages.users.create', [
             'title' => $title,
-            'roles' => $roles,
+            'roles' => $this->roles(),
             'locations' => $locations,
         ]); 
     }
@@ -71,6 +64,7 @@ class UsersController extends Controller
      */
     public function store(Request $request)
     {
+        $excepts = ['role', 'birth'];
         $request->validate([
             'email' => 'required|email|unique:users|max:128',
             'nickname' => 'required|max:10',
@@ -78,19 +72,17 @@ class UsersController extends Controller
             'lastname' => 'required',
             'gender' => 'required',
         ]);
-
-        $avatar = 'images/portrait/small/avatar-female.png';
-        if ($request->input('gender') != '0'){
-            $avatar = 'images/portrait/small/avatar-male.png';
+        if ($request->input('location_id') == '-1'){
+            $excepts[] = 'location_id';
         }
+        $avatar = $this->getAvatarDefault($request->input('gender'));
+        $birthdate = Carbon::createFromFormat('Y-m-d', $request->input('birth'))->format('Y-m-d');
         $password = Hash::make('123456');
-
-        $request->merge(['avatar' => $avatar, 'password' => $password]);
+        $request->merge(['avatar' => $avatar, 'password' => $password, 'birthdate' => $birthdate]);
         $user = new User();
-        $user = User::create($request->except('role'));
+        $user = User::create($request->except($excepts));
         $user->roles()->attach($request->input('role'));
-        $fullname = $user->name . ' ' . $user->surname;
-        return redirect()->route('users.index')->with('success', __('alerts.user_edited', ['user' => $fullname]));
+        return redirect()->route('users.index')->with('success', __('alerts.model_created', ['model' => $user->name()]));
     }
 
     /**
@@ -103,9 +95,9 @@ class UsersController extends Controller
     {
         if($id != auth()->user()->id){
             $user = User::findOrFail($id);
-            $role = __('forms.'.$user->roles[0]->slug);
-            $title = $user->name . ' ' . $user->surname;
-            $logs = $user->getActivity(5);
+            $role = $user->getRole();
+            $title = $user->name();
+            $logs = $user->getActivity(10);
             return view('pages.users.show', [
                 'title' => $title,
                 'user' => $user,
@@ -128,10 +120,10 @@ class UsersController extends Controller
 
         if($id != auth()->user()->id){
             $user = User::findOrFail($id);
-            $roles = Role::where('slug', 'not like', 'root');
+            $roles = $this->roles();
             $locations = Location::all();
 
-            $title = $user->name . ' ' . $user->surname;
+            $title = $user->name();
             return view('pages.users.edit', [
                 'title' => $title,
                 'user' => $user,
@@ -169,8 +161,7 @@ class UsersController extends Controller
         $user->permissions()->detach();
         $this->fetchPermissions($user, $request);
 
-        $fullname = $user->name . ' ' . $user->surname;
-        return redirect()->back()->with('success', __('alerts.user_edited', ['user' => $fullname]));
+        return redirect()->back()->with('success', __('alerts.model_edited', ['model' => $user->name()]));
 
     }
 
@@ -182,11 +173,35 @@ class UsersController extends Controller
      */
     public function destroy($id)
     {
-        
         $user = User::findOrFail($id);
-        $fullname = $user->name . ' ' . $user->surname;
         $user->delete();
-        return redirect()->route('users.index')->with('success', __('alerts.user_deleted', ['user' => $fullname]));;
+        return redirect()->route('users.index')->with('success', __('alerts.model_deleted', ['model' => $user->name()]));;
+    }
+
+    /**
+     * Block the user from logging in
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function block($id)
+    {
+        $user = User::findOrFail($id);
+        $user->block();
+        return redirect()->back()->with('warning', __('alerts.model_blocked', ['model' => $user->name()]));;
+    }
+
+    /**
+     * Block the user from logging in
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function unblock($id)
+    {
+        $user = User::findOrFail($id);
+        $user->unblock();
+        return redirect()->back()->with('success', __('alerts.model_unblocked', ['model' => $user->name()]));;
     }
 
 }

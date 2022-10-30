@@ -28,13 +28,22 @@ Route::prefix('auth')->group(function (){
     Route::get('/emailverified/{id}', [AuthController::class, 'emailVerified'])->name('auth.emailVerified');
 });
 Route::middleware('auth')->group(function (){
+    // HOME
     Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+    // USERS
     Route::resource('/users', UsersController::class);
+    Route::get('users/{user}/block', [UsersController::class, 'block'])->name('users.block');
+    Route::get('users/{user}/unblock', [UsersController::class, 'unblock'])->name('users.unblock');
+
+    // CLIENTS
     Route::resource('/clients', ClientsController::class);
 
     Route::prefix('/request')->controller(RequestController::class)->group(function () {
         // Datatables
         Route::post('/savecolumns', 'saveColumns')->name('request.saveColumns');
         Route::get('/pagination/{pagination}', 'paginationChange')->name('request.paginate');
+        Route::get('/notauthorized', 'NotAuthorized')->name('request.notAuthorized');
+        Route::get('/suspended', 'Suspended')->name('request.suspended');
     });
 });

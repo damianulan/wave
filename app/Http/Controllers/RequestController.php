@@ -22,4 +22,17 @@ class RequestController extends Controller
     {
         
     }
+
+    public function NotAuthorized() {
+        $title = __('menus.notauthorized');
+        return view('pages.errors.notauthorized', [
+            'title' => $title,
+        ]);
+    }
+    public function Suspended() {
+        $title = __('menus.suspended');
+        return view('pages.errors.suspended', [
+            'title' => $title,
+        ]);
+    }
 }

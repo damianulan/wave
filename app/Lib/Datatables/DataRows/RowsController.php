@@ -10,7 +10,7 @@ use App\Lib\Datatables\DataRows\UserRow;
 
 class RowsController 
 {
-    public static function get(string $view, array $collection, $columns): array 
+    public static function get(string $view, array $collection, $columns) 
     {
         $dataset = [];
         if($view === 'users')
@@ -19,7 +19,7 @@ class RowsController
             {
                 $subRows = [];
                 $user = User::findOrFail($datarow->id);
-                if (!$user->hasRole('root')){
+                if (!$user->hasRole('root') && $user->id != auth()->user()->id){
                     $allRows = UserRow::collect($user);
                     foreach ($allRows as $key => $row)
                     {

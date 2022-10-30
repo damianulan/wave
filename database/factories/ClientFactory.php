@@ -18,13 +18,13 @@ class ClientFactory extends Factory
      */
     public function definition()
     {
-        $name = $this->faker->firstName($gender = 'female');
-        $surname = $this->faker->lastName();
+        $firstname = $this->faker->firstName($gender = 'female');
+        $lastname = $this->faker->lastName();
         $hair_length = (string) rand(0,2);
         return [
-            'name' => $name,
-            'surname' => $surname,
-            'email' => Str::lower($name . '.' . $surname) . '@example.pl',
+            'firstname' => $firstname,
+            'lastname' => $lastname,
+            'email' => Str::lower($firstname . '.' . $lastname) . '@damianulan.me',
             'gender' => '0',
             'hair_length' => $hair_length,
             'phone' => $this->faker->unique()->e164PhoneNumber,

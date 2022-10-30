@@ -32326,11 +32326,11 @@ hr {
 }
 
 .round {
-  border-radius: 1.5rem;
+  border-radius: 1.5rem !important;
 }
 
 .fs-7 {
-  font-size: 0.75rem;
+  font-size: 0.75rem !important;
 }
 
 .align-items-middle {
@@ -32476,7 +32476,7 @@ a:hover {
   border-color: black;
 }
 
-.badge.badge-status {
+.badge.badge-status, .badge.badge-tag {
   padding: 0.5rem;
   font-size: 0.75rem;
   font-weight: 700;
@@ -32484,6 +32484,10 @@ a:hover {
 
 .users-view-image {
   width: 150px;
+}
+
+.valid-feedback, .invalid-feedback {
+  font-size: 0.8rem;
 }
 
 .alert-heading {
@@ -32612,6 +32616,10 @@ nav::-webkit-scrollbar-thumb:active {
   border-radius: 10px;
 }
 
+html .main-menu {
+  height: 100%;
+}
+
 @media (min-width: 992px) {
   .main-menu {
     z-index: 1031;
@@ -32656,7 +32664,7 @@ nav::-webkit-scrollbar-thumb:active {
   .main-menu {
     z-index: 1031;
     display: table-cell;
-    position: absolute;
+    position: fixed;
     background-color: #fff;
     box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.05);
     transform: translate3d(0, 0, 0);

@@ -23,7 +23,7 @@ class User extends Authenticatable
     use UUID;
     use HasRolesAndPermissions;
     use HasApiTokens, HasFactory, Notifiable, SoftDeletes, Loggable;
-    //use Taggable;
+    use Taggable;
 
     protected $table = 'users';
     protected $primaryKey = 'id';
@@ -41,7 +41,7 @@ class User extends Authenticatable
         'email',
         'nickname',
         'gender',
-        'birthdate' => 'datetime:d/m/Y',
+        'birthdate',
         'phone',
         'avatar',
         'address',
@@ -53,7 +53,7 @@ class User extends Authenticatable
         'email_verified_at',
         // settings
         'config',
-
+        'password',
         'location_id',
         'locale'
     ];
@@ -74,12 +74,55 @@ class User extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
-        'birthdate' => 'datetime:d/m/Y',
+        'birthdate' => 'datetime:d-m-Y',
         'config' => AsArrayObject::class,
     ];
 
     protected $dates = ['deleted_at', 'birthdate'];
 
+    public function table(){
+        return 'users';
+    }
+
+    // unique traits
+    public function name() {
+        return $this->firstname . ' ' . $this->lastname;
+    }
+
+    public function block() {
+        return $this->update(['status' => 0]);
+    }
+
+    public function unblock() {
+        return $this->update(['status' => 1]);
+    }
+
+    public function isActive(): bool {
+        if($this->status == 1){
+            return true;
+        }
+        return false;
+    }
+
+    public function gender() {
+        if ($this->gender == '0'){
+            return __('forms.female');
+        } elseif ($this->gender == '1'){
+            return __('forms.female');
+        }
+        return false;
+    }
+
+    public function getAddress() {
+        if (isset($this->address) && isset($this->city)){
+            return $this->address . ', ' . $this->city;
+        }
+        else {
+            return __('messages.no_address');
+        }
+    }
+
+    // foreign relations
     public function location () {
         return $this->hasOne(Location::class, 'id', 'location_id');
     }

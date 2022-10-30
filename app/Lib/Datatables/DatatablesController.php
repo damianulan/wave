@@ -17,9 +17,6 @@ class DatatablesController
 {
     public function get(string $view, $tabletype = 'default') 
     {
-        $exception = view('components.datatables.exception',[
-            'exception' => 'exception']);
-
         $structure = $this->loadStructure($view);
 
         $collection = Filters::get($view, $structure);
@@ -47,7 +44,7 @@ class DatatablesController
             ]);
             return $tableview;
         }
-        return $exception;
+        return $this->exception('datatables_nodata');
     }
 
 
@@ -144,6 +141,13 @@ class DatatablesController
         }
 
         return $pages;
+    }
+
+    private function exception (string $alert)
+    {
+        $msg = __('alerts.error').__('alerts.'.$alert);
+        return view('components.datatables.exception',[
+            'exception' => $msg]);
     }
 
 }

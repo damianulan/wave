@@ -54,6 +54,10 @@ class PermissionRoleSeeder extends Seeder
         $usersDelete->slug = 'users/delete';
         $usersDelete->save();
 
+        $usersDelete = new Permission();
+        $usersDelete->slug = 'users/block';
+        $usersDelete->save();
+
         // Business
         $businessManage = new Permission();
         $businessManage->slug = 'business/manage';

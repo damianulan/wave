@@ -32,4 +32,12 @@ class Client extends Model
         'avatar',
         'city'
     ];
+
+    public function table(){
+        return 'clients';
+    }
+
+    public function name() {
+        return $this->firstname . ' ' . $this->lastname;
+    }
 }

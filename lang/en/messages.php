@@ -20,7 +20,8 @@ return [
 
     'in_progress' => 'Application in progress',
     'image_allowance' => 'Allowed JPG, GIF or PNG. Maximum size of 1MB',
-    'no_data' => "There's no data to display",
+    'no_data' => "There's no data to display.",
+    'no_address' => 'No personal address available',
 
     'mistake' => "If there was a mistake, please contact with the system's administrator."
 ];

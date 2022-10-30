@@ -18,11 +18,11 @@ class UserRow
                         <img class="rounded-circle" width="40" height="40" src="'.$user->avatar.'">
                     </div>
                     <div class="col-sm-10 lh-13">
-                        <div class="fw-bold">'.$user->firstname.' '.$user->lastname.'</div>
+                        <div class="fw-bold">'.$user->name().'</div>
                         <div class="fs-7">'.$user->email.'</div>
                     </div>
                 </div>',
-            'fullname' => $user->firstname . ' ' . $user->lastname,
+            'fullname' => $user->name(),
             'name' => $user->firstname,
             'lastname' => $user->lastname,
             'nickname' => $user->nickname,
@@ -37,11 +37,11 @@ class UserRow
     {
         $status_ = new stdClass();
         if($status == '1'){
-            $status_->name = __('forms.active');
+            $status_->name = __('forms.status_1');
             $status_->badge = 'primary';
         } else if ($status == '0'){
-            $status_->name = __('forms.blocked');
-            $status_->badge = 'warning';
+            $status_->name = __('forms.status_2');
+            $status_->badge = 'dark';
         }
         return $status_;
     }

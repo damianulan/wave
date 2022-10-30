@@ -107,7 +107,7 @@ a:hover {
       border-color: black; 
 }
 
-.badge.badge-status {
+.badge.badge-status, .badge.badge-tag {
   padding: .5rem;
   font-size: 0.75rem;
   font-weight: 700;
@@ -115,4 +115,8 @@ a:hover {
 
 .users-view-image {
   width: 150px;
+}
+
+.valid-feedback, .invalid-feedback {
+  font-size: 0.8rem;
 }
