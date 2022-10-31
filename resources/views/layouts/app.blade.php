@@ -1,6 +1,7 @@
 <?php
 // global static variables
-$theme = 'wave-light';
+$config = new App\Models\Config();
+$theme = $config::getTheme();
 ?>
 @include('layouts.header')
 <body>
@@ -13,4 +14,6 @@ $theme = 'wave-light';
                 @yield('content')
             </div>
         </main>
-@include('layouts.footer')
+@if (!request()->routeIs('auth.*'))
+    @include('layouts.footer')
+@endif

@@ -22,7 +22,7 @@ class AuthController extends Controller
     public function index()
     {
         if(Auth::check()){
-            return redirect(route('index'));
+            return redirect(route('home'));
         }else{
             $title = __('menus.login');
             return view($this->loginView, [
@@ -34,42 +34,47 @@ class AuthController extends Controller
       
     public function login(Request $request)
     {
-        $request->validate([
-            'email' => 'required|email',
-            'password' => 'required|min:6',
-        ]);
-        $remember = $request->login_remember;
-        $credentials = $request->only('email', 'password');
-        if(User::where('email', '=', $credentials['email'])->exists()){
-            if (Auth::attempt($credentials, $remember)) {
-                $user = auth()->user();
-                if($user->isActive()){
-                    $request->session()->regenerate();
-                    if(!($user->hasAnyLog())){
-                        //Notification::send($user, new FirstLogin());
-                        //Mail::send(new \App\Mail\VerifyEmail());
-    
+        if(!Auth::check()){
+            $request->validate([
+                'email' => 'required|email',
+                'password' => 'required|min:6',
+            ]);
+            $remember = $request->login_remember;
+            $credentials = $request->only('email', 'password');
+            if(User::where('email', '=', $credentials['email'])->exists()){
+                if (Auth::attempt($credentials, $remember)) {
+                    $user = auth()->user();
+                    if($user->isActive()){
+                        $request->session()->regenerate();
+                        if(!($user->hasAnyLog())){
+                            //Notification::send($user, new FirstLogin());
+                            //Mail::send(new \App\Mail\VerifyEmail());
+        
+                        }
+                        $user->makeLogin($request->ip());
+                        session()->put('locale', $user->locale);
+                        return redirect(route('home'));
+                    } else {
+                        Session::flush();
+                        Auth::logout();
+                        return redirect(route('suspended'));
                     }
-                    $user->makeLogin($request->ip());
-                    session()->put('locale', $user->locale);
-                    return redirect(route('home'));
-                } else {
-                    Session::flush();
-                    Auth::logout();
-                    return redirect(route('suspended'));
+    
                 }
-
+                else{
+                    $user = User::where('email', $credentials['email'])->first();
+                    $user->makeLoginFailed($request->ip());
+                    return redirect(route($this->loginView))->with('alert', __('auth.failed'));
+                }
+    
             }
             else{
-                $user = User::where('email', $credentials['email'])->first();
-                $user->makeLoginFailed($request->ip());
                 return redirect(route($this->loginView))->with('alert', __('auth.failed'));
             }
+        } else {
+            return redirect('home');
+        }
 
-        }
-        else{
-            return redirect(route($this->loginView))->with('alert', __('auth.failed'));
-        }
     }
 
     public function create(array $data)

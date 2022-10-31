@@ -25,6 +25,7 @@
     },
     "dependencies": {
         "detect-autofill": "^1.1.4",
+        "fullcalendar": "^5.11.3",
         "select2": "^4.1.0-rc.0",
         "vue": "^3.2.39",
         "vue-template-compiler": "^2.7.10"

@@ -37,6 +37,14 @@
                                 </tr>
                                 <tr>
                                     <td class="fw-bold">
+                                        {{__('forms.phone')}}
+                                    </td>
+                                    <td>
+                                        {{$user->phone}}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="fw-bold">
                                         {{__('forms.role')}}
                                     </td>
                                     <td>
@@ -62,7 +70,7 @@
                                         {{__('forms.location')}}
                                     </td>
                                     <td>
-                                        {{isset($user->location) ? $user->location->name:__('forms.none')}}
+                                        {{$user->locationName()}}
                                     </td>
                                 </tr>
                                 <tr>
@@ -70,9 +78,9 @@
                                         {{__('forms.tags')}}
                                     </td>
                                     <td>
-                                        @if (count($user->tags))
+                                        @if ($user->hasAnyTag())
                                             @foreach ($user->tags as $tag)
-                                                <span class="badge badge-tag" style="background-color: {{$tag->color}}"></span>
+                                                <span class="badge badge-tag" style="background-color: {{$tag->color}}"><i class="bi bi-tag-fill text-white"></i>{{$tag->name}}</span>
                                             @endforeach
                                         @else
                                             {{__('forms.none')}}
@@ -105,7 +113,7 @@
                                             @endif
                                         @endcan
 
-                                        <a class="fs-5 ms-2" href="#" data-mdb-toggle="tooltip" data-mdb-placement="bottom" data-mdb-original-title="{{__('buttons.delete')}}"><i class="bi bi-trash-fill"></i></a>
+                                        <a class="fs-5 ms-2" href="{{route('users.delete', $user->id)}}" data-mdb-toggle="tooltip" data-mdb-placement="bottom" data-mdb-original-title="{{__('buttons.delete')}}"><i class="bi bi-trash-fill"></i></a>
                                     </td>
                                 </tr>
                             </tbody>

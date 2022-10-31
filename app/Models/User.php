@@ -74,7 +74,6 @@ class User extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
-        'birthdate' => 'datetime:d-m-Y',
         'config' => AsArrayObject::class,
     ];
 
@@ -113,13 +112,27 @@ class User extends Authenticatable
         return false;
     }
 
-    public function getAddress() {
+    public function locationName() {
+        if (isset($this->location)){
+            return $this->location->name;
+        }
+        return __('forms.none');
+    }
+
+    public function address() {
         if (isset($this->address) && isset($this->city)){
             return $this->address . ', ' . $this->city;
         }
         else {
             return __('messages.no_address');
         }
+    }
+
+    public function birthdate() {
+        if($this->birthdate != null){
+            return date('d-m-Y', strtotime($this->birthdate));
+        }
+        return null;
     }
 
     // foreign relations

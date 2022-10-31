@@ -146,12 +146,12 @@
 
       </div>
     </div>
-  </div>
-  <script>
+</div>
+<script>
     function paginationSwitch(selectPagination) {
-        var url = new URL(window.location.href);
-        url.searchParams.set('pagination', selectPagination.value);
-        window.location.replace(url);
+    var url = new URL(window.location.href);
+    url.searchParams.set('pagination', selectPagination.value);
+    window.location.replace(url);
     }
 
     function sort(key, dir){
@@ -166,4 +166,4 @@
         url.searchParams.set('page', num);
         window.location.replace(url);
     }
-  </script>
+</script>

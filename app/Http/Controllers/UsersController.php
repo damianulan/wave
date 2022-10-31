@@ -76,9 +76,9 @@ class UsersController extends Controller
             $excepts[] = 'location_id';
         }
         $avatar = $this->getAvatarDefault($request->input('gender'));
-        $birthdate = Carbon::createFromFormat('Y-m-d', $request->input('birth'))->format('Y-m-d');
+        $date = date("Y-m-d", strtotime($request->input('birth')));
         $password = Hash::make('123456');
-        $request->merge(['avatar' => $avatar, 'password' => $password, 'birthdate' => $birthdate]);
+        $request->merge(['avatar' => $avatar, 'password' => $password, 'birthdate' => $date]);
         $user = new User();
         $user = User::create($request->except($excepts));
         $user->roles()->attach($request->input('role'));
@@ -166,16 +166,30 @@ class UsersController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove the specified resource from storage. [POST]
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
+        dd(true);
         $user = User::findOrFail($id);
         $user->delete();
-        return redirect()->route('users.index')->with('success', __('alerts.model_deleted', ['model' => $user->name()]));;
+        return redirect()->route('users.index')->with('success', __('alerts.model_deleted', ['model' => $user->name()]));
+    }
+
+    /**
+     * Remove the specified resource from storage. [GET]
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function delete($id)
+    {
+        $user = User::findOrFail($id);
+        $user->delete();
+        return redirect()->route('users.index')->with('success', __('alerts.model_deleted', ['model' => $user->name()]));
     }
 
     /**
@@ -192,7 +206,7 @@ class UsersController extends Controller
     }
 
     /**
-     * Block the user from logging in
+     * Unblock the user
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response

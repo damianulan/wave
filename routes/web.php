@@ -35,6 +35,8 @@ Route::middleware('auth')->group(function (){
     Route::resource('/users', UsersController::class);
     Route::get('users/{user}/block', [UsersController::class, 'block'])->name('users.block');
     Route::get('users/{user}/unblock', [UsersController::class, 'unblock'])->name('users.unblock');
+    Route::get('users/{user}/delete', [UsersController::class, 'delete'])->name('users.delete');
+
 
     // CLIENTS
     Route::resource('/clients', ClientsController::class);

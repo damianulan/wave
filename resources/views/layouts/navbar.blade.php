@@ -88,12 +88,14 @@
             {{__('menus.tags')}}
         </a>
       </li>
-      <li class="nav-item">
+      @module('services')
+      <li class="nav-item" id="services">
         <a href="#" class="nav-link">
             <i class="bi bi-scissors"></i>
             {{__('menus.services')}}
         </a>
       </li>
+      @endmodule
       @can('app/config')
       <li class="nav-item">
         <a href="#" class="nav-link">

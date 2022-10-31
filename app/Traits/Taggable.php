@@ -27,6 +27,13 @@ trait Taggable
         return false;
     }
 
+    public function hasAnyTag(): bool {
+        if (count($this->tags)){
+            return true;
+        }
+        return false;
+    }
+
     public function addTag($tag) {
         return $this->tags()->attach($tag);
     }

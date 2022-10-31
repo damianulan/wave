@@ -23,10 +23,16 @@ class UserRow
                     </div>
                 </div>',
             'fullname' => $user->name(),
-            'name' => $user->firstname,
+            'firstname' => $user->firstname,
             'lastname' => $user->lastname,
             'nickname' => $user->nickname,
             'email' => $user->email,
+            'gender' => $user->gender(),
+            'address' => $user->address(),
+            'location' => $user->locationName(),
+            'phone' => $user->phone,
+            'pesel' => $user->pesel,
+            'birthdate' => $user->birthdate(),
             'role' => __('forms.'.$user->roles[0]->slug),
             'status' => '<span class="badge badge-status badge-'.$status->badge.'">'.$status->name.'</span>',
 
