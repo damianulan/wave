@@ -24,14 +24,14 @@ class Controller extends BaseController
         return Permission::all();
     }
 
-    public function getAvatarDefault($gender)
+    public function translateCheckboxValue($value)
     {
-        if($gender == '0'){
-            return 'images/portrait/small/avatar-female.png';
-        } elseif ($gender == '1'){
-            return 'images/portrait/small/avatar-male.png';
+        if ($value != null){
+            return '1';
+        } else {
+            return '0';
         }
 
-        return null;
     }
+
 }

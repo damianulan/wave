@@ -9,12 +9,14 @@ return [
     'calendar' => 'Calendar',
     'email' => 'Email',
     'todo' => 'ToDo',
+    'tasks' => 'Tasks',
     'products' => 'Products',
     'clients' => 'Clients',
     'create' => 'Create',
     'list' => 'List',
     'schedule' => 'Schedule',
     'loyalty' => 'Loyalty',
+    'loyalties' => 'Loyalties',
     'business' => 'Business',
     'company_info' => 'Company',
     'analytics' => 'Analytics',
@@ -31,7 +33,7 @@ return [
     'login' => 'Login',
     'account_settings' => 'Account Settings',
     'edit' => 'Edit',
-
+    'description' => 'Description',
 
     //Misc
     'fullscreen' => 'Fullscreen',
@@ -58,4 +60,17 @@ return [
     'choose_columns' => 'Choose columns',
     'choose_columns_info' => 'Choose columns to view. This setting will be kept for You, when You go back here the next time.',
     'filters' => 'Filters',
+
+    // Settings tabs
+    'settings_general' => 'General Settings',
+    'modules' => 'Modules',
+    'settings_site' => 'Site management',
+    'lang' => 'Global language',
+
+    'tasks_description' => '',
+    'products_description' => '',
+    'loyalties_description' => '',
+    'analytics_description' => '',
+    'finances_description' => '',
+    'tags_description' => '',
 ];

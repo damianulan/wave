@@ -98,7 +98,7 @@
       @endmodule
       @can('app/config')
       <li class="nav-item">
-        <a href="#" class="nav-link">
+        <a href="{{route('settings.index')}}" class="nav-link {{ request()->routeIs('settings.*') ? 'active' : '' }}">
             <i class="bi bi-gear"></i>
             {{__('menus.settings')}}
         </a>

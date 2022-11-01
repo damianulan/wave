@@ -74,3 +74,18 @@ table.view-list td{
     word-wrap: break-word;
     font-size: 0.85rem;
 }
+
+table.list-settings {
+    border-spacing: 0 1rem;
+    border-collapse: separate;
+    clear: both;
+}
+
+table.list-settings th{
+    width: 3%;
+}
+
+table.list-settings .name {
+    text-align: center;
+    width: 20%;
+}

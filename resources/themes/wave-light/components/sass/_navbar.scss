@@ -364,5 +364,17 @@ img.navbar-logo {
 }
 
 .fade {
-    transition: opacity 0.4s ease-out;
+    transition: opacity 0.3s ease-out;
+}
+
+.nav-tabs .nav-link.active {
+    background-color: $nav-tab-bg;
+    font-weight: 800;
+}
+
+.nav-tabs .nav-link:hover {
+    background-color: $nav-tab-bg;
+    color: $nav-tab-color-hover;
+    font-weight: 800;
+    transition: all .5s ease-in-out;
 }

@@ -75,11 +75,11 @@ class UsersController extends Controller
         if ($request->input('location_id') == '-1'){
             $excepts[] = 'location_id';
         }
-        $avatar = $this->getAvatarDefault($request->input('gender'));
         $date = date("Y-m-d", strtotime($request->input('birth')));
         $password = Hash::make('123456');
-        $request->merge(['avatar' => $avatar, 'password' => $password, 'birthdate' => $date]);
         $user = new User();
+        $avatar = $user->getAvatarDefault($request->input('gender'));
+        $request->merge(['avatar' => $avatar, 'password' => $password, 'birthdate' => $date]);
         $user = User::create($request->except($excepts));
         $user->roles()->attach($request->input('role'));
         return redirect()->route('users.index')->with('success', __('alerts.model_created', ['model' => $user->name()]));

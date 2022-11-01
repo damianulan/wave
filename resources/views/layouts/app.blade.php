@@ -14,6 +14,6 @@ $theme = $config::getTheme();
                 @yield('content')
             </div>
         </main>
-@if (!request()->routeIs('auth.*'))
+@if (auth()->check())
     @include('layouts.footer')
 @endif

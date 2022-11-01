@@ -37,9 +37,33 @@ class ConfigSeeder extends Seeder
         $config->save();
 
         $config = new Config();
+        $config->type = 'loyalties';
+        $config->slug = 'autoloyaltyprogram';
+        $config->value = '1';
+        $config->save();
+
+        $config = new Config();
+        $config->type = 'notifications';
+        $config->slug = 'notifyonnewclients';
+        $config->value = '1';
+        $config->save();
+
+        $config = new Config();
         $config->type = 'app';
         $config->slug = 'dbbuild';
         $config->value = date('YmdHi', time());
+        $config->save();
+
+        $config = new Config();
+        $config->type = 'app';
+        $config->slug = 'avatarmale';
+        $config->value = 'images/portrait/small/avatar-male.png';
+        $config->save();
+
+        $config = new Config();
+        $config->type = 'app';
+        $config->slug = 'avatarfemale';
+        $config->value = 'images/portrait/small/avatar-female.png';
         $config->save();
         /**
          * END APP

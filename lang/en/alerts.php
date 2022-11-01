@@ -1,7 +1,7 @@
 <?php
 
 return [
-
+    'no_changes' => 'No changes have been detected. No data was updated',
     'error' => 'Error: ',
     'model_edited' => ':model has been successfuly edited.',
     'model_created' => ':model has been successfuly created.',
@@ -17,4 +17,7 @@ return [
     'savingcolumns_error' => 'Something went wrong during template saving. Columns will not be remembered',
     'savingcolumns_success' => 'Your columns have been saved and will be remembered for future logins.',
     'datatables_nodata' => "There's no data to be shown here.",
+
+    // SETTINGS / CONFIG
+    'settings_modules_success' => 'Modules have been successfuly updated.',
 ];

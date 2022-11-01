@@ -1,3 +1,17 @@
 .lh-13 {
     line-height: 1.3 !important;
 }
+
+.tab-pane .header {
+    font-size: 1rem;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: $dark;
+    padding-left: 1rem;
+    padding-bottom: 1.3rem;
+}
+
+.alert a {
+    font-weight: 700;
+    text-decoration: underline;
+}

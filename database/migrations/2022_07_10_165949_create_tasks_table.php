@@ -14,7 +14,14 @@ return new class extends Migration
     public function up()
     {
         Schema::create('tasks', function (Blueprint $table) {
-            $table->id();
+            $table->uuid('id')->primary();
+            $table->string('name');
+            $table->integer('priority');
+            $table->char('assigned_to', 36)->nullable();
+            $table->foreign('assigned_to')->references('id')->on('users')->onDelete('cascade');
+            $table->char('affiliated_client', 36)->nullable();
+            $table->foreign('affiliated_client')->references('id')->on('clients')->onDelete('cascade');
+            $table->timestamp('deadline')->nullable();
             $table->timestamps();
         });
     }

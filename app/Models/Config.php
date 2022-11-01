@@ -53,6 +53,16 @@ class Config extends Model
         return false;
     }
 
+    public static function getModulesDB(): array {
+        $config = Config::where(['type' => 'modules'])->get();
+        $modules = [];
+        foreach ($config as $rule){
+            $modules[$rule->slug] = $rule->value;
+        }
+
+        return $modules;
+    }
+
     public static function setTheme()
     {
         $rule = Config::where(['slug' => 'theme'])->get();
@@ -80,5 +90,17 @@ class Config extends Model
     {
         $locale = Config::where(['slug' => 'locale'])->get()[0];
         return $locale->value;
+    }
+
+    public static function getAvatarFemale()
+    {
+        $avatar = Config::where(['slug' => 'avatarfemale'])->get()[0];
+        return $avatar->slug;
+    }
+
+    public static function getAvatarMale()
+    {
+        $avatar = Config::where(['slug' => 'avatarmale'])->get()[0];
+        return $avatar->slug;
     }
 }

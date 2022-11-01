@@ -5,6 +5,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\ClientsController;
 use App\Http\Controllers\RequestController;
+use App\Http\Controllers\ConfigController;
 
 
 /*
@@ -41,6 +42,13 @@ Route::middleware('auth')->group(function (){
     // CLIENTS
     Route::resource('/clients', ClientsController::class);
 
+    // SETTINGS & CONFIG
+    Route::prefix('settings')->group(function(){
+        Route::get('/index', [ConfigController::class, 'index'])->name('settings.index');
+        Route::post('/modules/save', [ConfigController::class, 'modulesSave'])->name('settings.modulesSave');
+    });
+
+    // ADDITIONAL REQUESTS
     Route::prefix('/request')->controller(RequestController::class)->group(function () {
         // Datatables
         Route::post('/savecolumns', 'saveColumns')->name('request.saveColumns');
