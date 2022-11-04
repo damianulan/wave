@@ -2,7 +2,7 @@
     <div class="header">
         {{__('menus.modules')}}
       </div>
-      <div class="alert alert-primary mb-3">
+      <div class="alert alert-info mb-3">
         <i class="bi bi-info-circle-fill me-1"></i> {{__('messages.settings_modules_info')}}<br>{{__('messages.read_risks')}} <a target="_blank" href="#">{{__('messages.docs_link')}}</a>.
       </div>
       <div class="row ps-3">

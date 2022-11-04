@@ -71,15 +71,21 @@ class UsersController extends Controller
             'firstname' => 'required',
             'lastname' => 'required',
             'gender' => 'required',
+            'phone' => 'numeric|min:8|max:11'
         ]);
         if ($request->input('location_id') == '-1'){
             $excepts[] = 'location_id';
         }
-        $date = date("Y-m-d", strtotime($request->input('birth')));
         $password = Hash::make('123456');
         $user = new User();
+        $date = $user->birthdateFromInput($request->input('birth'));
         $avatar = $user->getAvatarDefault($request->input('gender'));
-        $request->merge(['avatar' => $avatar, 'password' => $password, 'birthdate' => $date]);
+        $request->merge([
+            'avatar' => $avatar,
+            'password' => $password,
+            'birthdate' => $date,
+            'force_passwordchange' => 1,
+        ]);
         $user = User::create($request->except($excepts));
         $user->roles()->attach($request->input('role'));
         return redirect()->route('users.index')->with('success', __('alerts.model_created', ['model' => $user->name()]));
@@ -148,8 +154,8 @@ class UsersController extends Controller
         $request->validate([
             'email' => 'required|max:128',
             'nickname' => 'required|max:10',
-            'name' => 'required',
-            'surname' => 'required',
+            'firstname' => 'required',
+            'lastname' => 'required',
             'gender' => 'required',
         ]);
         $dump = strtotime($request->input('birthdate'));

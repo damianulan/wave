@@ -18,11 +18,6 @@ class RequestController extends Controller
         return redirect()->back()->with('success', __('alerts.savingcolumns_success'));
     }
 
-    public function storeFilters(Request $request)
-    {
-        
-    }
-
     public function NotAuthorized() {
         $title = __('menus.notauthorized');
         return view('pages.errors.notauthorized', [

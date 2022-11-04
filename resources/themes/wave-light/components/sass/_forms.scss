@@ -120,3 +120,20 @@ a:hover {
 .valid-feedback, .invalid-feedback {
   font-size: 0.8rem;
 }
+
+.text-danger {
+  color: $danger !important;
+}
+
+.text-alert {
+  color: $danger !important;
+  margin-top: .25rem !important;
+}
+
+.text-info {
+  color: $primary !important;
+}
+
+.text-asterisk {
+  color: $asterisk !important;
+}

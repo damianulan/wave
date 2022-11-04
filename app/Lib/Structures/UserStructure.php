@@ -19,7 +19,7 @@ class UserStructure
             'fullname' => [
                 'key' => 'fullname',
                 'title' => __('forms.fullname'),
-                'default' => true,
+                'default' => false,
                 'type' => 'dictionary',
                 'sortable' => 'firstname',
                 'width' => '20%',
@@ -75,7 +75,7 @@ class UserStructure
             'location' => [
                 'key' => 'location',
                 'title' => __('forms.location'),
-                'default' => false,
+                'default' => true,
                 'type' => 'dictionary',
                 'sortable' => false,
                 'width' => '30%',
@@ -83,7 +83,7 @@ class UserStructure
             'phone' => [
                 'key' => 'phone',
                 'title' => __('forms.phone'),
-                'default' => false,
+                'default' => true,
                 'type' => 'dictionary',
                 'sortable' => 'phone',
                 'width' => '20%',
@@ -99,7 +99,7 @@ class UserStructure
             'birthdate' => [
                 'key' => 'birthdate',
                 'title' => __('forms.birthdate'),
-                'default' => true,
+                'default' => false,
                 'type' => 'dictionary',
                 'sortable' => 'birthdate',
                 'width' => '10%',

@@ -22,8 +22,8 @@ class Client extends Model
     public $timestamps = true;
     
     protected $fillable = [
-        'name',
-        'surname',
+        'firstname',
+        'lastname',
         'email',
         'gender',
         'hair_length',
@@ -49,6 +49,13 @@ class Client extends Model
         }
         return false;
     }
+
+    public function birthdate() {
+        if($this->birthdate != null){
+            return date('d-m-Y', strtotime($this->birthdate));
+        }
+        return null;
+    }
     
     public function getAvatarDefault($gender = null)
     {
@@ -65,5 +72,13 @@ class Client extends Model
         }
 
         return null;
+    }
+
+    public function hasAccount()
+    {
+        if($this->password == null){
+            return __('vocabulary.no');
+        }
+        return __('vocabulary.yes');
     }
 }

@@ -50,11 +50,12 @@ class DatatablesController
 
     private function getColumns(string $view, array $structure): array
     {
-        $hasColumns = Datatable::select($view)->where(['user_id' => auth()->user()->id])->get()->toArray();
+        $hasColumns = Datatable::select($view)->where(['user_id' => auth()->user()->id])->get()->toArray()[0];
         $columns = [];
-        if (count($hasColumns))
+        
+        if ($hasColumns[$view] !== null)
         {
-            $savedColumns = json_decode($hasColumns[0][$view]);
+            $savedColumns = json_decode($hasColumns[$view]);
             foreach ($structure as $column => $options)
             {
                 if(in_array($column, $savedColumns)){
@@ -139,7 +140,6 @@ class DatatablesController
         if(!empty($page_load)){
             $pages[$page_counter] = $page_load;      
         }
-
         return $pages;
     }
 

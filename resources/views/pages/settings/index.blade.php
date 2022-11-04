@@ -58,8 +58,7 @@
                             @include('pages.settings.products')
                             @include('pages.settings.loyalties')
                             @include('pages.settings.tasks')
-
-                          </div>
+                        </div>
                     </div>
                 </div>
             </div>

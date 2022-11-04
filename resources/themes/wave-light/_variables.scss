@@ -23,6 +23,8 @@ $primary-dark: #125695;
 $primary-darker: #0c3c68;
 $secondary: #1778a0;
 $dark: #332d2d;
+$danger: #e56b6f;
+$asterisk: #e36414;
 
 // Colors shades
 $primary-100: rgba(24 115 172 / 10%);
@@ -47,6 +49,8 @@ $theme-colors: (
   'primary-dark': $primary-dark,
   'dark': $dark,
   'secondary': $primary-light,
+  'danger': $danger,
+  'asterisk': $asterisk,
 );
 
 $aquamarine: #7fffd4;

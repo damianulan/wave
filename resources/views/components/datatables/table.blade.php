@@ -47,6 +47,13 @@
 
         </div>
         <div class="row">
+            <div class="row pagination-bottom my-1">
+                <div class="col-md-12">
+                    @if (count($pages[$currentPage]) >= 10)
+                        @include('components.datatables.pagination')
+                    @endif
+                </div>
+            </div>
             <div class="col-md-12">
                 <table class="table table-wave checktable">
                     <thead>
@@ -93,12 +100,9 @@
                     </tbody>
                 </table>
             </div>
-            <div class="row pagination-bottom mt-2">
+            <div class="row pagination-bottom mt-2 mb-4">
                 <div class="col-md-12">
-                    @foreach ($pages as $num => $page )
-                        <a class="btn btn-{{$num!=$currentPage ? 'outline-':''}}primary btn-pagination" onclick="page('{{$num}}');">{{$num}}</a>
-                    @endforeach
-                    
+                    @include('components.datatables.pagination')
                 </div>
             </div>
         </div>

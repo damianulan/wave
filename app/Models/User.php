@@ -132,6 +132,13 @@ class User extends Authenticatable
         return null;
     }
 
+    public function birthdateFromInput($input) {
+        if($input != null){
+            return date("Y-m-d", strtotime($input));
+        }
+        return null;
+    }
+
     public function getAvatarDefault($gender = null)
     {
         $g = '0';
@@ -147,6 +154,11 @@ class User extends Authenticatable
         }
 
         return null;
+    }
+
+    public function getRole()
+    {
+        return __('forms.'.$this->roles[0]->slug);
     }
 
     // foreign relations

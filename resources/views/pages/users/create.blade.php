@@ -37,39 +37,46 @@
                             <div class="form-group">
                                 <div class="controls">
                                     <label for="account-nickname">{{__('forms.nickname')}}</label>
-                                    <input name="nickname" type="text" class="form-control"  id="account-nickname" placeholder="{{__('forms.nickname')}}" required>
+                                    <input name="nickname" type="text" class="form-control" placeholder="{{__('forms.nickname')}}" required value="{{old('nickname')}}">
                                     <div class="valid-feedback">{{__('validation.valid-feedback')}}</div>
-                                    <div class="invalid-feedback">{{__('validation.required', ['attribute' => __('forms.nickname')])}}</div>
+                                    <div class="invalid-feedback">{{__('validation.required', ['attribute' => __('forms.nickname')])}} (max:10)</div>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="controls">
                                     <label>{{__('forms.name')}}</label>
-                                    <input name="firstname" type="text" class="form-control" placeholder="{{__('forms.name')}}" required data-validation-required-message="{{__('validation.required', ['attribute' => __('forms.name')])}}">
+                                    <input name="firstname" type="text" class="form-control" placeholder="{{__('forms.name')}}" required value="{{old('firstname')}}">
                                     <div class="valid-feedback">{{__('validation.valid-feedback')}}</div>
+                                    <div class="invalid-feedback">{{__('validation.required', ['attribute' => __('forms.firstname')])}}</div>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="controls">
                                     <label>{{__('forms.lastname')}}</label>
-                                    <input name="lastname" type="text" class="form-control" placeholder="{{__('forms.lastname')}}" required data-validation-required-message="{{__('validation.required', ['attribute' => __('forms.lastname')])}}"">
+                                    <input name="lastname" type="text" class="form-control" placeholder="{{__('forms.lastname')}}" required value="{{old('lastname')}}">
                                     <div class="valid-feedback">{{__('validation.valid-feedback')}}</div>
+                                    <div class="invalid-feedback">{{__('validation.required', ['attribute' => __('forms.lastname')])}}</div>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="controls">
-                                    <label>{{__('forms.email')}}</label><a data-toggle="tooltip" data-placement="right" title="{{__('alerts.create_user_email_info')}}"> <i class="text-warning feather icon-info"></i></a>
-                                    <input name="email" type="email" class="form-control" placeholder="{{__('forms.email')}}" required data-validation-required-message="This email field is required">
+                                    <label>{{__('forms.email')}}</label>
+                                    <input name="email" type="email" class="form-control" placeholder="{{__('forms.email')}}" required value="{{old('email')}}">
                                     <div class="valid-feedback">{{__('validation.valid-feedback')}}</div>
+                                    <div class="invalid-feedback">{{__('validation.required', ['attribute' => __('forms.email')])}}</div>
+                                    <div class="invalid-feedback">{{__('validation.email', ['attribute' => __('forms.email')])}}</div>
+                                    @error('email')
+                                    <div class="text-danger mt-1">{{__('validation.email', ['attribute' => __('forms.email')])}}</div>
+                                    @enderror
                                 </div>
                             </div>
                         </div>
                         <div class="col-12 col-sm-6">
                             <div class="form-group">
-                                <label>{{__('forms.role')}}</label><a href="knowledge.html"><i class="bi bi-info-circle text-info mx-1"></i></a>
+                                <label>{{__('forms.role')}}</label><a  data-mdb-toggle="tooltip" data-mdb-placement="bottom" title="{{__('forms.role_info')}}"><i class="bi bi-info-circle text-info mx-1"></i></a>
                                 <select name="role" class="form-control" required>
                                     @foreach ($roles as $role)
-                                    <option value="{{$role->id}}">{{__('forms.' . $role->slug)}}</option>
+                                    <option value="{{$role->id}}" {{$role->id==old('role') ? 'selected':''}}>{{__('forms.' . $role->slug)}}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -78,7 +85,7 @@
                                 <select name="location_id" class="form-control">
                                     <option value="-1">{{__('vocabulary.none')}}</option>
                                     @foreach ($locations as $location)
-                                        <option value="{{$location->id}}">{{$location->name}}</option>
+                                        <option value="{{$location->id}}" {{$location->id==old('location') ? 'selected':''}}>{{$location->name}}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -86,7 +93,7 @@
                                 <label>{{__('forms.language')}}</label>
                                 <select name="locale" class="form-control">
                                     @foreach (config('app.available_locales') as $locale)
-                                        <option value="{{$locale}}">{{__('locales.' . $locale)}}</option>
+                                        <option value="{{$locale}}" {{$locale==old('locale') ? 'selected':''}}>{{__('locales.' . $locale)}}</option>
                                     @endforeach             
                                 </select>
                             </div>
@@ -100,7 +107,7 @@
                                     <div class="form-group">
                                         <div class="controls">
                                             <label>{{__('forms.birthdate')}}</label>
-                                            <input name="birth" type="date" class="form-control" placeholder="dd/mm/yyyy" data-validation-required-message="This birthdate field is required">
+                                            <input name="birth" type="date" class="form-control" placeholder="dd/mm/yyyy" value="{{old('birthdate')}}">
                                         </div>
                                     </div>
                                 </div>
@@ -108,13 +115,16 @@
                             <div class="form-group">
                                 <div class="controls">
                                     <label>{{__('forms.pesel')}}</label>
-                                    <input name="pesel" type="text" class="form-control" placeholder="{{__('forms.pesel_placeholder')}}" data-validation-required-message="This name field is required">
+                                    <input name="pesel" type="text" class="form-control" placeholder="{{__('forms.pesel_placeholder')}}" value="{{old('pesel')}}">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="controls">
                                     <label>{{__('forms.phone')}}</label>
-                                    <input name="phone" type="text" class="form-control" placeholder="{{__('forms.phone_placeholder')}}">
+                                    <input name="phone" type="text" class="form-control" placeholder="{{__('forms.phone_placeholder')}}" value="{{old('phone')}}">
+                                    @error('phone')
+                                        <div class="text-danger mt-1">{{__('validation.phone')}}</div>
+                                    @enderror
                                 </div>
                             </div>
                             <div class="form-group">
@@ -123,7 +133,7 @@
                                     <li class="d-inline-block mr-2">
                                         <fieldset>
                                             <div class="vs-radio-con">
-                                                <input type="radio" name="gender" value="1" checked>
+                                                <input type="radio" name="gender" value="1" {{old('gender')=='1' ? 'checked':''}}>
                                                 <span class="vs-radio">
                                                     <span class="vs-radio--border"></span>
                                                     <span class="vs-radio--circle"></span>
@@ -135,7 +145,7 @@
                                     <li class="d-inline-block mr-2">
                                         <fieldset>
                                             <div class="vs-radio-con">
-                                                <input type="radio" name="gender" value="0">
+                                                <input type="radio" name="gender" value="0"{{null!==old('gender') ? '':' checked'}}{{old('gender')=='0' ? 'checked':''}}>
                                                 <span class="vs-radio">
                                                     <span class="vs-radio--border"></span>
                                                     <span class="vs-radio--circle"></span>
@@ -145,6 +155,9 @@
                                         </fieldset>
                                     </li>
                                 </ul>
+                                @error('gender')
+                                <div class="text-danger mt-1">{{__('validation.required', ['attribute' => __('forms.gender')])}}</div>
+                                @enderror
                             </div>
                         </div>
                         <div class="col-12 col-sm-6">
@@ -152,31 +165,31 @@
                             <div class="form-group">
                                 <div class="controls">
                                     <label>{{__('forms.address')}}</label>
-                                    <input name="address" type="text" class="form-control" placeholder="{{__('forms.address_placeholder')}}" data-validation-required-message="This Address field is required">
+                                    <input name="address" type="text" class="form-control" placeholder="{{__('forms.address_placeholder')}}" value="{{old('address')}}">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="controls">
                                     <label>{{__('forms.zip')}}</label>
-                                    <input name="zipcode" type="text" class="form-control" placeholder="{{__('forms.zip')}}" data-validation-required-message="This ZIP code field is required">
+                                    <input name="zipcode" type="text" class="form-control" placeholder="{{__('forms.zip')}}" value="{{old('zipcode')}}">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="controls">
                                     <label>{{__('forms.city')}}</label>
-                                    <input name="city" type="text" class="form-control" placeholder="{{__('forms.city')}}" data-validation-required-message="This Time Zone field is required">
+                                    <input name="city" type="text" class="form-control" placeholder="{{__('forms.city')}}" value="{{old('city')}}">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="controls">
                                     <label>{{__('forms.state')}}</label>
-                                    <input name="state" type="text" class="form-control" placeholder="{{__('forms.state')}}" data-validation-required-message="This Time Zone field is required">
+                                    <input name="state" type="text" class="form-control" placeholder="{{__('forms.state')}}" value="{{old('state')}}">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="controls">
                                     <label>{{__('forms.country')}}</label>
-                                    <input name="country" type="text" class="form-control" placeholder="{{__('forms.country')}}" data-validation-required-message="This Time Zone field is required">
+                                    <input name="country" type="text" class="form-control" placeholder="{{__('forms.country')}}" value="{{old('country')}}">
                                 </div>
                             </div>
                         </div>

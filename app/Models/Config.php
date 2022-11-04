@@ -95,12 +95,12 @@ class Config extends Model
     public static function getAvatarFemale()
     {
         $avatar = Config::where(['slug' => 'avatarfemale'])->get()[0];
-        return $avatar->slug;
+        return $avatar->value;
     }
 
     public static function getAvatarMale()
     {
         $avatar = Config::where(['slug' => 'avatarmale'])->get()[0];
-        return $avatar->slug;
+        return $avatar->value;
     }
 }

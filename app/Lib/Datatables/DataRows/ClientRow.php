@@ -25,13 +25,12 @@ class ClientRow
             'fullname' => $client->name(),
             'firstname' => $client->firstname,
             'lastname' => $client->lastname,
-            'nickname' => $client->nickname,
             'email' => $client->email,
             'gender' => $client->gender(),
+            'city' => $client->city,
             'phone' => $client->phone,
-            'pesel' => $client->pesel,
             'birthdate' => $client->birthdate(),
-
+            'hasAccount' => $client->hasAccount(),
         ];
     }
 
