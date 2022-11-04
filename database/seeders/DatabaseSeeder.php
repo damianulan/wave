@@ -19,6 +19,7 @@ class DatabaseSeeder extends Seeder
         $this->call(LocationsSeeder::class);
         $this->call(ServiceSeed::class);
         $this->call(CreateAdminUserSeeder::class);
+        $this->call(ConfigSeeder::class);
         \App\Models\Client::factory(30)->create();
     }
 }

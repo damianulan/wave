@@ -5,15 +5,18 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Client;
 use Illuminate\Http\Request;
+use App\Lib\Datatables\DatatablesController;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\Session;
 
 class ClientsController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('permission:read-clients', ['only' => ['index', 'show']]);
-        $this->middleware('permission:write-clients', ['only' => ['edit', 'update']]);
-        $this->middleware('permission:create-clients', ['only' => ['create', 'store']]);
-        $this->middleware('permission:delete-clients', ['only' => 'destroy']);
+        // $this->middleware('permission:read-clients', ['only' => ['index', 'show']]);
+        // $this->middleware('permission:write-clients', ['only' => ['edit', 'update']]);
+        // $this->middleware('permission:create-clients', ['only' => ['create', 'store']]);
+        // $this->middleware('permission:delete-clients', ['only' => 'destroy']);
     }
 
     /**
@@ -24,10 +27,10 @@ class ClientsController extends Controller
     public function index()
     {
         $title = __('menus.clients');
-        $clients = Client::all();
+        $tableView = (new DatatablesController)->get('clients','default');
         return view('pages.clients.index', [
             'title' => $title,
-            'clients' => $clients
+            'tableView' => $tableView,
         ]);      
     }
 
@@ -40,7 +43,7 @@ class ClientsController extends Controller
     {
         $title = __('menus.add_client');
         return view('pages.clients.create', [
-            'title' => $title
+            'title' => $title,
         ]); 
     }
 
@@ -54,27 +57,15 @@ class ClientsController extends Controller
     {
         $request->validate([
             'email' => 'required|email|unique:users|max:128',
-            'name' => 'required',
-            'surname' => 'required',
+            'firstname' => 'required',
+            'lastname' => 'required',
             'gender' => 'required',
         ]);
-        $avatar = 'app-assets/images/portrait/small/avatar-female.png';
-        if ($request->input('gender') != '0'){
-            $avatar = 'app-assets/images/portrait/small/avatar-male.png';
-        }
+        $avatar = $this->getAvatarDefault($request->input('gender'));
 
-        $client = Client::create([
-            'name' => $request->name,
-            'surname' => $request->surname,
-            'email' => $request->email,
-            'gender' => $request->gender,
-            'birthdate' => $request->birthdate,
-            'phone' => $request->phone,
-            'city' => $request->city,
-            'avatar' => $avatar
-        ]);
-        $fullname = $client->name . ' ' . $client->surname;
-        return redirect()->route('clients.index')->with('success', __('alerts.client_created', ['client' => $fullname]));
+        $request->merge(['avatar' => $avatar]);
+        $client = Client::create($request->all());
+        return redirect()->route('clients.index')->with('success', __('alerts.client_created', ['client' => $client->name()]));
     }
 
     /**
@@ -86,7 +77,7 @@ class ClientsController extends Controller
     public function show($id)
     {
         $client = Client::findOrFail($id);
-        $title = $client->name . ' ' . $client->surname;
+        $title = $client->name();
         return view('pages.clients.show', [
             'title' => $title,
             'client' => $client,
@@ -102,7 +93,7 @@ class ClientsController extends Controller
     public function edit($id)
     {
         $client = Client::findOrFail($id);
-        $title = $client->name . ' ' . $client->surname;
+        $title = $client->name();
         return view('pages.clients.edit', [
             'title' => $title,
             'client' => $client,
@@ -129,9 +120,7 @@ class ClientsController extends Controller
         $request->birthdate = $date;
         $client = Client::findOrFail($id);
         $client->update($request->all());
-
-        $fullname = $client->name . ' ' . $client->surname;
-        return redirect()->back()->with('success', __('alerts.client_edited', ['client' => $fullname]));
+        return redirect()->back()->with('success', __('alerts.client_edited', ['client' => $client->name()]));
     }
 
     /**
@@ -143,8 +132,7 @@ class ClientsController extends Controller
     public function destroy($id)
     {
         $client = Client::findOrFail($id);
-        $fullname = $client->name . ' ' . $client->surname;
         $client->delete();
-        return redirect()->route('clients.index')->with('success', __('alerts.client_deleted', ['client' => $fullname]));;    
+        return redirect()->route('clients.index')->with('success', __('alerts.client_deleted', ['client' => $client->name()]));;    
     }
 }

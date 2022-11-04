@@ -121,4 +121,18 @@ trait HasRolesAndPermissions
         $this->roles()->detach();
         return $this->roles()->attach($role);
     }
+
+    public function getRole(){
+        if (isset($this->role)){
+            return __('forms.'.$this->roles[0]->slug);
+        }
+        return __('forms.none');
+    }
+
+    public function getRoleSlug(){
+        if (isset($this->role)){
+            return $this->roles[0]->slug;
+        }
+        return __('forms.none');
+    }
 }

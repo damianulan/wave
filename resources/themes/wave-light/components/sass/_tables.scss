@@ -67,3 +67,25 @@ th.sorting a:hover i {
 th.sorting a.active i {
     display: contents !important;
 }
+
+table.view-list td{
+    padding-bottom: 0.8rem;
+    min-width: 140px;
+    word-wrap: break-word;
+    font-size: 0.85rem;
+}
+
+table.list-settings {
+    border-spacing: 0 1rem;
+    border-collapse: separate;
+    clear: both;
+}
+
+table.list-settings th{
+    width: 3%;
+}
+
+table.list-settings .name {
+    text-align: center;
+    width: 20%;
+}

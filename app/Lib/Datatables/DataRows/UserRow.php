@@ -2,6 +2,7 @@
 
 namespace App\Lib\Datatables\DataRows;
 use App\Models\User;
+use stdClass;
 
 class UserRow
 {
@@ -17,28 +18,37 @@ class UserRow
                         <img class="rounded-circle" width="40" height="40" src="'.$user->avatar.'">
                     </div>
                     <div class="col-sm-10 lh-13">
-                        <div class="fw-bold">'.$user->firstname.' '.$user->lastname.'</div>
+                        <div class="fw-bold">'.$user->name().'</div>
                         <div class="fs-7">'.$user->email.'</div>
                     </div>
                 </div>',
-            'fullname' => $user->firstname . ' ' . $user->lastname,
-            'name' => $user->firstname,
+            'fullname' => $user->name(),
+            'firstname' => $user->firstname,
             'lastname' => $user->lastname,
             'nickname' => $user->nickname,
             'email' => $user->email,
+            'gender' => $user->gender(),
+            'address' => $user->address(),
+            'location' => $user->locationName(),
+            'phone' => $user->phone,
+            'pesel' => $user->pesel,
+            'birthdate' => $user->birthdate(),
             'role' => __('forms.'.$user->roles[0]->slug),
-            'status' => $status,
+            'status' => '<span class="badge badge-status badge-'.$status->badge.'">'.$status->name.'</span>',
 
         ];
     }
 
-    private static function resolveStatus(string $status): string
+    private static function resolveStatus(string $status): stdClass
     {
+        $status_ = new stdClass();
         if($status == '1'){
-            $status = __('forms.active');
+            $status_->name = __('forms.status_1');
+            $status_->badge = 'primary';
         } else if ($status == '0'){
-            $status = __('forms.blocked');
+            $status_->name = __('forms.status_2');
+            $status_->badge = 'dark';
         }
-        return $status;
+        return $status_;
     }
 }

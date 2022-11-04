@@ -17,9 +17,6 @@ class DatatablesController
 {
     public function get(string $view, $tabletype = 'default') 
     {
-        $exception = view('components.datatables.exception',[
-            'exception' => 'exception']);
-
         $structure = $this->loadStructure($view);
 
         $collection = Filters::get($view, $structure);
@@ -31,27 +28,34 @@ class DatatablesController
             /**
              * Pagination
              */
-            $pages = $this->paginate($rows);
+            $pagination = 20;
+            if(isset($_GET['pagination'])){
+                $pagination = (int) filter_var($_GET['pagination'], FILTER_SANITIZE_NUMBER_INT);
+            }
+            $pages = $this->paginate($rows, $pagination);
+            /** END Pagination */
             $tableview = view('components.datatables.table',[
                 'view' => $view,
                 'columns' => $columns,
                 'pages' => $pages,
+                'pagination' => $pagination,
                 'tabletype' => $tabletype,
                 'allcolumns' => $this->getAllColumnsNames($structure),
             ]);
             return $tableview;
         }
-        return $exception;
+        return $this->exception('datatables_nodata');
     }
 
 
     private function getColumns(string $view, array $structure): array
     {
-        $hasColumns = Datatable::select($view)->where(['user_id' => auth()->user()->id])->get()->toArray();
+        $hasColumns = Datatable::select($view)->where(['user_id' => auth()->user()->id])->get()->toArray()[0];
         $columns = [];
-        if (count($hasColumns))
+        
+        if ($hasColumns[$view] !== null)
         {
-            $savedColumns = json_decode($hasColumns[0][$view]);
+            $savedColumns = json_decode($hasColumns[$view]);
             foreach ($structure as $column => $options)
             {
                 if(in_array($column, $savedColumns)){
@@ -114,13 +118,8 @@ class DatatablesController
         return [];
     }
 
-    public function paginate ($rows): array
+    public function paginate ($rows, int $pagination): array
     {
-        $pagination = 2;
-        if(isset($_GET['pagination'])){
-            $pagination = (int) filter_var($_GET['pagination'], FILTER_SANITIZE_NUMBER_INT);
-        }
-
         $pages = [];
         $page_load = [];
         $page_counter = 1;
@@ -141,8 +140,14 @@ class DatatablesController
         if(!empty($page_load)){
             $pages[$page_counter] = $page_load;      
         }
-
         return $pages;
+    }
+
+    private function exception (string $alert)
+    {
+        $msg = __('alerts.error').__('alerts.'.$alert);
+        return view('components.datatables.exception',[
+            'exception' => $msg]);
     }
 
 }

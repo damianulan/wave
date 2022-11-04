@@ -18,7 +18,9 @@
             <div class="col-sm-1">
                 <div class="row">
                     <div class="col-6">
-                        <button class="btn btn-round btn-primary" data-bs-toggle="modal" data-bs-target="#columnChooser"><i class="bi bi-gear"></i></button>
+                        <button class="btn btn-round btn-primary" data-bs-toggle="modal" data-bs-target="#columnChooser" data-mdb-toggle="tooltip" data-mdb-placement="bottom" data-mdb-original-title="{{__('menus.choose_columns')}}">
+                            <i class="bi bi-gear"></i>
+                        </button>
                     </div>
                     <div class="col-6 text-align-end">
                         <a class="btn btn-round btn-primary" data-mdb-toggle="collapse" href="#filters" role="button" aria-expanded="false" aria-controls="filters"><i class="bi bi-filter"></i></a>
@@ -28,25 +30,30 @@
 
             <div class="offset-sm-9 col-sm-2 mt-3">
                 <select class="form-select form-select-sm pagination-select float-right" aria-label=".form-select-sm example" onchange="paginationSwitch(this)">
-                    <option value="20" selected>20</option>
-                    <option value="50">50</option>
-                    <option value="100">100</option>
-                    <option value="200">200</option>
-                    <option value="500">500</option>
+                    <option value="20"{{$pagination==20 ? ' selected':''}}>20</option>
+                    <option value="50"{{$pagination==50 ? ' selected':''}}>50</option>
+                    <option value="100"{{$pagination==100 ? ' selected':''}}>100</option>
+                    <option value="200"{{$pagination==200 ? ' selected':''}}>200</option>
+                    <option value="500"{{$pagination==500 ? ' selected':''}}>500</option>
                   </select>
             </div>
         </div>
         <div class="row mb-2">
             <div class="col-md-12">
                 <div class="collapse mt-3" id="filters">
-                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad
-                    squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt
-                    sapiente ea proident.
+                    [[Show filters]]
                 </div>
             </div>
 
         </div>
         <div class="row">
+            <div class="row pagination-bottom my-1">
+                <div class="col-md-12">
+                    @if (count($pages[$currentPage]) >= 10)
+                        @include('components.datatables.pagination')
+                    @endif
+                </div>
+            </div>
             <div class="col-md-12">
                 <table class="table table-wave checktable">
                     <thead>
@@ -75,7 +82,7 @@
                     </thead>
                     <tbody>
                         @foreach ($pages[$currentPage] as $rowid => $row)
-                            <tr class="trow" onclick="location.href='{{route('users.edit', $rowid)}}'">
+                            <tr class="trow" onclick="location.href='{{route('users.show', $rowid)}}'">
                                 @if ($tabletype === 'checkable')
                                     <th scope="row">
                                         <div class="form-check">
@@ -93,12 +100,9 @@
                     </tbody>
                 </table>
             </div>
-            <div class="row pagination-bottom mt-2">
+            <div class="row pagination-bottom mt-2 mb-4">
                 <div class="col-md-12">
-                    @foreach ($pages as $num => $page )
-                        <a class="btn btn-primary btn-pagination" onclick="page('{{$num}}');">{{$num}}</a>
-                    @endforeach
-                    
+                    @include('components.datatables.pagination')
                 </div>
             </div>
         </div>
@@ -146,12 +150,12 @@
 
       </div>
     </div>
-  </div>
-  <script>
+</div>
+<script>
     function paginationSwitch(selectPagination) {
-        var url = new URL(window.location.href);
-        url.searchParams.set('pagination', selectPagination.value);
-        window.location.replace(url);
+    var url = new URL(window.location.href);
+    url.searchParams.set('pagination', selectPagination.value);
+    window.location.replace(url);
     }
 
     function sort(key, dir){
@@ -166,4 +170,4 @@
         url.searchParams.set('page', num);
         window.location.replace(url);
     }
-  </script>
+</script>

@@ -54,15 +54,56 @@ class PermissionRoleSeeder extends Seeder
         $usersDelete->slug = 'users/delete';
         $usersDelete->save();
 
+        $usersblock = new Permission();
+        $usersblock->slug = 'users/block';
+        $usersblock->save();
+
+        $usersExtradata = new Permission();
+        $usersExtradata->slug = 'users/extradata';
+        $usersExtradata->save();
+
+        // Services
+        $servicesView = new Permission();
+        $servicesView->slug = 'services/view';
+        $servicesView->save();
+
+        $servicesEdit = new Permission();
+        $servicesEdit->slug = 'services/edit';
+        $servicesEdit->save();
+
+        $servicesCreate = new Permission();
+        $servicesCreate->slug = 'services/create';
+        $servicesCreate->save();
+
+        $servicesDelete = new Permission();
+        $servicesDelete->slug = 'services/delete';
+        $servicesDelete->save();
+
         // Business
         $businessManage = new Permission();
         $businessManage->slug = 'business/manage';
         $businessManage->save();
 
+        $analyticsManage = new Permission();
+        $analyticsManage->slug = 'business/analytics';
+        $analyticsManage->save();
+
+        $financesManage = new Permission();
+        $financesManage->slug = 'business/finances';
+        $financesManage->save();
+
         // App Configuration
         $config = new Permission();
         $config->slug = 'app/config';
         $config->save();
+
+        $permissions = new Permission();
+        $permissions->slug = 'app/permissions';
+        $permissions->save();
+
+        $roles = new Permission();
+        $roles->slug = 'app/roles';
+        $roles->save();
 
         /**
          *  Roles
@@ -102,10 +143,21 @@ class PermissionRoleSeeder extends Seeder
         $root->permissions()->attach($usersEdit);
         $root->permissions()->attach($usersCreate);
         $root->permissions()->attach($usersDelete);
+        $root->permissions()->attach($usersblock);
+        $root->permissions()->attach($usersExtradata);
+
+        $root->permissions()->attach($servicesView);
+        $root->permissions()->attach($servicesEdit);
+        $root->permissions()->attach($servicesCreate);
+        $root->permissions()->attach($servicesDelete);
 
         $root->permissions()->attach($businessManage);
+        $root->permissions()->attach($analyticsManage);
+        $root->permissions()->attach($financesManage);
 
         $root->permissions()->attach($config);
+        $root->permissions()->attach($permissions);
+        $root->permissions()->attach($roles);
 
 
         // admin
@@ -118,9 +170,20 @@ class PermissionRoleSeeder extends Seeder
         $admin->permissions()->attach($usersEdit);
         $admin->permissions()->attach($usersCreate);
         $admin->permissions()->attach($usersDelete);
+        $admin->permissions()->attach($usersblock);
+        $admin->permissions()->attach($usersExtradata);
+
+        $admin->permissions()->attach($servicesView);
+        $admin->permissions()->attach($servicesEdit);
+        $admin->permissions()->attach($servicesCreate);
+        $admin->permissions()->attach($servicesDelete);
 
         $admin->permissions()->attach($businessManage);
+        $admin->permissions()->attach($analyticsManage);
+        $admin->permissions()->attach($financesManage);
 
         $admin->permissions()->attach($config);
+        $admin->permissions()->attach($permissions);
+        $admin->permissions()->attach($roles);
     }
 }

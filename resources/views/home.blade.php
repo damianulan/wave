@@ -5,9 +5,10 @@
     <div class="col-md-12">
         <div class="alert alert-primary">
             <h4 class="alert-heading">
-                Alert title
+                {{__('messages.in_progress')}}
             </h4>
-            <p class="mx-2 mb-0">Alert</p>
+            <p class="mx-2 mb-0">{{__('messages.demo')}}</p>
+            <p class="mx-2 mb-0"><a target="_blank" href="#">{{__('messages.learn')}}</a></p>
         </div>
     </div>
 </div>

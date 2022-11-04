@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Facade;
+use App\Models\Config;
 
 return [
 
@@ -200,6 +201,7 @@ return [
         App\Providers\RouteServiceProvider::class,
         App\Providers\PermissionServiceProvider::class,
         App\Providers\RolesServiceProvider::class,
+        App\Providers\ConfigServiceProvider::class,
     ],
 
     /*

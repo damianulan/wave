@@ -3,7 +3,9 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UsersController;
+use App\Http\Controllers\ClientsController;
 use App\Http\Controllers\RequestController;
+use App\Http\Controllers\ConfigController;
 
 
 /*
@@ -27,12 +29,31 @@ Route::prefix('auth')->group(function (){
     Route::get('/emailverified/{id}', [AuthController::class, 'emailVerified'])->name('auth.emailVerified');
 });
 Route::middleware('auth')->group(function (){
+    // HOME
     Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-    Route::resource('/users', UsersController::class);
 
+    // USERS
+    Route::resource('/users', UsersController::class);
+    Route::get('users/{user}/block', [UsersController::class, 'block'])->name('users.block');
+    Route::get('users/{user}/unblock', [UsersController::class, 'unblock'])->name('users.unblock');
+    Route::get('users/{user}/delete', [UsersController::class, 'delete'])->name('users.delete');
+
+
+    // CLIENTS
+    Route::resource('/clients', ClientsController::class);
+
+    // SETTINGS & CONFIG
+    Route::prefix('settings')->group(function(){
+        Route::get('/index', [ConfigController::class, 'index'])->name('settings.index');
+        Route::post('/modules/save', [ConfigController::class, 'modulesSave'])->name('settings.modulesSave');
+    });
+
+    // ADDITIONAL REQUESTS
     Route::prefix('/request')->controller(RequestController::class)->group(function () {
         // Datatables
         Route::post('/savecolumns', 'saveColumns')->name('request.saveColumns');
         Route::get('/pagination/{pagination}', 'paginationChange')->name('request.paginate');
+        Route::get('/notauthorized', 'NotAuthorized')->name('request.notAuthorized');
+        Route::get('/suspended', 'Suspended')->name('request.suspended');
     });
 });

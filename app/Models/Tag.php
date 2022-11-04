@@ -21,4 +21,5 @@ class Tag extends Model
         'slug',
         'color'
     ];
+
 }

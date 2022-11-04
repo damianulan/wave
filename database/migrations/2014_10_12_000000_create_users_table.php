@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('lastname');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
-            $table->string('password')->nullable();
+            $table->string('password');
             $table->string('nickname')->nullable();
             $table->char('gender','1');
             $table->date('birthdate')->nullable();
@@ -32,7 +32,7 @@ return new class extends Migration
             $table->string('state')->nullable();
             $table->string('country')->nullable();
             $table->string('pesel', 11)->nullable();
-            $table->char('locale', 2);
+            $table->char('locale', 2)->default('en');
 
             //settings
             $config = new Collection([

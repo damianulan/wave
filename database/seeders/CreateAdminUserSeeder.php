@@ -6,7 +6,7 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 use App\Models\Role;
-use App\Models\Permission;
+use App\Models\Config;
 
 use App\Models\User;
 
@@ -34,6 +34,12 @@ class CreateAdminUserSeeder extends Seeder
         $root->locale = 'en';
         $root->save();
         $root->roles()->attach($rootRole);
+
+        $owner = new Config();
+        $owner->type = 'app';
+        $owner->slug = 'owner';
+        $owner->value = $root->id;
+        $owner->save();
 
         $admin1 = new User();
         $admin1->firstname = 'Sys';

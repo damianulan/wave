@@ -34,7 +34,7 @@
         </a>
       </li>
       <li class="nav-item">
-        <a href="#" class="nav-link">
+        <a href="{{route('clients.index')}}" class="nav-link {{ request()->routeIs('clients.*') ? 'active' : '' }}">
             <i class="bi bi-people"></i>
             {{__('menus.clients')}}
         </a>
@@ -88,20 +88,22 @@
             {{__('menus.tags')}}
         </a>
       </li>
-      <li class="nav-item">
+      @module('services')
+      <li class="nav-item" id="services">
         <a href="#" class="nav-link">
             <i class="bi bi-scissors"></i>
             {{__('menus.services')}}
         </a>
       </li>
-      @role('root')
+      @endmodule
+      @can('app/config')
       <li class="nav-item">
-        <a href="#" class="nav-link">
+        <a href="{{route('settings.index')}}" class="nav-link {{ request()->routeIs('settings.*') ? 'active' : '' }}">
             <i class="bi bi-gear"></i>
             {{__('menus.settings')}}
         </a>
       </li>
-      @endrole
+      @endcan
       {{-- <li class="navigation-header">
         <span>{{__('menus.help')}}</span>
       </li>

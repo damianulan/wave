@@ -7,9 +7,9 @@ use Illuminate\Support\Facades\DB;
 use App\Models\User;
 use App\Models\Log;
 use Illuminate\Support\Facades\Auth;
-use Hash;
-use Session;
 use Mail;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Notification;
 use App\Notifications\FirstLogin;
 
@@ -22,7 +22,7 @@ class AuthController extends Controller
     public function index()
     {
         if(Auth::check()){
-            return redirect(route('index'));
+            return redirect(route('home'));
         }else{
             $title = __('menus.login');
             return view($this->loginView, [
@@ -34,51 +34,47 @@ class AuthController extends Controller
       
     public function login(Request $request)
     {
-        $request->validate([
-            'email' => 'required|email',
-            'password' => 'required|min:6',
-        ]);
-        $remember = $request->login_remember;
-        $credentials = $request->only('email', 'password');
-        if(User::where('email', '=', $credentials['email'])->exists()){
-            $isActive = User::select('status')->where('email', 'like', $credentials['email'])->get();
-            if($isActive[0]->status){
+        if(!Auth::check()){
+            $request->validate([
+                'email' => 'required|email',
+                'password' => 'required|min:6',
+            ]);
+            $remember = $request->login_remember;
+            $credentials = $request->only('email', 'password');
+            if(User::where('email', '=', $credentials['email'])->exists()){
                 if (Auth::attempt($credentials, $remember)) {
-                        $user = auth()->user();
-                        $fullname = $user->name . $user->surname;
+                    $user = auth()->user();
+                    if($user->isActive()){
                         $request->session()->regenerate();
-                        if(!(Log::where(['user_id' => $user->id, 'action' => 'login'])->exists())){
+                        if(!($user->hasAnyLog())){
                             //Notification::send($user, new FirstLogin());
                             //Mail::send(new \App\Mail\VerifyEmail());
-
+        
                         }
-                        Log::create([
-                            'user_id' => $user->id,
-                            'ip' => $request->ip(),
-                            'action' => 'login'
-                        ]);
+                        $user->makeLogin($request->ip());
                         session()->put('locale', $user->locale);
                         return redirect(route('home'));
+                    } else {
+                        Session::flush();
+                        Auth::logout();
+                        return redirect(route('suspended'));
+                    }
+    
                 }
                 else{
-                    $userId = User::select('id')->where('email', $credentials['email'])->first();
-                    Log::create([
-                        
-                        'user_id' => $userId->id,
-                        'ip' => $request->ip(),
-                        'action' => 'login_failed'
-                    ]);
+                    $user = User::where('email', $credentials['email'])->first();
+                    $user->makeLoginFailed($request->ip());
                     return redirect(route($this->loginView))->with('alert', __('auth.failed'));
                 }
+    
             }
             else{
-                return redirect(route('suspended'));
+                return redirect(route($this->loginView))->with('alert', __('auth.failed'));
             }
+        } else {
+            return redirect('home');
+        }
 
-        }
-        else{
-            return redirect(route($this->loginView))->with('alert', __('auth.failed'));
-        }
     }
 
     public function create(array $data)

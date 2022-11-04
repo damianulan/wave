@@ -1,24 +1,44 @@
-<p align="center"><a href="https://wave.damianulan.me" target="_blank"><img src="https://damianulan.me/img/wave/logo/png/wave-logo-color-box.png" width="256" alt="Wave logo"></a></p>
+<p align="center"><a href="https://wave.damianulan.me" target="_blank"><img src="https://damianulan.me/img/wave/logo/png/wave-logo-color-box.png" width="200" alt="Wave logo"></a></p>
 
 ## About Wave
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Wave is a CRM application designed for beauty salons and hairdressing business management. In addition to a comprehensive calendar and appointment service it also provides finance and HR management support.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+[Live demo](https://wave.damianulan.me/) -- dev
 
-## Details
-
-<strong>Application in core production</strong>
+[Contact me](https://damianulan.me) to contribute.
 
 ## Features
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+- **Scheduling client appointments and calendar management.**
+- **Unlimited user accounts and employee supervision.**
+- **Todo module.**
+- **Custom email and in-app notifications.**
+- **Product and inventory management.**
+- **Loyalty cards support.**
+- **Finance and business analytics.**
+- **Custom user-made service list.**
+- **Client portal for them to log in and schedule an appointment.**
 
-### Premium Partners
+## Details
 
-- ****
-- ****
+<strong>Application in core production!</strong>
+
+<strong>Requirements:</strong>
+- **PHP 8.1**
+- **Composer**
+- **Node.js v16.16.0**
+
+### Vendors
+
+- **[Bootstrap v5.2.1](https://getbootstrap.com/docs/5.2/getting-started/introduction/)**
+- **[Bootstrap icons 1.9.0](https://icons.getbootstrap.com/)**
+- **[MDBootstrap v5.0.0](https://mdbootstrap.com/docs/standard/getting-started/installation/)**
 
 ## License
 
 Wave is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+---
+
+Built with [Laravel 9 / Mix](https://laravel.com/)

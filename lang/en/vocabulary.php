@@ -12,5 +12,7 @@ return [
     'new' => 'New',
     'none' => 'None',
     'you' => 'You',
+    'yes' => 'Yes',
+    'no' => 'No',
     
 ];

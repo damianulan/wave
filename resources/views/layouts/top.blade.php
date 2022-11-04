@@ -1,6 +1,3 @@
-@php
-    $username = auth()->user()->firstname . ' ' . auth()->user()->lastname;
-@endphp
 <nav id="topbar" class="top-menu sticky-menu menu-expand menu-shadow <?php if(isset($_COOKIE['menu-collapsed'])&&$_COOKIE['menu-collapsed']==true){ echo 'menu-collapsed'; }?>">
     <div class="menu-wrapper">
         <div class="menu-container">
@@ -41,7 +38,7 @@
                 <li class="dropdown dropdown-profile dropdown-toggle nav-item">
                     <a class="nav-link d-flex align-items-center" href="#" data-mdb-toggle="dropdown" aria-expanded="false">
                         <div class="user-nav d-sm-flex">
-                            <span class="user-name">{{$username}}</span>
+                            <span class="user-name">{{auth()->user()->name()}}</span>
                         </div>
                         <img class="rounded-circle" src="{{asset(auth()->user()->avatar)}}" width="40" height="40" alt="avatar">
                     </a>
@@ -49,6 +46,11 @@
                         <a class="dropdown-item" href="#">
                             {{__('menus.profile')}}
                         </a>
+                        @role('root')
+                            <a class="dropdown-item" href="#">
+                                {{__('menus.root_panel')}}
+                            </a>
+                        @endrole
                         <a class="dropdown-item" href="{{route('auth.logout')}}">
                             {{__('menus.logout')}}
                         </a>

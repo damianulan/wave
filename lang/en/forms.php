@@ -28,7 +28,7 @@ return [
     'city' => 'City',
     'state' => 'State',
     'country' => 'Country',
-
+    'hasaccount' => 'Has account',
 
     // forms
     'general' => 'General',
@@ -46,6 +46,7 @@ return [
     'news_on_updates' => 'Receive news on updates',
     'app' => 'Application',
     'activity' => 'Activity',
+    'recent_activity' => 'Recent activity',
 
     'no_account' => "Doesn't have the account",
     'has_account' => 'Has the account',
@@ -68,11 +69,15 @@ return [
     'create' => 'Create',
     'delete' => 'Delete',
     'unknown' => 'Unknown',
+    'actions' => 'Actions',
+    'none' => 'None',
+    'no_record' => 'No record',
+    'role_info' => 'This field will define permissions of this user throughout the application. Later, You will be able to make changes to permissions regardless of the role.',
 
     // status
     'status' => 'Status',
-    'active' => 'Active',
-    'blocked' => 'Blocked',
+    'status_1' => 'Active',
+    'status_0' => 'Blocked',
 
     // roles
     'role' => 'Role',

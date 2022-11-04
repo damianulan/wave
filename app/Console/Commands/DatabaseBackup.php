@@ -42,7 +42,7 @@ class DatabaseBackup extends Command
         $filename = "backup-" . Carbon::now()->format('Y-m-d') . ".sql";
 
         // Create backup folder and set permission if not exist.
-        $storageAt = storage_path() . "/app/backup/";
+        $storageAt = storage_path() . "/app/Jobs/Backup/";
         if(!File::exists($storageAt)) {
             File::makeDirectory($storageAt, 0755, true, true);
         }

@@ -22,6 +22,10 @@ background: rgb(68, 68, 68);
 border-radius: 10px;
 }
 
+html .main-menu {
+    height: 100%;
+}
+
 @media (min-width: 992px){
     .main-menu {
         z-index: 1031;
@@ -32,10 +36,11 @@ border-radius: 10px;
         transform: translate3d(0, 0, 0);
         backface-visibility: hidden;
         width: $menu-expanded-width;
-        height: 100%;
         padding: 2rem 0;
         overflow-x: hidden;
         transition: all .4s ease 0s;
+        right: auto;
+        left: 0;
     }
 
     .top-menu {
@@ -52,25 +57,30 @@ border-radius: 10px;
         transition: all .4s ease 0s;
     }
     .footer{
-        margin-left: $menu-expanded-width;
+        display: flex;
         padding: 1rem 2rem;
         background-color: $bg-nav;
+        position: fixed;
+        bottom: 0;
+        right: 0;
+        width: calc(100vw - (100vw - 100%) - $menu-expanded-width);
     }
 }
 @media (max-width: 991px){
     .main-menu {
         z-index: 1031;
         display: table-cell;
-        position: absolute;
+        position: fixed;
         background-color: $bg-nav;
         box-shadow: 0 0 15px 0 rgb(0 0 0 / 5%);
         transform: translate3d(0, 0, 0);
         backface-visibility: hidden;
         width: $menu-collapsed-width;
-        height: 100%;
         padding: 1rem 0;
         overflow-x: hidden;
         transition: all .4s ease 0s;
+        right: auto;
+        left: 0;
     }
 
     .top-menu {
@@ -88,9 +98,13 @@ border-radius: 10px;
     }
 
     .footer{
-        margin-left: $menu-collapsed-width;
+        display: flex;
         padding: .7rem 2rem;
         background-color: $bg-nav;
+        position: fixed;
+        bottom: 0;
+        right: 0;
+        width: calc(100vw - (100vw - 100%) - $menu-collapsed-width);
     }
 
     .nav .navigation-header {
@@ -350,5 +364,17 @@ img.navbar-logo {
 }
 
 .fade {
-    transition: opacity 0.4s ease-out;
+    transition: opacity 0.3s ease-out;
+}
+
+.nav-tabs .nav-link.active {
+    background-color: $nav-tab-bg;
+    font-weight: 800;
+}
+
+.nav-tabs .nav-link:hover {
+    background-color: $nav-tab-bg;
+    color: $nav-tab-color-hover;
+    font-weight: 800;
+    transition: all .5s ease-in-out;
 }
