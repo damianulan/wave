@@ -82,7 +82,7 @@
                     </thead>
                     <tbody>
                         @foreach ($pages[$currentPage] as $rowid => $row)
-                            <tr class="trow" onclick="location.href='{{route('users.show', $rowid)}}'">
+                            <tr class="trow" onclick="location.href='{{route($view.'.show', $rowid)}}'">
                                 @if ($tabletype === 'checkable')
                                     <th scope="row">
                                         <div class="form-check">

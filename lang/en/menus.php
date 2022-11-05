@@ -66,6 +66,8 @@ return [
     'modules' => 'Modules',
     'settings_site' => 'Site management',
     'lang' => 'Global language',
+    'theme' => 'Template',
+    'themes' => 'Templates',
 
     'tasks_description' => '',
     'products_description' => '',

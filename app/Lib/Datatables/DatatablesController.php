@@ -50,16 +50,18 @@ class DatatablesController
 
     private function getColumns(string $view, array $structure): array
     {
-        $hasColumns = Datatable::select($view)->where(['user_id' => auth()->user()->id])->get()->toArray()[0];
+        $hasColumns = Datatable::select($view)->where(['user_id' => auth()->user()->id])->get()->toArray();
         $columns = [];
         
-        if ($hasColumns[$view] !== null)
+        if (count($hasColumns))
         {
-            $savedColumns = json_decode($hasColumns[$view]);
-            foreach ($structure as $column => $options)
-            {
-                if(in_array($column, $savedColumns)){
-                    $columns[$column] = $options;
+            if ($hasColumns[0][$view] !== null){
+                $savedColumns = json_decode($hasColumns[0][$view]);
+                foreach ($structure as $column => $options)
+                {
+                    if(in_array($column, $savedColumns)){
+                        $columns[$column] = $options;
+                    }
                 }
             }
         }

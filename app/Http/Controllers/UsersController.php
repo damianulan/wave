@@ -123,7 +123,6 @@ class UsersController extends Controller
      */
     public function edit($id)
     {
-
         if($id != auth()->user()->id){
             $user = User::findOrFail($id);
             $roles = $this->roles();
@@ -152,11 +151,12 @@ class UsersController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'email' => 'required|max:128',
+            'email' => 'required|email|unique:users|max:128',
             'nickname' => 'required|max:10',
             'firstname' => 'required',
             'lastname' => 'required',
             'gender' => 'required',
+            'phone' => 'numeric|min:8|max:11'
         ]);
         $dump = strtotime($request->input('birthdate'));
         $date = date("Y-m-d", $dump);
@@ -222,6 +222,18 @@ class UsersController extends Controller
         $user = User::findOrFail($id);
         $user->unblock();
         return redirect()->back()->with('success', __('alerts.model_unblocked', ['model' => $user->name()]));;
+    }
+
+    /**
+     * Update the specified resource's permissions.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function permissionsUpdate(Request $request, $id)
+    {
+        $user = User::findOrFail($id);
     }
 
 }

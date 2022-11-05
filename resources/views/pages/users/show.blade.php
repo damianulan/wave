@@ -13,8 +13,8 @@
             </div>
             <div class="card-body">
                 <div class="row">
-                    <div class="users-view-image">
-                        <img src="{{asset($user->avatar)}}" class="rounded w-100 mb-2 pe-3 ms-1" alt="avatar">
+                    <div class="users-view-image ms-2">
+                        <img src="{{asset($user->avatar)}}" class="rounded-circle mb-2 mx-1" alt="avatar" width="120" height="120">
                     </div>
                     <div class="col-12 col-sm-9 col-md-6 col-lg-5">
                         <table class="view-list">
@@ -101,7 +101,7 @@
                                     </td>
                                     <td>
                                         <a class="fs-5 ms-2" href="#" data-mdb-toggle="tooltip" data-mdb-placement="bottom" data-mdb-original-title="{{__('buttons.watch')}}"><i class="bi bi-eye-fill"></i></a>
-                                        <a class="fs-5 ms-2" href="#" data-mdb-toggle="tooltip" data-mdb-placement="bottom" data-mdb-original-title="{{__('forms.permissions')}}"><i class="bi bi-shield-lock-fill"></i></a>
+                                        <a class="fs-5 ms-2" href="#" data-mdb-toggle="tooltip" data-mdb-placement="bottom" data-mdb-original-title="{{__('forms.permissions')}}" data-bs-toggle="modal" data-bs-target="#permissions"><i class="bi bi-shield-lock-fill"></i></a>
                                         <a class="fs-5 ms-2" href="#" data-mdb-toggle="tooltip" data-mdb-placement="bottom" data-mdb-original-title="{{__('forms.notifications')}}"><i class="bi bi-bell-fill"></i></a>
                                         <a class="fs-5 ms-2" href="#" data-mdb-toggle="tooltip" data-mdb-placement="bottom" data-mdb-original-title="{{__('buttons.reset_password')}}"><i class="bi bi-send-check-fill"></i></a>
                                         <a class="fs-5 ms-2" href="#" data-mdb-toggle="tooltip" data-mdb-placement="bottom" data-mdb-original-title="{{__('buttons.show_logs')}}"><i class="bi bi-person-badge-fill"></i></a>
@@ -159,6 +159,33 @@
                 </div>
             </div>
         </div>
+    </div>
+</div>
+<div class="modal fade" id="permissions" tabindex="-1" aria-labelledby="permissionsLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="columnChooserLabel">{{__('menus.permissions')}}</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="{{__('buttons.close')}}"></button>
+        </div>
+        <form action="{{route('users.permissions', $user->id)}}" method="post">
+            @csrf
+            <div class="modal-body">
+                <div class="row justify-content-center">
+                    <div class="col-md-12">
+                        <div class="alert alert-primary fs-7">
+                            <i class="bi bi-info-circle"></i> {{__('menus.choose_columns_info')}}
+                          </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{{__('buttons.close')}}</button>
+              <button type="submit" class="btn btn-primary">{{__('buttons.save')}}</button>
+            </div>
+        </form>
+
+      </div>
     </div>
 </div>
 @endsection

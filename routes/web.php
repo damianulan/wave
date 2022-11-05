@@ -6,6 +6,7 @@ use App\Http\Controllers\UsersController;
 use App\Http\Controllers\ClientsController;
 use App\Http\Controllers\RequestController;
 use App\Http\Controllers\ConfigController;
+use App\Http\Controllers\ProfileController;
 
 
 /*
@@ -37,7 +38,13 @@ Route::middleware('auth')->group(function (){
     Route::get('users/{user}/block', [UsersController::class, 'block'])->name('users.block');
     Route::get('users/{user}/unblock', [UsersController::class, 'unblock'])->name('users.unblock');
     Route::get('users/{user}/delete', [UsersController::class, 'delete'])->name('users.delete');
-
+    Route::get('users/{user}/permissions', [UsersController::class, 'permissionsUpdate'])->name('users.permissions');
+    // PROFILE
+    Route::prefix('profile')->group(function(){
+        Route::get('/', [ProfileController::class, 'index'])->name('profile.index');
+        Route::post('/avatar/{id}', [ProfileController::class, 'uploadAvatar'])->name('profile.avatar');
+        Route::get('/avatar/default/{id}', [ProfileController::class, 'defaultAvatar'])->name('profile.avatar.default');
+    });
 
     // CLIENTS
     Route::resource('/clients', ClientsController::class);

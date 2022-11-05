@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
-use Hash;
-
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Hash;
 class ProfileController extends Controller
 {
 
@@ -63,7 +63,7 @@ class ProfileController extends Controller
         $publicPath = 'storage/images/avatars/' . $name;
         $user->update(['avatar' => $publicPath]);
 
-        return redirect()->back()->with('generalSuccess', 'New photo uploaded.');
+        return redirect()->back()->with('success', 'New photo uploaded.');
     }
 
     public function defaultAvatar($id)

@@ -9,7 +9,7 @@ use Illuminate\Routing\Controller as BaseController;
 use App\Models\Role;
 use App\Models\Config;
 use App\Models\Permission;
-
+use Illuminate\Support\Facades\Storage;
 class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
@@ -32,6 +32,18 @@ class Controller extends BaseController
             return '0';
         }
 
+    }
+
+    public function getThemes(): array
+    {
+        $storage = Storage::disk('themes')->directories();
+        $themes = [];
+        foreach ($storage as $dir){
+            if($dir !== 'vendors'){
+                $themes[] = $dir;
+            }
+        }
+        return $themes;
     }
 
 }

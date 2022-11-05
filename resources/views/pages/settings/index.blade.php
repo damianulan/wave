@@ -42,7 +42,19 @@
                                                     <td>
                                                         <select class="form-select form-select-sm fs-6" name="locale">
                                                             @foreach (config('app.available_locales') as $locale)
-                                                                <option value="{{$locale}}">{{__('locales.' . $locale)}}</option>
+                                                                <option value="{{$locale}}"{{$locale==config('app.locale') ? ' selected':''}}>{{__('locales.' . $locale)}}</option>
+                                                            @endforeach  
+                                                        </select>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        {{__('menus.theme')}}
+                                                    </td>
+                                                    <td>
+                                                        <select class="form-select form-select-sm fs-6" name="theme">
+                                                            @foreach ($themes as $theme)
+                                                                <option value="{{$theme}}"{{$theme==$config['theme']['value'] ? ' selected':''}}>{{$theme}}</option>
                                                             @endforeach  
                                                         </select>
                                                     </td>

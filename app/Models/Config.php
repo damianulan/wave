@@ -24,6 +24,20 @@ class Config extends Model
         'value'
     ];
 
+    public static function get(): array
+    {
+        $all = Config::all();
+        $output = [];
+        foreach ($all as $rule){
+            $output[$rule->slug] = [
+                'id' => $rule->id,
+                'type' => $rule->type,
+                'value' => $rule->value,
+            ];
+        }
+        return $output;
+    }
+
     public static function owner()
     {
         $config = Config::where(['slug' => 'owner'])->get();

@@ -15,11 +15,11 @@ class ConfigController extends Controller
     public function index()
     {
         $title = __('menus.settings');
-        $config = Config::all();
         $modules = Config::getModulesDB();
         return view('pages.settings.index', [
             'title' => $title,
-            'config' => $config,
+            'config' => Config::get(),
+            'themes' => $this->getThemes(),
             'modules' => $modules,
         ]);  
     }
