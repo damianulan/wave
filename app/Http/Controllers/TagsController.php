@@ -3,9 +3,16 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Tag;
 
 class TagsController extends Controller
 {
+
+    public function __construct()
+    {
+        
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -13,7 +20,12 @@ class TagsController extends Controller
      */
     public function index()
     {
-        //
+        $title = __('menus.tags');
+        $tags = Tag::all();
+        return view('pages.tags.index', [
+            'title' => $title,
+            'tags' => $tags
+        ]); 
     }
 
     /**

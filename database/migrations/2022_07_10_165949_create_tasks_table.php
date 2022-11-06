@@ -23,6 +23,7 @@ return new class extends Migration
             $table->foreign('affiliated_client')->references('id')->on('clients')->onDelete('cascade');
             $table->timestamp('deadline')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

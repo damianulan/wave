@@ -59,7 +59,7 @@ return new class extends Migration
             $table->foreign('location_id')->references('id')->on('locations')->onDelete('cascade');
 
             $table->tinyInteger('status')->default('1'); // 0 - blocked, 1 - active
-            $table->tinyInteger('force_passwordchange')->default('0');
+            $table->tinyInteger('force_passwordchange')->default('1'); // 1 - force
             $table->rememberToken();
             $table->softDeletes();
             $table->timestamps();

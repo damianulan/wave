@@ -34372,7 +34372,7 @@ a:hover {
 }
 
 .badge.badge-status, .badge.badge-tag {
-  padding: 0.5rem;
+  padding: 0.3rem 0.5rem;
   font-size: 0.75rem;
   font-weight: 700;
 }
@@ -34422,6 +34422,10 @@ a:hover {
   background: linear-gradient(118deg, #125695, #187ca1);
   color: #f8f9fa;
   margin: 1.2rem 0;
+}
+
+.card.card-profile {
+  height: 100%;
 }
 
 table.table-wave {

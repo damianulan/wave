@@ -14,8 +14,12 @@ return new class extends Migration
     public function up()
     {
         Schema::create('product_suppliers', function (Blueprint $table) {
-            $table->id();
+            $table->uuid('id')->primary();
+            $table->string('name');
+            $table->char('added_by', 36)->nullable();
+            $table->foreign('added_by')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

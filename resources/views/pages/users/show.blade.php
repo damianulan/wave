@@ -127,7 +127,20 @@
 </div>
 <div class="row mt-4">
     <div class="col-md-4 pe-3">
-        <div class="card">
+        <div class="card card-profile">
+            <div class="card-header p-4 pb-0 m-0">
+                <h3>{{__('forms.personal_information')}}</h3>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-12">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4 pe-3">
+        <div class="card card-profile">
             <div class="card-header p-4 pb-0 m-0">
                 <h3>{{__('forms.recent_activity')}}</h3>
             </div>
@@ -155,6 +168,34 @@
                                 @endif
                             </tbody>
                         </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4 pe-3">
+        <div class="card card-profile">
+            <div class="card-header p-4 pb-0 m-0">
+                <h3>{{__('forms.statistics')}}</h3>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-12">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row mt-4">
+    <div class="col-md-12">
+        <div class="card card-profile">
+            <div class="card-header p-4 pb-0 m-0">
+                <h3>{{__('menus.services')}}</h3>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-12">
                     </div>
                 </div>
             </div>

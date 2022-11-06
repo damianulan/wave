@@ -10,6 +10,7 @@ class UserRow
     public static function collect(User $user):array
     {
         $status = self::resolveStatus($user->status);
+        //$tags = self::resolveTags($user->tags);
 
         return [
             'basic' => 
@@ -35,6 +36,7 @@ class UserRow
             'birthdate' => $user->birthdate(),
             'role' => __('forms.'.$user->roles[0]->slug),
             'status' => '<span class="badge badge-status badge-'.$status->badge.'">'.$status->name.'</span>',
+            'tags' => '<span class="badge badge-tag badge-dark">'.$user->name().'</span>',
 
         ];
     }
@@ -50,5 +52,10 @@ class UserRow
             $status_->badge = 'dark';
         }
         return $status_;
+    }
+
+    private static function resolveTags($tags)
+    {
+
     }
 }

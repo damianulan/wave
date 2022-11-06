@@ -13,7 +13,7 @@ use App\Models\Config;
 class Client extends Model
 {
     use UUID;
-    use HasFactory, Notifiable, SoftDeletes;
+    use HasFactory, Notifiable, SoftDeletes, Taggable;
     //use Taggable;
 
     protected $table = 'clients';

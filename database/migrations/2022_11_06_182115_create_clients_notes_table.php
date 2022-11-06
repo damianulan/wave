@@ -14,14 +14,13 @@ return new class extends Migration
     public function up()
     {
         Schema::create('clients_notes', function (Blueprint $table) {
-            $table->uuid('id');
-            $table->longText('text');
-            $table->char('client_id', 36);
+            $table->char('client_id');
+            $table->char('note_id');
+
             $table->foreign('client_id')->references('id')->on('clients')->onDelete('cascade');
-            $table->char('added_by', 36)->nullable();
-            $table->foreign('added_by')->references('id')->on('users')->onDelete('cascade');
-            $table->timestamps();
-            $table->softDeletes();
+            $table->foreign('note_id')->references('id')->on('notes')->onDelete('cascade');
+
+            $table->primary(['client_id','note_id']);
         });
     }
 

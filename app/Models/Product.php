@@ -29,6 +29,14 @@ class Product extends Model
 
     public function product_categories()
     {
-        return $this->belongsToMany(ProductCategory::class,'product_categories');
+        return $this->hasOne(ProductCategory::class,'id','category_id');
+    }
+    public function product_manufacturers()
+    {
+        return $this->hasOne(ProductManufacturer::class,'id','manufacturer_id');
+    }
+    public function product_suppliers()
+    {
+        return $this->hasOne(ProductSupplier::class,'id','supplier_id');
     }
 }

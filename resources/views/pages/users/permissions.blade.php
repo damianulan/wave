@@ -17,7 +17,7 @@
                 </div>
                 <div class="row border mx-4 my-2">
                     <div class="col-12 p-1">
-                        <div class="table-responsive rounded px-1">
+                        <div class="table-responsive rounded px-1 table-hover">
                             <h6 class="border-bottom py-2 mx-1 mb-0 fw-bold">{{__('forms.modules')}}</h6>
                             <table class="table table-borderless">
                                 <thead>
@@ -77,7 +77,7 @@
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>{{__('menus.products')}}</td>
+                                        <td>{{__('menus.services')}}</td>
                                         <td>
                                             <input type="checkbox" name="clients/view" class="form-check-input" {{$user->can('clients/view') ? 'checked' : ''}}>
                                         </td>

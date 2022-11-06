@@ -13,6 +13,7 @@ use Laravel\Sanctum\HasApiTokens;
 use App\Traits\HasRolesAndPermissions;
 use App\Traits\Loggable;
 use App\Traits\Taggable;
+use App\Traits\Notable;
 use App\Models\Location;
 
 class User extends Authenticatable
@@ -20,7 +21,7 @@ class User extends Authenticatable
     use UUID;
     use HasRolesAndPermissions;
     use HasApiTokens, HasFactory, Notifiable, SoftDeletes, Loggable;
-    use Taggable;
+    use Taggable, Notable;
 
     protected $table = 'users';
     protected $primaryKey = 'id';

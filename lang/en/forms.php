@@ -59,6 +59,7 @@ return [
     'last_visit' => 'Last Visit',
 
     'permissions' => 'Permissions',
+    'statistics' => 'Statistics',
     'access' => 'Access',
     'history' => 'Activity History',
     'manage_business' => 'Manage Business',

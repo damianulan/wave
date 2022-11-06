@@ -112,6 +112,14 @@ class UserStructure
                 'sortable' => false,
                 'width' => '20%',
             ],
+            'tags' => [
+                'key' => 'tags',
+                'title' => __('forms.tags'),
+                'default' => true,
+                'type' => 'dictionary',
+                'sortable' => false,
+                'width' => '20%',
+            ],
         ];
     }
 

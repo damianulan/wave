@@ -7,18 +7,27 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Traits\UUID;
 
-class ProductManufacturer extends Model
+class Note extends Model
 {
     use UUID;
     use HasFactory, SoftDeletes;
 
-    protected $table = 'product_manufacturers';
+    protected $table = 'notes';
     protected $primaryKey = 'id';
 
     public $timestamps = true;
 
     protected $fillable = [
-        'name',
-        'added_by',
+        'text',
     ];
+
+    public function users()
+    {
+        return $this->belongsToMany(User::class,'users_notes');
+    }
+
+    public function clients()
+    {
+        return $this->belongsToMany(Client::class,'clients_notes');
+    }
 }
