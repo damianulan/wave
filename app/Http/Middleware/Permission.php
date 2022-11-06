@@ -17,7 +17,7 @@ class Permission
     public function handle($request, Closure $next, $permission)
     {
         if(!auth()->user()->can($permission)) {
-            return redirect()->route('notAuthorized');
+            return redirect()->route('request.notAuthorized');
         }
         return $next($request);
     }

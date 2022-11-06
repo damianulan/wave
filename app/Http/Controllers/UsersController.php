@@ -234,6 +234,7 @@ class UsersController extends Controller
     public function permissionsUpdate(Request $request, $id)
     {
         $user = User::findOrFail($id);
+        $rules = $request->collect()->except('_token');
     }
 
 }

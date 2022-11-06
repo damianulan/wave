@@ -14,6 +14,4 @@ $theme = $config::getTheme();
                 @yield('content')
             </div>
         </main>
-@if (auth()->check())
-    @include('layouts.footer')
-@endif
+@include('layouts.footer')

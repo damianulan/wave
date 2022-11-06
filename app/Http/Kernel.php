@@ -67,5 +67,6 @@ class Kernel extends HttpKernel
         'locale' => \App\Http\Middleware\Locale::class,
         'role' => \App\Http\Middleware\Role::class,
         'permission' => \App\Http\Middleware\Permission::class,
+        'ismoduleenabled' => \App\Http\Middleware\isModuleEnabled::class,
     ];
 }

@@ -60,10 +60,9 @@ html .main-menu {
         display: flex;
         padding: 1rem 2rem;
         background-color: $bg-nav;
-        position: fixed;
+        position: relative;
         bottom: 0;
         right: 0;
-        width: calc(100vw - (100vw - 100%) - $menu-expanded-width);
     }
 }
 @media (max-width: 991px){
@@ -101,10 +100,9 @@ html .main-menu {
         display: flex;
         padding: .7rem 2rem;
         background-color: $bg-nav;
-        position: fixed;
+        position: relative;
         bottom: 0;
         right: 0;
-        width: calc(100vw - (100vw - 100%) - $menu-collapsed-width);
     }
 
     .nav .navigation-header {

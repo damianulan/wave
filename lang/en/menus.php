@@ -60,6 +60,8 @@ return [
     'choose_columns' => 'Choose columns',
     'choose_columns_info' => 'Choose columns to view. This setting will be kept for You, when You go back here the next time.',
     'filters' => 'Filters',
+    'permissions' => 'Permissions',
+    'permissions_info' => 'Here, You can assign custom permissions to a user regardless of its role. Please keep in mind, that editing these rules wrongly, may negtively influence this user to work properly. For more information, please see the documentation.',
 
     // Settings tabs
     'settings_general' => 'General Settings',

@@ -38,7 +38,7 @@ Route::middleware('auth')->group(function (){
     Route::get('users/{user}/block', [UsersController::class, 'block'])->name('users.block');
     Route::get('users/{user}/unblock', [UsersController::class, 'unblock'])->name('users.unblock');
     Route::get('users/{user}/delete', [UsersController::class, 'delete'])->name('users.delete');
-    Route::get('users/{user}/permissions', [UsersController::class, 'permissionsUpdate'])->name('users.permissions');
+    Route::post('users/{user}/permissions', [UsersController::class, 'permissionsUpdate'])->name('users.permissions');
     // PROFILE
     Route::prefix('profile')->group(function(){
         Route::get('/', [ProfileController::class, 'index'])->name('profile.index');

@@ -40,6 +40,7 @@ html::-webkit-scrollbar {
         min-height: calc(100% - 4rem);
         margin-left: $menu-expanded-width;
         transition: all .4s ease 0s;
+        padding-bottom: 1.5rem;
     }    
 }
 @media (max-width: 991px){
@@ -51,6 +52,7 @@ html::-webkit-scrollbar {
         min-height: calc(100% - 4rem);
         margin-left: $menu-collapsed-width;
         transition: all .4s ease 0s;
+        padding-bottom: 1.5rem;
     }  
 }
 .blank-content {

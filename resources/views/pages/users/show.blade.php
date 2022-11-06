@@ -161,31 +161,5 @@
         </div>
     </div>
 </div>
-<div class="modal fade" id="permissions" tabindex="-1" aria-labelledby="permissionsLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="columnChooserLabel">{{__('menus.permissions')}}</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="{{__('buttons.close')}}"></button>
-        </div>
-        <form action="{{route('users.permissions', $user->id)}}" method="post">
-            @csrf
-            <div class="modal-body">
-                <div class="row justify-content-center">
-                    <div class="col-md-12">
-                        <div class="alert alert-primary fs-7">
-                            <i class="bi bi-info-circle"></i> {{__('menus.choose_columns_info')}}
-                          </div>
-                    </div>
-                </div>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{{__('buttons.close')}}</button>
-              <button type="submit" class="btn btn-primary">{{__('buttons.save')}}</button>
-            </div>
-        </form>
-
-      </div>
-    </div>
-</div>
+@include('pages.users.permissions')
 @endsection

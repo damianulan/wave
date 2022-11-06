@@ -16,7 +16,7 @@ class ClientsController extends Controller
         // $this->middleware('permission:read-clients', ['only' => ['index', 'show']]);
         // $this->middleware('permission:write-clients', ['only' => ['edit', 'update']]);
         // $this->middleware('permission:create-clients', ['only' => ['create', 'store']]);
-        // $this->middleware('permission:delete-clients', ['only' => 'destroy']);
+        $this->middleware('ismoduleenabled:clients');
     }
 
     /**

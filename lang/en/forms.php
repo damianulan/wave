@@ -68,6 +68,7 @@ return [
     'write' => 'Write',
     'create' => 'Create',
     'delete' => 'Delete',
+    'extradata' => 'Sensitive data access', 
     'unknown' => 'Unknown',
     'actions' => 'Actions',
     'none' => 'None',
@@ -86,5 +87,8 @@ return [
     'manager' => 'Manager',
     'employee' => 'Employee',
     'trainee' => 'Trainee',
+
+    // permissions
+    'users/block' => 'Blocking users',
 
 ];
