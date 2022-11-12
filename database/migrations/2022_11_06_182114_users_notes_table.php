@@ -21,6 +21,8 @@ return new class extends Migration
             $table->foreign('note_id')->references('id')->on('notes')->onDelete('cascade');
 
             $table->primary(['user_id','note_id']);
+            $table->timestamps();
+            $table->softDeletes();
         });
     }
 

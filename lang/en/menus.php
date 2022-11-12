@@ -34,6 +34,9 @@ return [
     'account_settings' => 'Account Settings',
     'edit' => 'Edit',
     'description' => 'Description',
+    'notes' => 'Notes',
+    'add_note' => 'Add a note',
+    'note' => 'Note',
 
     //Misc
     'fullscreen' => 'Fullscreen',
@@ -53,6 +56,8 @@ return [
     'milestones' => 'Milestones',
     'notauthorized' => 'Not Authorized',
     'suspended' => 'Account Suspended',
+    'manufacturers' => 'Manufacturers',
+    'suppliers' => 'Suppliers',
     'add_user' => 'Add user',
     'add_client' => 'Add client',
 

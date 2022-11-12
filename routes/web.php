@@ -7,6 +7,7 @@ use App\Http\Controllers\ClientsController;
 use App\Http\Controllers\RequestController;
 use App\Http\Controllers\ConfigController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\TagsController;
 
 
 /*
@@ -37,8 +38,11 @@ Route::middleware('auth')->group(function (){
     Route::resource('/users', UsersController::class);
     Route::get('users/{user}/block', [UsersController::class, 'block'])->name('users.block');
     Route::get('users/{user}/unblock', [UsersController::class, 'unblock'])->name('users.unblock');
+    Route::get('users/{user}/watch', [UsersController::class, 'watch'])->name('users.watch');
+    Route::get('users/{user}/unwatch', [UsersController::class, 'unwatch'])->name('users.unwatch');
     Route::get('users/{user}/delete', [UsersController::class, 'delete'])->name('users.delete');
     Route::post('users/{user}/permissions', [UsersController::class, 'permissionsUpdate'])->name('users.permissions');
+    Route::post('users/{user}/note', [UsersController::class, 'note'])->name('users.note');
     // PROFILE
     Route::prefix('profile')->group(function(){
         Route::get('/', [ProfileController::class, 'index'])->name('profile.index');
@@ -48,6 +52,11 @@ Route::middleware('auth')->group(function (){
 
     // CLIENTS
     Route::resource('/clients', ClientsController::class);
+
+
+    // TAGS
+    Route::resource('/tags', TagsController::class);
+
 
     // SETTINGS & CONFIG
     Route::prefix('settings')->group(function(){

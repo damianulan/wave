@@ -24,6 +24,7 @@
         "sass-loader": "^13.0.2"
     },
     "dependencies": {
+        "bootstrap-colorpicker": "^3.4.0",
         "detect-autofill": "^1.1.4",
         "fullcalendar": "^5.11.3",
         "select2": "^4.1.0-rc.0",

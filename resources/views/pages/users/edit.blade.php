@@ -51,8 +51,8 @@
                         </form>
                     </div>
                 </div>
-                <form class="needs-validation" method="POST" action="{{route('users.store')}}" enctype="multipart/form-data" novalidate>
-                    @method("POST")
+                <form class="needs-validation" method="POST" action="{{route('users.update', $user->id)}}" enctype="multipart/form-data" novalidate>
+                    @method('PATCH')
                     @csrf
                     <div class="row">
                         <div class="col-12">

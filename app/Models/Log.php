@@ -12,7 +12,7 @@ class Log extends Model
     protected $table = 'logs';
     protected $primaryKey = 'id';
 
-    public $timestamps = [ "created_at" ];
+    public $timestamps = [ 'created_at', 'updated_at' ];
     /**
      * The attributes that are mass assignable.
      *
@@ -25,7 +25,4 @@ class Log extends Model
         'data'
     ];
 
-    protected $casts = [
-        'data' => 'array'
-    ];
 }

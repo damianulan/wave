@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Traits\UUID;
+use App\Models\User;
 
 class Note extends Model
 {
@@ -21,6 +22,10 @@ class Note extends Model
         'text',
     ];
 
+    protected $casts = [
+        'text' => 'array',
+    ];
+
     public function users()
     {
         return $this->belongsToMany(User::class,'users_notes');
@@ -30,4 +35,14 @@ class Note extends Model
     {
         return $this->belongsToMany(Client::class,'clients_notes');
     }
+
+    public function author()
+    {
+        $user = User::findOrFail($this->added_by);
+        if($user){
+            return $user;
+        }
+        return null;
+    }
+
 }

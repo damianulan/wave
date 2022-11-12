@@ -14,6 +14,8 @@ use App\Traits\HasRolesAndPermissions;
 use App\Traits\Loggable;
 use App\Traits\Taggable;
 use App\Traits\Notable;
+use App\Traits\Observable;
+use App\Traits\Trackable;
 use App\Models\Location;
 
 class User extends Authenticatable
@@ -21,9 +23,10 @@ class User extends Authenticatable
     use UUID;
     use HasRolesAndPermissions;
     use HasApiTokens, HasFactory, Notifiable, SoftDeletes, Loggable;
-    use Taggable, Notable;
+    use Taggable, Notable, Observable, Trackable;
 
     protected $table = 'users';
+    protected $model = 'user';
     protected $primaryKey = 'id';
 
     public $timestamps = true;
@@ -87,10 +90,12 @@ class User extends Authenticatable
     }
 
     public function block() {
+        $this->noteActivity('block', 'users');  
         return $this->update(['status' => 0]);
     }
 
     public function unblock() {
+        $this->noteActivity('unblock', 'users');
         return $this->update(['status' => 1]);
     }
 

@@ -4,6 +4,7 @@ namespace App\Traits;
 
 use App\Models\User;
 use App\Models\Log;
+use App\Models\Activity;
 use Illuminate\Support\Facades\DB;
 
 trait Loggable
@@ -31,7 +32,7 @@ trait Loggable
      */
     public function getActivity($rows = null)
     {
-        $logs = Log::select('action', 'data', 'created_at')->where('user_id', $this->id)->whereNotIn('action', ['login', 'login_failed'])->orderBy('created_at');
+        $logs = Activity::where('user_id', $this->id)->orderBy('created_at');
         if($rows == null){
             $logs = $logs->get();
         } else {
@@ -41,8 +42,9 @@ trait Loggable
     }
 
     public function getLogs($rows = null){
-        $logs = Log::select('action', 'data', 'created_at')->where('user_id', $this->id)->where(function ($query){
+        $logs = Log::select('action', 'created_at')->where(function ($query){
             $query->where('action', 'login')->orWhere('action', 'login_failed');
+            $query->where('user_id', $this->id);
         })->orderBy('created_at');
         if($rows == null){
             $logs = $logs->get();
@@ -50,16 +52,6 @@ trait Loggable
             $logs = $logs->take($rows)->get();
         }
         return $logs;
-    }
-
-    /**
-     * @param Log
-     */
-    public function getTargetData(Log $log)
-    {
-        $query = "select name from " . $log->data['table'] . " where id like '" . $log->data['id'] . "'";
-        $target = DB::select($query)[0];
-        return $target;
     }
 
     public function hasAnyLog(): bool

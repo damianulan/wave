@@ -71,7 +71,7 @@ class UsersController extends Controller
             'firstname' => 'required',
             'lastname' => 'required',
             'gender' => 'required',
-            'phone' => 'numeric|min:8|max:11'
+            'phone' => 'min:8|max:11|nullable'
         ]);
         if ($request->input('location_id') == '-1'){
             $excepts[] = 'location_id';
@@ -88,7 +88,7 @@ class UsersController extends Controller
         ]);
         $user = User::create($request->except($excepts));
         $user->roles()->attach($request->input('role'));
-        return redirect()->route('users.index')->with('success', __('alerts.model_created', ['model' => $user->name()]));
+        return redirect()->route('users.index')->with('success', __('alerts.success.model_created', ['model' => $user->name()]));
     }
 
     /**
@@ -150,24 +150,27 @@ class UsersController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $excepts = ['role', 'birth'];
         $request->validate([
-            'email' => 'required|email|unique:users|max:128',
+            'email' => 'required|max:128',
             'nickname' => 'required|max:10',
             'firstname' => 'required',
             'lastname' => 'required',
             'gender' => 'required',
-            'phone' => 'numeric|min:8|max:11'
+            'phone' => 'min:8|max:11|nullable'
         ]);
-        $dump = strtotime($request->input('birthdate'));
-        $date = date("Y-m-d", $dump);
-        $request->birthdate = $date;
+        if ($request->input('location_id') == '-1'){
+            $excepts[] = 'location_id';
+        }
         $user = User::findOrFail($id);
-        $user->update($request->all());
-        $user->refreshRole($request->input('rolePicker'));
-        $user->permissions()->detach();
-        $this->fetchPermissions($user, $request);
-
-        return redirect()->back()->with('success', __('alerts.model_edited', ['model' => $user->name()]));
+        $date = $user->birthdateFromInput($request->input('birth'));
+        $request->merge([
+            'birthdate' => $date,
+        ]);
+        //dd($request);
+        $user->update($request->except($excepts));
+        $user->refreshRole($request->input('role'));
+        return redirect()->back()->with('success', __('alerts.success.model_edited', ['model' => $user->name()]));
 
     }
 
@@ -179,10 +182,9 @@ class UsersController extends Controller
      */
     public function destroy($id)
     {
-        dd(true);
         $user = User::findOrFail($id);
         $user->delete();
-        return redirect()->route('users.index')->with('success', __('alerts.model_deleted', ['model' => $user->name()]));
+        return redirect()->route('users.index')->with('success', __('alerts.success.model_deleted', ['model' => $user->name()]));
     }
 
     /**
@@ -195,7 +197,7 @@ class UsersController extends Controller
     {
         $user = User::findOrFail($id);
         $user->delete();
-        return redirect()->route('users.index')->with('success', __('alerts.model_deleted', ['model' => $user->name()]));
+        return redirect()->route('users.index')->with('success', __('alerts.success.model_deleted', ['model' => $user->name()]));
     }
 
     /**
@@ -208,7 +210,7 @@ class UsersController extends Controller
     {
         $user = User::findOrFail($id);
         $user->block();
-        return redirect()->back()->with('warning', __('alerts.model_blocked', ['model' => $user->name()]));;
+        return redirect()->back()->with('warning', __('alerts.success.model_blocked', ['model' => $user->name()]));;
     }
 
     /**
@@ -221,7 +223,7 @@ class UsersController extends Controller
     {
         $user = User::findOrFail($id);
         $user->unblock();
-        return redirect()->back()->with('success', __('alerts.model_unblocked', ['model' => $user->name()]));;
+        return redirect()->back()->with('success', __('alerts.success.model_unblocked', ['model' => $user->name()]));;
     }
 
     /**
@@ -237,4 +239,52 @@ class UsersController extends Controller
         $rules = $request->collect()->except('_token');
     }
 
+    /**
+     * Observe the user (Observable trait)
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function watch($id)
+    {
+        $user = User::findOrFail($id);
+        if($user->watch()){
+            return redirect()->back()->with('success', __('alerts.success.model_watched', ['model' => $user->name()]));;
+        }
+        return redirect()->back()->with('error', __('alerts.error.model_watched', ['model' => $user->name()]));;
+    }
+
+    /**
+     * Reverse observing the user (Observable trait)
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function unwatch($id)
+    {
+        $user = User::findOrFail($id);
+        if($user->unwatch()){
+            return redirect()->back()->with('success', __('alerts.success.model_unwatched', ['model' => $user->name()]));;
+        }
+        return redirect()->back()->with('error', __('alerts.error.model_unwatched', ['model' => $user->name()]));;
+    }
+
+    /**
+     * Add a note to the user (Notable trait)
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function note(Request $request, $id)
+    {
+        $user = User::findOrFail($id);
+        $written = $user->writeNote($request->input('text'));
+        if($written)
+        {
+            return redirect()->back()->with('success', __('alerts.success.model_note', ['model' => $user->name()]));;
+        }
+        return redirect()->back()->with('error', __('alerts.error.model_note', ['model' => $user->name()]));;
+
+    }
 }

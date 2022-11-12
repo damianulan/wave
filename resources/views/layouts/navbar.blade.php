@@ -82,12 +82,14 @@
             {{__('menus.users')}}
         </a>
       </li>
+      @module('tags')
       <li class="nav-item">
-        <a href="#" class="nav-link">
+        <a href="{{route('tags.index')}}" class="nav-link {{ request()->routeIs('tags.*') ? 'active' : '' }}">
             <i class="bi bi-tag"></i>
             {{__('menus.tags')}}
         </a>
       </li>
+      @endmodule
       @module('services')
       <li class="nav-item" id="services">
         <a href="#" class="nav-link">

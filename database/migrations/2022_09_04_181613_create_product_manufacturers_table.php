@@ -16,6 +16,8 @@ return new class extends Migration
         Schema::create('product_manufacturers', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->string('name');
+            $table->text('description')->nullable();
+            $table->string('link')->nullable();
             $table->char('added_by', 36)->nullable();
             $table->foreign('added_by')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();

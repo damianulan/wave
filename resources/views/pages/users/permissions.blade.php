@@ -2,7 +2,7 @@
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="modal-header">
-          <h4 class="modal-title fw-bold text-primary" id="permissionsLabel"><i class="bi bi-shield-lock-fill me-2 text-primary"></i>{{__('menus.permissions')}}</h4>
+          <h4 class="modal-title fw-bold text-primary" id="permissionsLabel"><i class="bi bi-key-fill me-2 text-primary"></i>{{__('menus.permissions')}}</h4>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="{{__('buttons.close')}}"></button>
         </div>
         <form action="{{route('users.permissions', $user->id)}}" method="post">

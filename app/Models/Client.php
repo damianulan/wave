@@ -17,6 +17,7 @@ class Client extends Model
     //use Taggable;
 
     protected $table = 'clients';
+    protected $model = 'client';
     protected $primaryKey = 'id';
 
     public $timestamps = true;

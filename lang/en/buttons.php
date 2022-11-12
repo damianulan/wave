@@ -12,6 +12,7 @@ return [
     'block' => 'Block',
     'unblock' => 'Unblock',
     'watch' => 'Watch',
+    'unwatch' => 'Unwatch',
     'bulk' => 'Bulk delete',
     'reset_data' => 'Reset data',
     'reset_password' => 'Reset password',

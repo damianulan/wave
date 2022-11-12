@@ -48,7 +48,7 @@ class UserRow
             $status_->name = __('forms.status_1');
             $status_->badge = 'primary';
         } else if ($status == '0'){
-            $status_->name = __('forms.status_2');
+            $status_->name = __('forms.status_0');
             $status_->badge = 'dark';
         }
         return $status_;

@@ -2,10 +2,24 @@
 
 return [
 
-    'edit_users' => 'edited User',
-    'create_users' => 'created User',
-    'destroy_users' => 'deleted User',
-    'edit_clients' => 'edited Client',
-    'create_clients' => 'created Client',
-    'destroy_clients' => 'deleted Client',
+    'edit' => 'edited :target',
+    'create' => 'created :target',
+    'destroy' => 'destroyed :target',
+    'edit' => 'edited :target',
+    'watch' => 'watched :target',
+    'unwatch' => 'unwatched :target',
+    'block' => 'blocked :target',
+    'unblock' => 'unblocked :target',
+
+
+
+
+
+
+
+
+
+
+
+
 ];

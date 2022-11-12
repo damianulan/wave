@@ -34,14 +34,38 @@
 <div class="row justify-content-center">
     <div class="col-md-12">
         <div class="card">
-            <div class="card-header">{{ __('Dashboard') }}</div>
+            <h4 class="card-header p-3 pb-0 m-0">{{ __('Dashboard') }}</h4>
 
             <div class="card-body">
-                @if (session('status'))
-                <div class="alert alert-success" role="alert">
-                    {{ session('status') }}
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row mt-4">
+    <div class="col-md-4">
+        <div class="card">
+            <h4 class="card-header p-3 pb-0 m-0"><i class="bi bi-activity"></i> {{ __('forms.recent_activity') }}</h4>
+            <div class="card-body p-4">
+                <div class="row justify-content-center">
+                    <div class="col-md-12">
+                        <table class="table">
+                            <tbody>
+                                @if(count($logs) > 0)
+                                    @foreach ($logs as $log)
+                                        <tr>
+                                            <td><span class="fw-bold">{{__('vocabulary.you')}}</span> {{__('activities.'.$log->action, ['target' => $log->getTargetData()->name()]) }}</td>
+                                            <td>{{$log->created_at->diffForHumans()}}</td>
+                                        </tr>   
+                                    @endforeach
+                                @else
+                                        <tr>
+                                            <td>{{__('messages.no_data')}}</td>
+                                        </tr>
+                                @endif
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
-                @endif
             </div>
         </div>
     </div>
