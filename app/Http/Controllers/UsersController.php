@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use App\Models\User;
+use App\Models\Note;
 use App\Models\Location;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Session;
@@ -71,7 +72,8 @@ class UsersController extends Controller
             'firstname' => 'required',
             'lastname' => 'required',
             'gender' => 'required',
-            'phone' => 'min:8|max:11|nullable'
+            'phone' => 'min:8|max:11|nullable',
+            'pesel' => 'digits:11|nullable',
         ]);
         if ($request->input('location_id') == '-1'){
             $excepts[] = 'location_id';
@@ -157,7 +159,8 @@ class UsersController extends Controller
             'firstname' => 'required',
             'lastname' => 'required',
             'gender' => 'required',
-            'phone' => 'min:8|max:11|nullable'
+            'phone' => 'min:8|max:11|nullable',
+            'pesel' => 'digits:11|nullable',
         ]);
         if ($request->input('location_id') == '-1'){
             $excepts[] = 'location_id';
@@ -286,5 +289,15 @@ class UsersController extends Controller
         }
         return redirect()->back()->with('error', __('alerts.error.model_note', ['model' => $user->name()]));;
 
+    }
+
+    public function noteDelete($id)
+    {
+        $note = Note::findOrFail($id);
+        if($note->deleteAll('users')){
+            return redirect()->back()->with('success', __('alerts.success.note_deleted'));
+
+        }
+        return redirect()->back()->with('error', __('alerts.error.note_deleted'));
     }
 }

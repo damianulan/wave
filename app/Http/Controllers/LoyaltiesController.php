@@ -13,7 +13,10 @@ class LoyaltiesController extends Controller
      */
     public function index()
     {
-        //
+        $title = __('menus.loyalties');
+        return view('pages.loyalties.index', [
+            'title' => $title,
+        ]); 
     }
 
     /**

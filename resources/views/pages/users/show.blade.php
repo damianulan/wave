@@ -40,7 +40,7 @@
                                         {{__('forms.phone')}}
                                     </td>
                                     <td>
-                                        {{$user->phone}}
+                                        {{$user->phone!=null ? $user->phone:__('forms.no_record')}}
                                     </td>
                                 </tr>
                                 <tr>
@@ -56,7 +56,7 @@
                                         {{__('forms.last_login')}}
                                     </td>
                                     <td>
-                                        {{$user->lastLogin() ? $user->lastLogin():__('forms.no_record')}}
+                                        {{$user->lastLogin() ? $user->lastLogin():__('forms.never')}}
                                     </td>
                                 </tr>
                             </tbody>
@@ -137,7 +137,43 @@
             </div>
             <div class="card-body">
                 <div class="row">
-                    <div class="col-md-12">
+                    <div class="col-12">
+                        <table class="view-list">
+                            <tbody>
+                                <tr>
+                                    <td class="fw-bold">
+                                        {{__('forms.birthdate')}}
+                                    </td>
+                                    <td>
+                                        {{$user->birthdate!=null ? $user->birthdate->format('d.m.Y'):__('forms.no_record')}}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="fw-bold">
+                                        {{__('forms.pesel')}}
+                                    </td>
+                                    <td>
+                                        {{$user->pesel!=null ? $user->pesel->format('d.m.Y'):__('forms.no_record')}}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="fw-bold">
+                                        {{__('forms.address')}}
+                                    </td>
+                                    <td>
+                                        @if ($user->address==null&&$user->zipcode==null&&$user->city==null&&$user->state==null&&$user->country==null)
+                                            {{__('forms.no_record')}}
+                                        @else
+                                            {{$user->address!=null ? $user->address.', ':''}}
+                                            {{$user->zipcode!=null ? $user->zipcode.' ':''}}
+                                            {{$user->city!=null ? $user->city:''}}
+                                            {{$user->state!=null ? ', '.$user->state:''}}
+                                            {{$user->country!=null ? ', '.$user->country:''}}
+                                        @endif
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
@@ -208,20 +244,20 @@
             </div>
             <div class="card-body py-2 px-5 mb-4">
                 <div class="row">
-                    <div class="col-md-6 shadow">
-                        @foreach ($user->notes as $note)
-                            <figure>
-                                <blockquote class="blockquote fs-6 p-3">
-                                    @foreach ($note->text as $line)
-                                        <p>{{$line}}</p>
-                                    @endforeach
-                                </blockquote>
-                                <figcaption class="blockquote-footer m-0">
-                                    <strong>{{$note->author()->name()}}</strong> | <cite>{{$note->created_at->diffForHumans()}}</cite>
-                                </figcaption>
-                            </figure>
-                        @endforeach
+                    @foreach ($user->notes as $note)
+                    <div class="col-md-6 shadow me-2">
+                        <figure class="p-3">
+                            <blockquote class="blockquote fs-6">
+                                @foreach ($note->text as $line)
+                                    <p>{{$line}}</p>
+                                @endforeach
+                            </blockquote> 
+                            <figcaption class="blockquote-footer m-0 float-right">
+                                <strong>{{$note->author()->name()}}</strong> | <cite>{{$note->created_at->diffForHumans()}}</cite><a href="{{route('users.note.delete', $note->id)}}"><i class="bi bi-x-lg text-danger fs-6 ms-2"></i></a>
+                            </figcaption>
+                        </figure>
                     </div>
+                    @endforeach
                 </div>
             </div>
         </div>

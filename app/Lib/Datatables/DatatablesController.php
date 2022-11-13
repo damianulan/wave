@@ -50,7 +50,9 @@ class DatatablesController
 
     private function getColumns(string $view, array $structure): array
     {
-        $hasColumns = Datatable::select($view)->where(['user_id' => auth()->user()->id])->get()->toArray();
+        $hasColumns = Datatable::select($view)->where(['user_id' => auth()->user()->id])
+            ->whereNotNull($view)
+            ->get()->toArray();
         $columns = [];
         
         if (count($hasColumns))
@@ -147,7 +149,7 @@ class DatatablesController
 
     private function exception (string $alert)
     {
-        $msg = __('alerts.error').__('alerts.'.$alert);
+        $msg = __('alerts.error_').__('alerts.'.$alert);
         return view('components.datatables.exception',[
             'exception' => $msg]);
     }

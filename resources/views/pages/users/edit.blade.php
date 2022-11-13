@@ -12,10 +12,6 @@
                       <li class="breadcrumb-item active" aria-current="page">{{__('menus.edit')}}</li>
                     </ol>
                 </nav>
-                <h2 class="page-header">
-                    {{__('menus.users')}} 
-                    <a href="{{route('users.create')}}" data-mdb-toggle="tooltip" data-mdb-placement="right" title="{{__('buttons.add_new')}}"><i class="text-primary fs-6 bi-person-plus"></i></a>
-                </h2>
             </div>
         </div>
     </div>
@@ -134,7 +130,7 @@
                                     <div class="form-group">
                                         <div class="controls">
                                             <label>{{__('forms.birthdate')}}</label>
-                                            <input name="birth" type="date" class="form-control" placeholder="dd/mm/yyyy" value="{{$user->birthdate()}}">
+                                            <input id="datepicker_1" name="birth" type="text" class="form-control" placeholder="mm/dd/yyy">
                                         </div>
                                     </div>
                                 </div>
@@ -232,24 +228,34 @@
         </div>
     </div>
 </div>
+
+@section('page-scripts')
 <script>
-    // Example starter JavaScript for disabling form submissions if there are invalid fields
-(() => {
-  'use strict';
+    (() => {
+      'use strict';
+    
+      // Fetch all the forms we want to apply custom Bootstrap validation styles to
+      const forms = document.querySelectorAll('.needs-validation');
+    
+      // Loop over them and prevent submission
+      Array.prototype.slice.call(forms).forEach((form) => {
+        form.addEventListener('submit', (event) => {
+          if (!form.checkValidity()) {
+            event.preventDefault();
+            event.stopPropagation();
+          }
+          form.classList.add('was-validated');
+        }, false);
+      });
+    })();
 
-  // Fetch all the forms we want to apply custom Bootstrap validation styles to
-  const forms = document.querySelectorAll('.needs-validation');
+// forms datepicker
+var datepicker = new Datepicker('#datepicker_1', {
+    inline: false,
+    multiple: false,
+    dateFormat: 'dd/mm/yy'
+});
 
-  // Loop over them and prevent submission
-  Array.prototype.slice.call(forms).forEach((form) => {
-    form.addEventListener('submit', (event) => {
-      if (!form.checkValidity()) {
-        event.preventDefault();
-        event.stopPropagation();
-      }
-      form.classList.add('was-validated');
-    }, false);
-  });
-})();
 </script>
+@endsection
 @endsection

@@ -74,6 +74,7 @@ return [
     'actions' => 'Actions',
     'none' => 'None',
     'no_record' => 'No record',
+    'never' => 'Never',
     'role_info' => 'This field will define permissions of this user throughout the application. Later, You will be able to make changes to permissions regardless of the role.',
 
     // status

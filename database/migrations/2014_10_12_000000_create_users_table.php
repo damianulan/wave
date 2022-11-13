@@ -31,7 +31,7 @@ return new class extends Migration
             $table->string('city')->nullable();
             $table->string('state')->nullable();
             $table->string('country')->nullable();
-            $table->string('pesel', 11)->nullable();
+            $table->string('pesel')->nullable();
             $table->char('locale', 2)->default('en');
 
             //settings

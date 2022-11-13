@@ -2,7 +2,7 @@
 
 return [
     'no_changes' => 'No changes have been detected. No data was updated',
-    'error' => 'Error: ',
+    'error_' => 'Error: ',
 
     'email_notconfirmed' => 'Your email is not confirmed. Please check your inbox to verify. Not verified accounts will autoremove after 30 days.',
     'create_user_email_info' => 'Saving this will result with sending login details to the given email address.',
@@ -28,10 +28,13 @@ return [
 
 
         'savingcolumns' => 'Your columns have been saved and will be remembered for future logins.',
-
+        'note_deleted' => 'Note has been successfully deleted.',
     ],
 
     'error' => [
+        '500' => 'Internal Server Error',
+
+
         'model_edited' => ':model could not been edited. You may be lacking some permissions to complete this action. Contact with Your administrator',
         'model_created' => ':model could not been created. You may be lacking some permissions to complete this action. Contact with Your administrator',
         'model_deleted' => ':model could not been deleted. You may be lacking some permissions to complete this action. Contact with Your administrator',
@@ -42,6 +45,8 @@ return [
         'model_note' => 'Note could not be saved.',
 
         'savingcolumns' => 'Something went wrong during template saving. Columns will not be remembered',
+        'note_deleted' => 'Something went wrong and the note could not be deleted.',
+
     ],
 
     'info' => [

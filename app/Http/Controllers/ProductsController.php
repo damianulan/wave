@@ -13,7 +13,10 @@ class ProductsController extends Controller
      */
     public function index()
     {
-        //
+        $title = __('menus.products');
+        return view('pages.products.index', [
+            'title' => $title,
+        ]); 
     }
 
     /**

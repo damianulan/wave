@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Datatable;
+use App\Models\Note;
 use App\Lib\Datatables\DatatablesController;
 use Session;
 
@@ -13,9 +14,9 @@ class RequestController extends Controller
     {
         $result = DatatablesController::createOrUpdateViewTemplate($request);
         if(!$result){
-            return redirect()->back()->with('error', __('alerts.savingcolumns_error'));
+            return redirect()->back()->with('error', __('alerts.error.savingcolumns'));
         }
-        return redirect()->back()->with('success', __('alerts.savingcolumns_success'));
+        return redirect()->back()->with('success', __('alerts.success.savingcolumns'));
     }
 
     public function NotAuthorized() {
@@ -30,4 +31,6 @@ class RequestController extends Controller
             'title' => $title,
         ]);
     }
+
+
 }

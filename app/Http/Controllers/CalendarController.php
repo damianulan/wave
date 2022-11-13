@@ -11,6 +11,11 @@ class CalendarController extends Controller
 
     }
 
+    public function index()
+    {
+        
+    }
+
     public function calendar()
     {
 

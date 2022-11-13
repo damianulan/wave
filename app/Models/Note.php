@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Traits\UUID;
 use App\Models\User;
+use Illuminate\Support\Facades\DB;
 
 class Note extends Model
 {
@@ -43,6 +44,20 @@ class Note extends Model
             return $user;
         }
         return null;
+    }
+
+    public function deleteAll($relation): bool 
+    {
+        if($this->delete()){
+            $delete_fk = DB::table($relation.'_notes')->where([
+                'note_id' => $this->id,
+            ])->delete();
+            if($delete_fk){
+                return true;
+            }
+        }
+
+        return false;
     }
 
 }

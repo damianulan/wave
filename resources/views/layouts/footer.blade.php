@@ -19,10 +19,10 @@
 </footer>
 @endif
 <script src="{{asset('themes/vendors/jquery.min.js')}}"></script>
+<script src="{{asset('themes/vendors/datepicker_'.config('app.locale').'.js')}}"></script>
+<script src="{{asset('themes/vendors/calendar.js')}}"></script>
 <script src="{{asset('themes/'.$theme.'/app.js')}}"></script>
-<script>
-
-</script>
+@yield('page-scripts')
 </div>
 </body>
 </html>

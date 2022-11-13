@@ -1,6 +1,9 @@
 {
-    "/themes/wave-light/app.js": "/themes/wave-light/app.js?id=a37515816f0f78a92bd98268916ff2c1",
-    "/themes/wave-light/app.css": "/themes/wave-light/app.css?id=415734a49e6bba5ac1b87396b3e203d9",
+    "/themes/wave-light/app.js": "/themes/wave-light/app.js?id=d4bcb159a8882535f46c1208df2ef3a3",
+    "/themes/wave-light/app.css": "/themes/wave-light/app.css?id=94215603898866fbc1c06843fb621e40",
+    "/themes/vendors/calendar.js": "/themes/vendors/calendar.js?id=5141616270ca4c7df05b115da1675068",
+    "/themes/vendors/datepicker_en.js": "/themes/vendors/datepicker_en.js?id=1724be223d97eda613c11412004fce5c",
+    "/themes/vendors/datepicker_pl.js": "/themes/vendors/datepicker_pl.js?id=1724be223d97eda613c11412004fce5c",
     "/themes/vendors/jquery.min.js": "/themes/vendors/jquery.min.js?id=00727d1d5d9c90f7de826f1a4a9cc632",
     "/images/pages/maintenance.jpg": "/images/pages/maintenance.jpg?id=cd2c32cfe8461aee8e6b151ab6456ff8",
     "/images/portrait/small/avatar-female.png": "/images/portrait/small/avatar-female.png?id=70aab25d86b1b481f2ff41df8b19f497",

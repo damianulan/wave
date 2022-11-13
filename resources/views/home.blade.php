@@ -31,7 +31,7 @@
     </div>
 </div>
 @include('components.alerts')
-<div class="row justify-content-center">
+<div class="row justify-content-center mt-4">
     <div class="col-md-12">
         <div class="card">
             <h4 class="card-header p-3 pb-0 m-0">{{ __('Dashboard') }}</h4>

@@ -8,6 +8,11 @@ use App\Http\Controllers\RequestController;
 use App\Http\Controllers\ConfigController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TagsController;
+use App\Http\Controllers\ProductsController;
+use App\Http\Controllers\ServicesController;
+use App\Http\Controllers\TasksController;
+use App\Http\Controllers\LoyaltiesController;
+use App\Http\Controllers\CalendarController;
 
 
 /*
@@ -36,13 +41,18 @@ Route::middleware('auth')->group(function (){
 
     // USERS
     Route::resource('/users', UsersController::class);
-    Route::get('users/{user}/block', [UsersController::class, 'block'])->name('users.block');
-    Route::get('users/{user}/unblock', [UsersController::class, 'unblock'])->name('users.unblock');
-    Route::get('users/{user}/watch', [UsersController::class, 'watch'])->name('users.watch');
-    Route::get('users/{user}/unwatch', [UsersController::class, 'unwatch'])->name('users.unwatch');
-    Route::get('users/{user}/delete', [UsersController::class, 'delete'])->name('users.delete');
-    Route::post('users/{user}/permissions', [UsersController::class, 'permissionsUpdate'])->name('users.permissions');
-    Route::post('users/{user}/note', [UsersController::class, 'note'])->name('users.note');
+    Route::prefix('users')->group(function (){
+        Route::get('{user}/block', [UsersController::class, 'block'])->name('users.block');
+        Route::get('{user}/unblock', [UsersController::class, 'unblock'])->name('users.unblock');
+        Route::get('{user}/watch', [UsersController::class, 'watch'])->name('users.watch');
+        Route::get('{user}/unwatch', [UsersController::class, 'unwatch'])->name('users.unwatch');
+        Route::get('{user}/delete', [UsersController::class, 'delete'])->name('users.delete');
+        Route::post('{user}/permissions', [UsersController::class, 'permissionsUpdate'])->name('users.permissions');
+        Route::post('{user}/note', [UsersController::class, 'note'])->name('users.note');
+        Route::get('note/{note}/delete', [UsersController::class, 'noteDelete'])->name('users.note.delete');
+    });
+
+
     // PROFILE
     Route::prefix('profile')->group(function(){
         Route::get('/', [ProfileController::class, 'index'])->name('profile.index');
@@ -52,11 +62,44 @@ Route::middleware('auth')->group(function (){
 
     // CLIENTS
     Route::resource('/clients', ClientsController::class);
+    Route::prefix('clients')->group(function (){
 
+    });
+
+    // TASKS
+    Route::resource('/tasks', TasksController::class);
+    Route::prefix('tasks')->group(function (){
+    });
+
+    // PRODUCTS
+    Route::resource('/products', ProductsController::class);
+    Route::prefix('products')->group(function (){
+
+    });
+
+    // SERIVCES
+    Route::resource('/services', ServicesController::class);
+    Route::prefix('services')->group(function (){
+
+    });
 
     // TAGS
     Route::resource('/tags', TagsController::class);
+    Route::prefix('tags')->group(function (){
 
+    });
+
+    // LOYALTIES
+    Route::resource('/loyalties', LoyaltiesController::class);
+    Route::prefix('loyalties')->group(function (){
+
+    });
+
+    // CALENDAR & VISITS
+    Route::resource('/calendar', CalendarController::class);
+    Route::prefix('calendar')->group(function (){
+
+    });
 
     // SETTINGS & CONFIG
     Route::prefix('settings')->group(function(){

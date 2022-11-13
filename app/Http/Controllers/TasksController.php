@@ -13,7 +13,10 @@ class TasksController extends Controller
      */
     public function index()
     {
-        //
+        $title = __('menus.tasks');
+        return view('pages.tasks.index', [
+            'title' => $title,
+        ]); 
     }
 
     /**

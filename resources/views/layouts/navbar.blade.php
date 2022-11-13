@@ -22,13 +22,13 @@
         </a>
       </li>
       <li class="nav-item">
-        <a href="#" class="nav-link">
+        <a href="{{route('calendar.index')}}" class="nav-link {{ request()->routeIs('calendar.*') ? 'active' : '' }}">
             <i class="bi bi-calendar2-week"></i>
             {{__('menus.calendar')}}
         </a>
       </li>
       <li class="nav-item">
-        <a href="#" class="nav-link">
+        <a href="{{route('tasks.index')}}" class="nav-link {{ request()->routeIs('tasks.*') ? 'active' : '' }}">
             <i class="bi bi-check2-square"></i>
             {{__('menus.todo')}}
         </a>
@@ -40,16 +40,15 @@
         </a>
       </li>
       <li class="nav-item">
-        <a href="#" class="nav-link">
+        <a href="{{route('products.index')}}" class="nav-link {{ request()->routeIs('products.*') ? 'active' : '' }}">
             <i class="bi bi-box-seam"></i>
             <span class="menu-title">{{__('menus.products')}}</span>
-            <span class="badge badge-primary-light badge-pill">{{__('vocabulary.soon')}}</span>
         </a>
       </li>
       <li class="nav-item">
-        <a href="#" class="nav-link">
+        <a href="{{route('loyalties.index')}}" class="nav-link {{ request()->routeIs('loyalties.*') ? 'active' : '' }}">
             <i class="bi bi-wallet2"></i>
-            {{__('menus.loyalty')}}
+            {{__('menus.loyalties')}}
         </a>
       </li>
       <li class="navigation-header">
@@ -92,7 +91,7 @@
       @endmodule
       @module('services')
       <li class="nav-item" id="services">
-        <a href="#" class="nav-link">
+        <a href="{{route('services.index')}}" class="nav-link {{ request()->routeIs('services.*') ? 'active' : '' }}">
             <i class="bi bi-scissors"></i>
             {{__('menus.services')}}
         </a>
