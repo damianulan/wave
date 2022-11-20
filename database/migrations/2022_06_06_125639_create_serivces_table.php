@@ -18,6 +18,8 @@ return new class extends Migration
             $table->string('name', 30);
             $table->char('gender', 1); // 0 - female, 1 - male
             $table->longText('description', 250)->nullable();
+            $table->char('user_id', 36);
+            $table->foreign('user_id')->references('id')->on('users');
             $table->char('added_by', 36)->nullable();
             $table->foreign('added_by')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();

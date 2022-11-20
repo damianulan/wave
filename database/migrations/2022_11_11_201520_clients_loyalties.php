@@ -20,7 +20,7 @@ return new class extends Migration
             $table->foreign('client_id')->references('id')->on('clients')->onDelete('cascade');
             $table->foreign('loyalty_id')->references('id')->on('loyalties')->onDelete('cascade');
 
-            $table->primary(['client_id','note_id']);
+            $table->primary(['client_id','loyalty_id']);
             $table->timestamp('confirmed_at');
             $table->timestamps();
             $table->softDeletes();

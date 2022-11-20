@@ -63,6 +63,7 @@ Route::middleware('auth')->group(function (){
     // CLIENTS
     Route::resource('/clients', ClientsController::class);
     Route::prefix('clients')->group(function (){
+        Route::get('{client}/delete', [ClientsController::class, 'delete'])->name('clients.delete');
 
     });
 

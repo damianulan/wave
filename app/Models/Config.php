@@ -117,4 +117,10 @@ class Config extends Model
         $avatar = Config::where(['slug' => 'avatarmale'])->get()[0];
         return $avatar->value;
     }
+
+    public static function build()
+    {
+        $build = Config::where(['slug' => 'build'])->get()->first();
+        return $build->value;
+    }
 }

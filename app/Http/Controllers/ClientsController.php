@@ -135,4 +135,17 @@ class ClientsController extends Controller
         $client->delete();
         return redirect()->route('clients.index')->with('success', __('alerts.client_deleted', ['client' => $client->name()]));;    
     }
+
+    /**
+     * Remove the specified resource from storage. [GET]
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function delete($id)
+    {
+        $user = Client::findOrFail($id);
+        $user->delete();
+        return redirect()->route('users.index')->with('success', __('alerts.success.model_deleted', ['model' => $user->name()]));
+    }
 }

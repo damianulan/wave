@@ -50,7 +50,7 @@ class ConfigSeeder extends Seeder
 
         $config = new Config();
         $config->type = 'app';
-        $config->slug = 'version';
+        $config->slug = 'build';
         $config->value = date('YmdHi', time());
         $config->save();
 

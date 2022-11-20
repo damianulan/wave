@@ -13,7 +13,10 @@ class CalendarController extends Controller
 
     public function index()
     {
-        
+        $title = __('menus.calendar');
+        return view('pages.calendar.index', [
+            'title' => $title,
+        ]);  
     }
 
     public function calendar()

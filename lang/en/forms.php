@@ -90,6 +90,12 @@ return [
     'employee' => 'Employee',
     'trainee' => 'Trainee',
 
+    // clients hair length
+    'hair_length_0' => 'Short',
+    'hair_length_1' => 'Medium',
+    'hair_length_2' => 'Long',
+
+
     // permissions
     'users/block' => 'Blocking users',
 

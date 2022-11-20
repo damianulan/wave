@@ -107,7 +107,7 @@
                                     <div class="form-group">
                                         <div class="controls">
                                             <label>{{__('forms.birthdate')}}</label>
-                                            <input name="birth" type="date" class="form-control" placeholder="dd/mm/yyyy" value="{{old('birthdate')}}">
+                                            <input id="datepicker_1" name="birth" type="text" class="form-control" placeholder="dd/mm/yyyy" value="{{old('birthdate')}}">
                                         </div>
                                     </div>
                                 </div>
@@ -205,24 +205,26 @@
         </div>
     </div>
 </div>
+@section('page-scripts')
 <script>
-    // Example starter JavaScript for disabling form submissions if there are invalid fields
-(() => {
-  'use strict';
+    (() => {
+      'use strict';
+    
+      // Fetch all the forms we want to apply custom Bootstrap validation styles to
+      const forms = document.querySelectorAll('.needs-validation');
+    
+      // Loop over them and prevent submission
+      Array.prototype.slice.call(forms).forEach((form) => {
+        form.addEventListener('submit', (event) => {
+          if (!form.checkValidity()) {
+            event.preventDefault();
+            event.stopPropagation();
+          }
+          form.classList.add('was-validated');
+        }, false);
+      });
+    })();
 
-  // Fetch all the forms we want to apply custom Bootstrap validation styles to
-  const forms = document.querySelectorAll('.needs-validation');
-
-  // Loop over them and prevent submission
-  Array.prototype.slice.call(forms).forEach((form) => {
-    form.addEventListener('submit', (event) => {
-      if (!form.checkValidity()) {
-        event.preventDefault();
-        event.stopPropagation();
-      }
-      form.classList.add('was-validated');
-    }, false);
-  });
-})();
 </script>
+@endsection
 @endsection

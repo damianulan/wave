@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('loyalties', function (Blueprint $table) {
-            $table->uuid('id');
+            $table->uuid('id')->primary();
             $table->boolean('active');
             $table->string('name');
             $table->text('description')->nullable();

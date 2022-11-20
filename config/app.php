@@ -220,7 +220,6 @@ return [
     ])->toArray(),
 
     'version' => '0.0.3 theta',
-    'build' => '202210221257',
     'year' => '2022',
 
 ];

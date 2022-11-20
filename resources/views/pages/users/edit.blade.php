@@ -130,7 +130,7 @@
                                     <div class="form-group">
                                         <div class="controls">
                                             <label>{{__('forms.birthdate')}}</label>
-                                            <input id="datepicker_1" name="birth" type="text" class="form-control" placeholder="mm/dd/yyy">
+                                            <input id="datepicker_1" name="birth" type="text" class="form-control date-input" placeholder="mm/dd/yyy" value="{{$user->birthdate->format('d/m/Y')}}">
                                         </div>
                                     </div>
                                 </div>
@@ -248,13 +248,6 @@
         }, false);
       });
     })();
-
-// forms datepicker
-var datepicker = new Datepicker('#datepicker_1', {
-    inline: false,
-    multiple: false,
-    dateFormat: 'dd/mm/yy'
-});
 
 </script>
 @endsection

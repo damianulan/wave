@@ -9,11 +9,12 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Notifications\Notifiable;
 use App\Traits\Taggable;
 use App\Models\Config;
+use App\Traits\Notable;
 
 class Client extends Model
 {
     use UUID;
-    use HasFactory, Notifiable, SoftDeletes, Taggable;
+    use HasFactory, Notifiable, SoftDeletes, Taggable, Notable;
     //use Taggable;
 
     protected $table = 'clients';
@@ -46,7 +47,7 @@ class Client extends Model
         if ($this->gender == '0'){
             return __('forms.female');
         } elseif ($this->gender == '1'){
-            return __('forms.female');
+            return __('forms.male');
         }
         return false;
     }
@@ -81,5 +82,20 @@ class Client extends Model
             return __('vocabulary.no');
         }
         return __('vocabulary.yes');
+    }
+
+    public function ifHasAccount(): bool
+    {
+        if($this->password == null){
+            return false;
+        }
+
+        return true;
+    }
+
+
+    public function hairLength() 
+    {
+        return __('forms.hair_length_'.$this->hair_length);
     }
 }
