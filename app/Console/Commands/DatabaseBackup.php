@@ -13,14 +13,14 @@ class DatabaseBackup extends Command
      *
      * @var string
      */
-    protected $signature = 'database:backup';
+    protected $signature = 'db:backup';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = '';
+    protected $description = 'Perform local database backup.';
 
     /**
      * Create a new command instance.

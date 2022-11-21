@@ -13,7 +13,7 @@
             </div>
             <div class="card-body">
                 <div class="row">
-                    <div class="clients-view-image ms-2">
+                    <div class="users-view-image ms-2">
                         <img src="{{asset($client->avatar)}}" class="rounded-circle mb-2 mx-1" alt="avatar" width="120" height="120">
                     </div>
                     <div class="col-12 col-sm-9 col-md-6 col-lg-5">
@@ -40,7 +40,11 @@
                                         {{__('forms.hasaccount')}}
                                     </td>
                                     <td>
-                                        {{$client->hasAccount()}}
+                                        @if ($client->ifhasAccount())
+                                        <span class="badge badge-status badge-success">{{$client->hasAccount()}}</span>
+                                        @else
+                                        <span class="badge badge-status badge-warning">{{$client->hasAccount()}}</span>
+                                        @endif
                                     </td>
                                 </tr>
                             </tbody>
@@ -65,10 +69,10 @@
                                 </tr>
                                 <tr>
                                     <td class="fw-bold">
-                                        {{__('forms.status')}}
+                                        {{__('forms.hair_length')}}
                                     </td>
                                     <td>
-                                        <span class="badge badge-status badge-{{$client->status=='1' ? 'primary':'dark'}}">{{__('forms.status_'.$client->status)}}</span>
+                                        <span class="badge badge-status badge-primary">{{$client->hairLength()}}</span>
                                     </td>
                                 </tr>
                                 <tr>
@@ -78,7 +82,9 @@
                                     <td>
                                         <a class="fs-5 ms-2" href="#" data-mdb-toggle="tooltip" data-mdb-placement="bottom" data-mdb-original-title="{{__('forms.notifications')}}"><i class="bi bi-bell-fill"></i></a>
                                         <a class="fs-5 ms-2" href="#" data-mdb-toggle="tooltip" data-mdb-placement="bottom" data-mdb-original-title="{{__('buttons.reset_password')}}"><i class="bi bi-send-check-fill"></i></a>
+                                        <a class="fs-5 ms-2" href="#" data-mdb-toggle="tooltip" data-mdb-placement="bottom" data-mdb-original-title="{{__('buttons.send_invitation')}}"><i class="bi bi-send-plus-fill"></i></a>
                                         <a class="fs-5 ms-2" href="#" data-mdb-toggle="tooltip" data-mdb-placement="bottom" data-mdb-original-title="{{__('buttons.show_logs')}}"><i class="bi bi-person-badge-fill"></i></a>
+                                        <a class="fs-5 ms-2" href="#" data-mdb-toggle="tooltip" data-mdb-placement="bottom" data-mdb-original-title="{{__('buttons.merge')}}"><i class="bi bi-intersect"></i></a>
 
                                         <a class="fs-5 ms-2" href="{{route('clients.delete', $client->id)}}" data-mdb-toggle="tooltip" data-mdb-placement="bottom" data-mdb-original-title="{{__('buttons.delete')}}"><i class="bi bi-trash-fill"></i></a>
                                     </td>
@@ -112,26 +118,10 @@
                                 </tr>
                                 <tr>
                                     <td class="fw-bold">
-                                        {{__('forms.pesel')}}
+                                        {{__('forms.city')}}
                                     </td>
                                     <td>
-                                        {{$client->pesel!=null ? $client->pesel->format('d.m.Y'):__('forms.no_record')}}
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="fw-bold">
-                                        {{__('forms.address')}}
-                                    </td>
-                                    <td>
-                                        @if ($client->address==null&&$client->zipcode==null&&$client->city==null&&$client->state==null&&$client->country==null)
-                                            {{__('forms.no_record')}}
-                                        @else
-                                            {{$client->address!=null ? $client->address.', ':''}}
-                                            {{$client->zipcode!=null ? $client->zipcode.' ':''}}
-                                            {{$client->city!=null ? $client->city:''}}
-                                            {{$client->state!=null ? ', '.$client->state:''}}
-                                            {{$client->country!=null ? ', '.$client->country:''}}
-                                        @endif
+                                        {{$client->city!=null ? $client->city:__('forms.no_record')}}
                                     </td>
                                 </tr>
                             </tbody>
@@ -141,40 +131,10 @@
             </div>
         </div>
     </div>
-    @if ($client->ifHasAccount())
-    <div class="col-md-4 pe-3">
-        <div class="card card-profile">
-            <h4 class="card-header p-3 pb-0 m-0"><i class="bi bi-activity"></i> {{ __('forms.recent_activity') }}</h4>
-            <div class="card-body p-4">
-                <div class="row justify-content-center">
-                    <div class="col-md-12">
-                        <table class="table">
-                            <tbody>
-                                @if (count($logs) > 0)
-                                    @foreach ($logs as $log)
-                                        <tr>
-                                            <td><span class="fw-bold">{{$client->name()}}</span> {{__('activities.'.$log->action, ['target' => $log->getTargetData()->name()]) }}</td>
-                                            <td>{{$log->created_at->diffForHumans()}}</td>
-                                        </tr>   
-                                    @endforeach
-                                @else
-                                        <tr>
-                                            <td>{{__('messages.no_data')}}</td>
-                                        </tr>
-                                @endif
-
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    @endif
-    <div class="col-md-4 pe-3">
+    <div class="col-md-8 pe-3">
         <div class="card card-profile">
             <div class="card-header p-4 pb-0 m-0">
-                <h3>{{__('forms.statistics')}}</h3>
+                <h3>{{__('forms.visits')}}</h3>
             </div>
             <div class="card-body">
                 <div class="row">

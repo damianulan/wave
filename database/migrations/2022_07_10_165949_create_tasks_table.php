@@ -15,7 +15,8 @@ return new class extends Migration
     {
         Schema::create('tasks', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->string('name');
+            $table->string('title');
+            $table->text('contents');
             $table->integer('priority')->default(0);
             $table->char('assigned_to', 36)->nullable();
             $table->foreign('assigned_to')->references('id')->on('users')->onDelete('cascade');

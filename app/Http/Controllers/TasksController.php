@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Models\Task;
 class TasksController extends Controller
 {
     /**
@@ -16,6 +16,7 @@ class TasksController extends Controller
         $title = __('menus.tasks');
         return view('pages.tasks.index', [
             'title' => $title,
+            'tasks' => Task::all(),
         ]); 
     }
 

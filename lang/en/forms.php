@@ -61,6 +61,7 @@ return [
     'permissions' => 'Permissions',
     'statistics' => 'Statistics',
     'access' => 'Access',
+    'visits' => 'Visits',
     'history' => 'Activity History',
     'manage_business' => 'Manage Business',
     'manage_loyalties' => 'Manage Loyalties',
@@ -91,6 +92,7 @@ return [
     'trainee' => 'Trainee',
 
     // clients hair length
+    'hair_length' => 'Hair length',
     'hair_length_0' => 'Short',
     'hair_length_1' => 'Medium',
     'hair_length_2' => 'Long',

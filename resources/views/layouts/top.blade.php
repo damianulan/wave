@@ -19,7 +19,7 @@
                         </a>
                     </li>
                     <li class="nav-item d-none d-lg-block">
-                        <a class="nav-link" href="#" data-mdb-toggle="tooltip" data-mdb-placement="bottom" title="{{__('menus.add_client')}}">
+                        <a class="nav-link" href="{{route('clients.create')}}" data-mdb-toggle="tooltip" data-mdb-placement="bottom" title="{{__('menus.add_client')}}">
                             <i class="bi bi-person-plus"></i>
                         </a>
                     </li>

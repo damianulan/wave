@@ -56,10 +56,11 @@ class ClientsController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'email' => 'required|email|unique:users|max:128',
+            'email' => 'nullable|email|unique:users|max:128',
             'firstname' => 'required',
             'lastname' => 'required',
             'gender' => 'required',
+            'phone' => 'min:8|max:11|nullable',
         ]);
         $avatar = $this->getAvatarDefault($request->input('gender'));
 

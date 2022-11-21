@@ -123,4 +123,14 @@ class Config extends Model
         $build = Config::where(['slug' => 'build'])->get()->first();
         return $build->value;
     }
+
+    public static function upgrade(): bool
+    {
+        $build = Config::where(['slug' => 'build'])->get()->first();
+        $build->value = date('YmdHi', time());
+        if($build->update()){
+            return true;
+        }
+        return false;
+    }
 }

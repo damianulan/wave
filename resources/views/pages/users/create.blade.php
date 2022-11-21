@@ -29,7 +29,7 @@
                     @csrf
                     <div class="row">
                         <div class="col-12">
-                            <h5 class="mb-2"><i class="feather icon-user mr-25"></i>{{__('forms.basic')}}</h5>
+                            <h5 class="mb-2"></i>{{__('forms.basic')}}</h5>
                         </div>
                     </div>
                     <div class="row">
@@ -101,7 +101,7 @@
                     </div>
                     <div class="row mt-3">
                         <div class="col-12 col-sm-6">
-                            <h5 class="mb-2"><i class="feather icon-user mr-25"></i>{{__('forms.personal_information')}}</h5>
+                            <h5 class="mb-2"></i>{{__('forms.personal_information')}}</h5>
                             <div class="row">
                                 <div class="col-12">
                                     <div class="form-group">
@@ -161,7 +161,7 @@
                             </div>
                         </div>
                         <div class="col-12 col-sm-6">
-                            <h5 class="mb-2 mt-2 mt-sm-0"><i class="feather icon-map-pin mr-25"></i>{{__('forms.address')}}</h5>
+                            <h5 class="mb-2 mt-2 mt-sm-0">{{__('forms.address')}}</h5>
                             <div class="form-group">
                                 <div class="controls">
                                     <label>{{__('forms.address')}}</label>
