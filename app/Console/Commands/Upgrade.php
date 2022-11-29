@@ -29,7 +29,7 @@ class Upgrade extends Command
     public function __construct()
     {
         parent::__construct();
-        $this->version = (int) Config::build();
+        //$this->version = (int) Config::build();
     }
 
     /**

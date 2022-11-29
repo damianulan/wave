@@ -15,3 +15,27 @@
     font-weight: 700;
     text-decoration: underline;
 }
+
+textarea::-webkit-scrollbar {
+    width: 10px;
+}
+
+textarea::-webkit-scrollbar-track {
+background: rgb(179, 177, 177);
+border-radius: 10px;
+}
+
+textarea::-webkit-scrollbar-thumb {
+background: rgb(136, 136, 136);
+border-radius: 10px;
+}
+
+textarea::-webkit-scrollbar-thumb:hover {
+background: rgb(100, 100, 100);
+border-radius: 10px;
+}
+
+textarea::-webkit-scrollbar-thumb:active {
+background: rgb(68, 68, 68);
+border-radius: 10px;
+}

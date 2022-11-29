@@ -12,5 +12,4 @@
 
     <!-- Theme -->
     <link rel="stylesheet" type="text/css" href="{{ asset('themes/'.$theme.'/app.css') }}">
-    @livewireStyles
 </head>

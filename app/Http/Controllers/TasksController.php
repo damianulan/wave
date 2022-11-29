@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Task;
+use App\Models\User;
+use App\Models\Client;
 class TasksController extends Controller
 {
     /**
@@ -17,6 +19,8 @@ class TasksController extends Controller
         return view('pages.tasks.index', [
             'title' => $title,
             'tasks' => Task::all(),
+            'clients' => Client::all(),
+            'users' => User::allActive(),
         ]); 
     }
 

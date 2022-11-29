@@ -17,6 +17,8 @@ use App\Traits\Notable;
 use App\Traits\Observable;
 use App\Traits\Trackable;
 use App\Models\Location;
+use App\Models\Tasks;
+use App\Models\UserConfig;
 
 class User extends Authenticatable
 {
@@ -52,10 +54,8 @@ class User extends Authenticatable
         'country',
         'status',
         'email_verified_at',
-        'config',
         'password',
         'location_id',
-        'locale'
     ];
     /**
      * The attributes that should be hidden for serialization.
@@ -82,6 +82,11 @@ class User extends Authenticatable
 
     public function table(){
         return 'users';
+    }
+
+    public static function allActive()
+    {
+        return User::where(['status' => 1])->get();
     }
 
     // unique traits
@@ -172,4 +177,15 @@ class User extends Authenticatable
         return $this->hasOne(Location::class, 'id', 'location_id');
     }
 
+    public function tasksDelegated() {
+        return $this->belongsToMany(Task::class, 'added_by');
+    }
+
+    public function tasksOwned() {
+        return $this->belongsToMany(Task::class, 'assigned_to');
+    }
+
+    public function settings() {
+        return $this->hasOne(UserConfig::class);
+    }
 }

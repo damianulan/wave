@@ -24,7 +24,12 @@ class Activity extends Model
         'ip',
         'action',
         'model',
+        'data',
         'target_id',
+    ];
+
+    protected $casts = [
+        'data' => 'array',
     ];
 
     public function getTargetData()

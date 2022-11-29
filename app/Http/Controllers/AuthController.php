@@ -52,7 +52,7 @@ class AuthController extends Controller
         
                         }
                         $user->makeLogin($request->ip());
-                        session()->put('locale', $user->locale);
+                        session()->put('config', $user->settings->locale);
                         return redirect(route('home'));
                     } else {
                         Session::flush();

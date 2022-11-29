@@ -7,7 +7,7 @@ use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 use App\Models\Role;
 use App\Models\Config;
-
+use App\Models\UserConfig;
 use App\Models\User;
 
 class CreateAdminUserSeeder extends Seeder
@@ -31,9 +31,12 @@ class CreateAdminUserSeeder extends Seeder
         $root->nickname = 'Damian';
         $root->gender = '1';
         $root->avatar = 'images/portrait/small/avatar-male.png';
-        $root->locale = 'en';
         $root->save();
         $root->roles()->attach($rootRole);
+        $config = new UserConfig();
+        $config->locale = 'en';
+        $config->force_password = 0;
+        $root->settings()->save($config);
 
         $owner = new Config();
         $owner->type = 'app';
@@ -49,9 +52,11 @@ class CreateAdminUserSeeder extends Seeder
         $admin1->nickname = 'SysAdmin';
         $admin1->gender = '1';
         $admin1->avatar = 'images/portrait/small/avatar-male.png';
-        $admin1->locale = 'en';
         $admin1->save();
         $admin1->roles()->attach($admin);
+        $config = new UserConfig();
+        $config->locale = 'en';
+        $admin1->settings()->save($config);
 
         $user1 = new User();
         $user1->firstname = 'Test';
@@ -61,9 +66,11 @@ class CreateAdminUserSeeder extends Seeder
         $user1->nickname = 'Test';
         $user1->gender = '0';
         $user1->avatar = 'images/portrait/small/avatar-male.png';
-        $user1->locale = 'en';
         $user1->save();
         $user1->roles()->attach($employee);
+        $config = new UserConfig();
+        $config->locale = 'en';
+        $user1->settings()->save($config);
     }
 
 }

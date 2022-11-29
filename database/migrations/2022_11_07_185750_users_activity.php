@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('ip');
             $table->string('action');
             $table->string('model');
+            $table->text('data')->nullable();
             $table->char('target_id', 36);
             $table->timestamps();
         });

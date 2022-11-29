@@ -16,12 +16,14 @@ return new class extends Migration
         Schema::create('tasks', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->string('title');
-            $table->text('contents');
+            $table->text('message')->nullable();
             $table->integer('priority')->default(0);
-            $table->char('assigned_to', 36)->nullable();
-            $table->foreign('assigned_to')->references('id')->on('users')->onDelete('cascade');
-            $table->char('affiliated_client', 36)->nullable();
-            $table->foreign('affiliated_client')->references('id')->on('clients')->onDelete('cascade');
+            $table->char('target_id', 36)->nullable();
+            $table->foreign('target_id')->references('id')->on('users')->onDelete('cascade');
+            $table->char('affiliated_client_id', 36)->nullable();
+            $table->foreign('affiliated_client_id')->references('id')->on('clients')->onDelete('cascade');
+            $table->char('author_id', 36);
+            $table->foreign('author_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamp('deadline')->nullable();
             $table->timestamps();
             $table->softDeletes();

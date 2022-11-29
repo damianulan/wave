@@ -36,8 +36,8 @@
             <div class="card-body p-4">
                 <table class="table">
                     <tbody>
-                        <tr>
-                            <td class="text-center align-middle" width="3%"><livewire:tasks.mark-done/></td>
+                        <tr class="text-decoration-line-through">
+                            <td class="text-center align-middle" width="3%"><input type="checkbox" class="form-check-input" id="" onclick="taskChecked(this)" checked></td>
                             <td width="auto">
                                 <div class="fw-bold">Title</div>
                                 <div>Contents</div>
@@ -54,8 +54,14 @@
 @include('pages.tasks.create')
 @section('page-scripts')
 <script>
+function taskChecked(e){
+console.log(e.checked);
+    if(e.checked){
 
-
+    } else {
+        
+    }
+}
 </script>
 @endsection
 

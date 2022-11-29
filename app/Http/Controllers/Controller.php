@@ -46,4 +46,11 @@ class Controller extends BaseController
         return $themes;
     }
 
+    public function dateFromInput($input) {
+        if($input != null){
+            return date("Y-m-d", strtotime($input));
+        }
+        return null;
+    }
+
 }

@@ -14,7 +14,7 @@ return [
     'you' => 'You',
     'yes' => 'Yes',
     'no' => 'No',
-
+    'choose' => 'Choose...',
 
     'months' => [
         'jan' => 'January',
