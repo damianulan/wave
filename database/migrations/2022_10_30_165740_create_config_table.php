@@ -14,10 +14,11 @@ return new class extends Migration
     public function up()
     {
         Schema::create('config', function (Blueprint $table) {
-            $table->uuid('id')->primary();
+            $table->bigIncrements('id');
             $table->string('type');
             $table->string('slug')->unique();
-            $table->string('value')->nullable();
+            $table->string('value');
+            $table->string('default')->nullable();
         });
     }
 

@@ -21,8 +21,10 @@ class ClientFactory extends Factory
         $model = new Client();
         $firstname = $this->faker->firstName($gender = 'female');
         $lastname = $this->faker->lastName();
+        $local_id = $model->getLID(5);
         $hair_length = (string) rand(0,2);
         return [
+            'local_id' => $local_id,
             'firstname' => $firstname,
             'lastname' => $lastname,
             'email' => Str::lower($firstname . '.' . $lastname) . '@damianulan.me',

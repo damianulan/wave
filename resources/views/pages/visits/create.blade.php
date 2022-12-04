@@ -1,8 +1,8 @@
-<div class="modal fade" id="addTask" tabindex="-1" aria-labelledby="addTaskLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
+<div class="modal fade" id="addVisit" tabindex="-1" aria-labelledby="addVisitLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
       <div class="modal-content">
         <div class="modal-header">
-          <h4 class="modal-title fw-bold text-primary" id="addTaskLabel"><i class="bi-check2-square fs-4 mx-3 text-primary"></i>{{__('modules.add_task')}}</h4>
+          <h4 class="modal-title fw-bold text-primary" id="addVisitLabel"><i class="bi-calendar2-plus-fill fs-4 mx-3 text-primary"></i>{{__('modules.add_visit')}}</h4>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="{{__('buttons.close')}}"></button>
         </div>
         <form action="{{route('tasks.store')}}"  method="post" novalidate>
@@ -24,7 +24,7 @@
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <div class="controls">
-                                        <label>{{__('modules.message')}}</label>
+                                        <label>{{__('modules.title')}}</label>
                                         <textarea name="message" type="text" class="form-control" placeholder="{{__('modules.message')}}"></textarea>
                                     </div>
                                 </div>
@@ -50,9 +50,6 @@
                                         <label>{{__('modules.affiliate')}}</label>
                                         <select name="affiliated_client" type="text" class="form-control" placeholder="{{__('modules.affiliate')}}">
                                             <option value="-1">{{__('vocabulary.choose')}}</option>
-                                            @foreach ($clients as $client)
-                                                <option value="{{$client->id}}">{{$client->name()}}</option>
-                                            @endforeach
                                         </select>
                                     </div>
                                 </div>
@@ -72,9 +69,6 @@
                                     <div class="controls">
                                         <label>{{__('modules.assign_to')}}</label>
                                         <select name="target" type="text" class="form-control" placeholder="{{__('modules.assign_to')}}">
-                                            @foreach ($users as $user)
-                                                <option value="{{$user->id}}">{{$user->name()}}</option>
-                                            @endforeach
                                         </select>
                                     </div>
                                 </div>

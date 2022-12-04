@@ -8,10 +8,11 @@ use App\Traits\UUID;
 use App\Models\User;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cache;
 
 class Config extends Model
 {
-    use HasFactory, UUID;
+    use HasFactory;
 
     protected $table = 'config';
     protected $primaryKey = 'id';
@@ -26,16 +27,10 @@ class Config extends Model
 
     public static function get(): array
     {
-        $all = Config::all();
-        $output = [];
-        foreach ($all as $rule){
-            $output[$rule->slug] = [
-                'id' => $rule->id,
-                'type' => $rule->type,
-                'value' => $rule->value,
-            ];
+        if(!Cache::has('config')){
+            self::loadConfigToCache();
         }
-        return $output;
+        return Cache::get('config');
     }
 
     public static function owner()
@@ -57,71 +52,44 @@ class Config extends Model
 
     public static function hasModule($module): bool
     {
-        if(Session::missing('modules')){
-            Config::setModules();
-        }
-        $modules = Session::get('modules');
+        $modules = self::getModules();
         if($modules[$module] == '1'){
             return true;
         }
         return false;
     }
 
-    public static function getModulesDB(): array {
-        $config = Config::where(['type' => 'modules'])->get();
-        $modules = [];
-        foreach ($config as $rule){
-            $modules[$rule->slug] = $rule->value;
-        }
-
-        return $modules;
+    public static function getModules(): array {
+        return self::get()['modules'];
     }
 
-    public static function setTheme()
-    {
-        $rule = Config::where(['slug' => 'theme'])->get();
-        Session::put('theme', $rule);
-        return true;
+    public static function getApp() {
+        return self::get()['app'];
     }
 
     public static function getTheme()
     {
-        $theme = '';
-        if(Auth::check()){
-            if(Session::has('theme')){
-                $theme = Session::get('theme');
-            } else {
-                $rule = Config::where(['slug' => 'theme'])->get();
-                $theme = $rule[0]->value;
-            }
-        } else {
-            $theme = 'wave-light';
-        }
-        return $theme;
+        return Cache::get('config')['app']['theme'];
     }
 
     public static function getLocale()
     {
-        $locale = Config::where(['slug' => 'locale'])->get()[0];
-        return $locale->value;
+        return Cache::get('config')['app']['locale'];
     }
 
     public static function getAvatarFemale()
     {
-        $avatar = Config::where(['slug' => 'avatarfemale'])->get()[0];
-        return $avatar->value;
+        return Cache::get('config')['app']['avatarfemale'];
     }
 
     public static function getAvatarMale()
     {
-        $avatar = Config::where(['slug' => 'avatarmale'])->get()[0];
-        return $avatar->value;
+        return Cache::get('config')['app']['avatarmale'];
     }
 
     public static function build()
     {
-        $build = Config::where(['slug' => 'build'])->get()->first();
-        return $build->value;
+        return Cache::get('config')['app']['build'];
     }
 
     public static function upgrade(): bool
@@ -129,8 +97,26 @@ class Config extends Model
         $build = Config::where(['slug' => 'build'])->get()->first();
         $build->value = date('YmdHi', time());
         if($build->update()){
+            self::loadConfigToCache();
             return true;
         }
+        return false;
+    }
+
+    public static function loadConfigToCache() {
+        $config = [];
+        $rows = Config::all();
+        foreach ($rows as $row){
+            $config[$row->type][$row->slug] = $row->value;
+        }
+        if($config > 0){
+            if(Cache::has('config')){
+                Cache::forget('config');
+            }
+            Cache::forever('config', $config);
+            return true;
+        }
+    
         return false;
     }
 }

@@ -22,29 +22,32 @@ class ConfigSeeder extends Seeder
         $config->type = 'app';
         $config->slug = 'theme';
         $config->value = 'wave-light';
+        $config->default = 'wave-light';
         $config->save();
 
         $config = new Config();
         $config->type = 'app';
         $config->slug = 'locale';
         $config->value = 'en';
+        $config->default = 'en';
         $config->save();
 
         $config = new Config();
         $config->type = 'app';
         $config->slug = 'currency';
         $config->value = 'PLN';
+        $config->default = 'EUR';
         $config->save();
 
         $config = new Config();
         $config->type = 'loyalties';
-        $config->slug = 'autoloyaltyprogram';
+        $config->slug = 'auto_loyalty_program';
         $config->value = '1';
         $config->save();
 
         $config = new Config();
         $config->type = 'notifications';
-        $config->slug = 'notifyonnewclients';
+        $config->slug = 'notify_on_new_clients';
         $config->value = '1';
         $config->save();
 
@@ -64,6 +67,50 @@ class ConfigSeeder extends Seeder
         $config->type = 'app';
         $config->slug = 'avatarfemale';
         $config->value = 'images/portrait/small/avatar-female.png';
+        $config->save();
+
+        $config = new Config();
+        $config->type = 'app';
+        $config->slug = 'site_name';
+        $config->value = 'Wave';
+        $config->default = 'Wave';
+        $config->save();
+
+        $config = new Config();
+        $config->type = 'app';
+        $config->slug = 'site_description';
+        $config->value = '';
+        $config->save();
+
+        $config = new Config();
+        $config->type = 'app';
+        $config->slug = 'site_logo';
+        $config->value = '/images/logo/png/wave-logo-color-box.png';
+        $config->default = '/images/logo/png/wave-logo-color-box.png';
+
+        $config->save();
+        $config = new Config();
+        $config->type = 'app';
+        $config->slug = 'site_robots';
+        $config->value = 'nofollow';
+        $config->save();
+
+        $config = new Config();
+        $config->type = 'app';
+        $config->slug = 'site_mail';
+        $config->value = 'kontakt@damianulan.me';
+        $config->save();
+
+        $config = new Config();
+        $config->type = 'app';
+        $config->slug = 'license_key';
+        $config->value = 'XXXX-YYYY-XXXX';
+        $config->save();
+
+        $config = new Config();
+        $config->type = 'app';
+        $config->slug = 'support_mail';
+        $config->value = 'wave@damianulan.me';
         $config->save();
         /**
          * END APP

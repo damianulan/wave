@@ -10,11 +10,13 @@ use Illuminate\Notifications\Notifiable;
 use App\Traits\Taggable;
 use App\Models\Config;
 use App\Traits\Notable;
+use App\Traits\LocalID;
+use App\Models\Task;
 
 class Client extends Model
 {
     use UUID;
-    use HasFactory, Notifiable, SoftDeletes, Taggable, Notable;
+    use HasFactory, Notifiable, SoftDeletes, Taggable, Notable, LocalID;
     //use Taggable;
 
     protected $table = 'clients';
@@ -97,5 +99,14 @@ class Client extends Model
     public function hairLength() 
     {
         return __('forms.hair_length_'.$this->hair_length);
+    }
+
+    public function affiliated_tasks() {
+        return $this->hasMany(Task::class, 'affiliated_client_id', 'id')
+                    ->whereNull('completed_at'); 
+    }
+
+    public function affiliated_tasks_all() {
+        return $this->hasMany(Task::class, 'affiliated_client_id', 'id');
     }
 }

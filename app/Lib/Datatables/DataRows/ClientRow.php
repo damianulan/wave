@@ -12,6 +12,7 @@ class ClientRow
         $client = Client::findOrFail($id);
 
         return [
+            'local_id' => $client->local_id,
             'basic' => 
                 '<div class="row align-items-center">
                     <div class="col-sm-2">
@@ -29,8 +30,8 @@ class ClientRow
             'gender' => $client->gender(),
             'city' => $client->city,
             'phone' => $client->phone,
-            'birthdate' => $client->birthdate(),
             'hasAccount' => $client->hasAccount(),
+            'birthdate' => $client->birthdate(),
         ];
     }
 

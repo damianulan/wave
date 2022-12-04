@@ -68,8 +68,17 @@ Route::middleware('auth')->group(function (){
     });
 
     // TASKS
-    Route::resource('/tasks', TasksController::class);
     Route::prefix('tasks')->group(function (){
+        Route::get('/', [TasksController::class, 'index'])->name('tasks.index');
+        Route::get('/commissioned', [TasksController::class, 'commissioned'])->name('tasks.commissioned');
+        Route::get('/completed', [TasksController::class, 'completed'])->name('tasks.completed');
+        Route::get('/{task}/edit', [TasksController::class, 'edit'])->name('tasks.edit');
+        Route::patch('/{task}', [TasksController::class, 'update'])->name('tasks.update');
+        Route::get('/{task}/delete', [TasksController::class, 'delete'])->name('tasks.delete');
+
+        Route::post('/', [TasksController::class, 'store'])->name('tasks.store');
+        Route::get('/{id}/{mark}', [TasksController::class, 'markTask'])->name('tasks.mark');
+
     });
 
     // PRODUCTS

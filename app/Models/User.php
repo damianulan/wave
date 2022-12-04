@@ -16,8 +16,8 @@ use App\Traits\Taggable;
 use App\Traits\Notable;
 use App\Traits\Observable;
 use App\Traits\Trackable;
+use App\Traits\Taskable;
 use App\Models\Location;
-use App\Models\Tasks;
 use App\Models\UserConfig;
 
 class User extends Authenticatable
@@ -25,7 +25,7 @@ class User extends Authenticatable
     use UUID;
     use HasRolesAndPermissions;
     use HasApiTokens, HasFactory, Notifiable, SoftDeletes, Loggable;
-    use Taggable, Notable, Observable, Trackable;
+    use Taggable, Notable, Observable, Trackable, Taskable;
 
     protected $table = 'users';
     protected $model = 'user';
@@ -87,6 +87,11 @@ class User extends Authenticatable
     public static function allActive()
     {
         return User::where(['status' => 1])->get();
+    }
+
+    public static function allActiveButMe()
+    {
+        return User::where(['status' => 1])->whereNotIn('id', [auth()->user()->id])->get();
     }
 
     // unique traits
@@ -175,14 +180,6 @@ class User extends Authenticatable
     // foreign relations
     public function location () {
         return $this->hasOne(Location::class, 'id', 'location_id');
-    }
-
-    public function tasksDelegated() {
-        return $this->belongsToMany(Task::class, 'added_by');
-    }
-
-    public function tasksOwned() {
-        return $this->belongsToMany(Task::class, 'assigned_to');
     }
 
     public function settings() {

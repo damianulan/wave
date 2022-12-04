@@ -125,7 +125,7 @@ html .main-menu {
 }
 
 .main-menu .nav-link .bi {
-    font-size: 1.3rem;
+    font-size: 1.3rem !important;
     margin-right: 1.1rem;
 }
 
@@ -375,4 +375,9 @@ img.navbar-logo {
     color: $nav-tab-color-hover;
     font-weight: 800;
     transition: all .5s ease-in-out;
+}
+
+.nav-link.active {
+    font-weight: 700;
+    color: $link-color-active;
 }

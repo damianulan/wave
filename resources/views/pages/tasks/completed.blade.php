@@ -7,7 +7,7 @@
                 <h4>{{$title}}</h4>
             </div>
             <div class="card-body p-4">
-                @if (count(auth()->user()->tasks) > 0)
+                @if (count(auth()->user()->tasksCompleted) > 0)
                     <table class="table">
                         <thead>
                             <th width="3%"></th>
@@ -25,15 +25,12 @@
                             </th> 
                             <th class="text-center" width="15%">
                                 {{ __('modules.author') }}
-                            </th>
-                            <th class="text-center" width="10%">
-                                {{ __('modules.actions') }}
-                            </th>     
+                            </th>      
                         </thead>
                         <tbody>
-                            @foreach (auth()->user()->tasks as $task)
-                                <tr id="{{$task->id}}" class="">
-                                    <td class="text-center align-middle"><input type="checkbox" class="form-check-input" onclick="taskChecked(this, '{{$task->id}}')"></td>
+                            @foreach (auth()->user()->tasksCompleted as $task)
+                                <tr id="{{$task->id}}" class="text-decoration-line-through">
+                                    <td class="text-center align-middle"><input type="checkbox" class="form-check-input" onclick="taskChecked(this, '{{$task->id}}')" checked></td>
                                     <td width="auto" class="align-middle">
                                         <div class="fw-bold">{{$task->title}}</div>
                                         <div>{{$task->message}}</div>
@@ -50,9 +47,9 @@
                                             </div>
                                         </td>
                                     @else
-                                        <td>
-                                            {{ __('modules.tasks_client_none') }}
-                                        </td>
+                                    <td>
+                                        {{ __('modules.tasks_client_none') }}
+                                    </td>
                                     @endif
                                     <td class="text-center align-middle"><span class="{{$task->priority_class()}}fw-bold">{{$task->priority()}}</span></td>
                                     <td class="text-center align-middle">
@@ -73,16 +70,8 @@
                                             </div>
                                         </div>
                                     </td>
-                                    <td class="text-center align-middle">
-                                        <div class="row">
-                                            <div class="col-md-12">
-                                                <a href="{{ route('tasks.delete', $task->id) }}"><i class="bi bi-trash-fill fs-5"></i></a>
-                                            </div>
-                                        </div>
-                                    </td>
                                 </tr>  
                             @endforeach
-
                         </tbody>
                     </table>         
                 @else

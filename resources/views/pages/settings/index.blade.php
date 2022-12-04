@@ -54,7 +54,7 @@
                                                     <td>
                                                         <select class="form-select form-select-sm fs-6" name="theme">
                                                             @foreach ($themes as $theme)
-                                                                <option value="{{$theme}}"{{$theme==$config['theme']['value'] ? ' selected':''}}>{{$theme}}</option>
+                                                                <option value="{{$theme}}"{{$theme==$config['app']['theme'] ? ' selected':''}}>{{$theme}}</option>
                                                             @endforeach  
                                                         </select>
                                                     </td>

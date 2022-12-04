@@ -15,23 +15,42 @@ class TasksController extends Controller
      */
     public function index()
     {
-        $title = __('menus.tasks');
+        $title = __('modules.my_tasks');
         return view('pages.tasks.index', [
             'title' => $title,
-            'tasks' => Task::all(),
             'clients' => Client::all(),
             'users' => User::allActive(),
         ]); 
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function commissioned()
     {
-        //
+        $title = __('modules.commissioned') . ' ' . __('modules.tasks');
+        return view('pages.tasks.commissioned', [
+            'title' => $title,
+            'clients' => Client::all(),
+            'users' => User::allActive(),
+        ]); 
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function completed()
+    {
+        $title = __('modules.completed') . ' ' . __('modules.tasks');
+        return view('pages.tasks.completed', [
+            'title' => $title,
+            'clients' => Client::all(),
+            'users' => User::allActive(),
+        ]); 
     }
 
     /**
@@ -42,18 +61,27 @@ class TasksController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
+        $request->validate([
+            'title' => 'required|max:128',
+            'priority' => 'required|numeric|min:0|max:3',
+        ]);
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
+        $task = new Task();
+        $task->title = $request->input('title');
+        $task->message = $request->input('message');
+        $task->priority = $request->input('priority');
+        $task->target_id = $request->input('target');
+        if($request->input('affiliated_client') != '-1'){
+            $task->affiliated_client_id = $request->input('affiliated_client');
+        }
+        $task->author_id = auth()->user()->id;
+        $task->deadline_at = $this->dateFromInput($request->input('deadline'));
+        if($task->save()){
+            return redirect()->back()->with('success', '');
+        }
+
+        return redirect()->back()->with('error', '');
+
     }
 
     /**
@@ -80,13 +108,50 @@ class TasksController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Delete with GET request
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function delete($id)
     {
         //
+    }
+
+    public function markTask($id, $mark){
+        $task = Task::findOrFail($id);
+        $success = false;
+        $error = '';
+        if ($task->target_id == auth()->user()->id)
+        {
+            if ($mark == 'done'){
+                if ($task->completed_at == null){
+                    $task->completed_at = now();
+                    if($task->update()){
+                        $success = true;
+                    }
+                }
+            } elseif ($mark == 'undone') {
+                if ($task->completed_at != null){
+                    $task->completed_at = null;
+                    if($task->update()){
+                        $success = true;
+                    }
+                }
+            } else {
+                $error = __('alerts.error.tasks.marking_value');
+            }
+        } else {
+            $error = __('alerts.error.tasks.marking_permissions');
+        }
+
+        if ($success == false && $error == ''){
+            $error = __('alerts.error.tasks.marking_generic');
+        }
+
+        return response()->json([
+            'success' => $success,
+            'error' => $error,
+        ]);
     }
 }

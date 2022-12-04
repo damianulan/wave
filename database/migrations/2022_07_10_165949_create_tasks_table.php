@@ -24,7 +24,8 @@ return new class extends Migration
             $table->foreign('affiliated_client_id')->references('id')->on('clients')->onDelete('cascade');
             $table->char('author_id', 36);
             $table->foreign('author_id')->references('id')->on('users')->onDelete('cascade');
-            $table->timestamp('deadline')->nullable();
+            $table->timestamp('deadline_at')->nullable();
+            $table->timestamp('completed_at')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

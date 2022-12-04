@@ -34,7 +34,7 @@ return [
     'error' => [
         '500' => 'Internal Server Error',
 
-
+        // MODEL OPERATIONS
         'model_edited' => ':model could not been edited. You may be lacking some permissions to complete this action. Contact with Your administrator',
         'model_created' => ':model could not been created. You may be lacking some permissions to complete this action. Contact with Your administrator',
         'model_deleted' => ':model could not been deleted. You may be lacking some permissions to complete this action. Contact with Your administrator',
@@ -46,6 +46,14 @@ return [
 
         'savingcolumns' => 'Something went wrong during template saving. Columns will not be remembered',
         'note_deleted' => 'Something went wrong and the note could not be deleted.',
+
+        // TASKS
+        'tasks' => [
+            'marking_permissions' => "Task couldn't be marked. It is not assigned to You.",
+            'marking_generic' => "Task couldn't be marked, something went wrong. Possibly the task was already marked before, or there was some kind of other data error involved.",
+            'marking_value' => "Incorrect marking value was provided.",
+        
+        ],
 
     ],
 

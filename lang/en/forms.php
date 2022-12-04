@@ -1,7 +1,7 @@
 <?php
 
 return [
-    // USER
+    // USER & Client
     'basic' => 'Basic data',
     'nickname' => 'Nickname',
     'fullname' => 'Full name',
@@ -29,6 +29,7 @@ return [
     'state' => 'State',
     'country' => 'Country',
     'hasaccount' => 'Has account',
+    'local_id' => 'ID',
 
     // forms
     'general' => 'General',

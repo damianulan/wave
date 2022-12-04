@@ -1,7 +1,7 @@
 <nav id="sidebar" class="main-menu menu-fixed <?php if(isset($_COOKIE['menu-collapsed'])&&$_COOKIE['menu-collapsed']==true){ echo 'menu-collapsed'; }?>">
     <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-decoration-none">
         <a class="navbar-brand" href="{{ url('/') }}">
-            <img class="navbar-logo" src="{{ asset('themes/'.$theme.'/images/icons/logo/png/wave-logo-color-box.png') }}">
+            <img class="navbar-logo" src="{{ asset('/images/logo/png/wave-logo-color-box.png') }}">
             <span>{{ config('app.name') }}</span>
         </a>
     </a>
@@ -16,8 +16,8 @@
         <span>{{__('menus.apps')}}</span>
       </li>
       <li class="nav-item">
-        <a href="#" class="nav-link">
-            <i class="bi bi-journal-plus"></i>
+        <a class="nav-link" data-bs-toggle="modal" data-bs-target="#addVisit">
+            <i class="bi bi-calendar2-plus"></i>
             {{__('menus.new_visit')}}
         </a>
       </li>
@@ -122,3 +122,4 @@
       </li> --}}
     </ul>
   </nav>
+  @include('pages.visits.create')

@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Observers;
-use App\Models\Log;
+use App\Models\Activity;
 use App\Models\Config;
 
 class ConfigObserver
@@ -10,14 +10,16 @@ class ConfigObserver
     {
         if(auth()->check()){
 
-            $log = new Log();
+            $log = new Activity();
             $log->user_id = auth()->user()->id;
             $log->ip = request()->ip();
             $log->action = "edit";
-            $log->data = [
-                'table' => 'config',
-                'id' => $config->id
-            ];
+            $log->model = 'config';
+            $log->target_id = $config->id;
+            // $log->data = [
+            //     'table' => 'config',
+            //     'id' => $config->id
+            // ];
             $log->save();
         }
     }

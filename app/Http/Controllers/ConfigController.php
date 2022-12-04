@@ -15,13 +15,14 @@ class ConfigController extends Controller
     public function index()
     {
         $title = __('menus.settings');
-        $modules = Config::getModulesDB();
+        $config = Config::get();
         return view('pages.settings.index', [
             'title' => $title,
-            'config' => Config::get(),
+            'config' => $config,
             'themes' => $this->getThemes(),
-            'modules' => $modules,
-        ]);  
+            'modules' => $config['modules'],
+        ]);
+
     }
 
     /**
@@ -49,6 +50,7 @@ class ConfigController extends Controller
             $config->value = $value;
             if($config->isDirty()){
                 $config->update();
+                Config::loadConfigToCache();
                 $msg['type'] = 'success';
                 $msg['text'] = __('alerts.settings_modules_success');
             }

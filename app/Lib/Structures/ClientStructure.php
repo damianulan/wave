@@ -8,6 +8,14 @@ class ClientStructure
     public static function get():array
     {
         return [
+            'local_id' => [
+                'key' => 'local_id',
+                'title' => __('forms.local_id'),
+                'default' => true,
+                'type' => 'dictionary',
+                'sortable' => 'local_id',
+                'width' => '5%',
+            ],
             'basic' => [
                 'key' => 'basic',
                 'title' => __('forms.basic'),
