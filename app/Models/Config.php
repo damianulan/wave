@@ -27,7 +27,8 @@ class Config extends Model
 
     public static function get(): array
     {
-        if(!Cache::has('config')){
+
+        if(!Cache::has('config') || empty(Cache::get('config'))){
             self::loadConfigToCache();
         }
         return Cache::get('config');
