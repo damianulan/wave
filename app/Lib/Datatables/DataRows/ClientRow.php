@@ -15,10 +15,10 @@ class ClientRow
             'local_id' => $client->local_id,
             'basic' => 
                 '<div class="row align-items-center">
-                    <div class="col-sm-2">
+                    <div class="flex-element">
                         <img class="rounded-circle" width="40" height="40" src="'.$client->avatar.'">
                     </div>
-                    <div class="col-sm-10 lh-13">
+                    <div class="flex-element">
                         <div class="fw-bold">'.$client->name().'</div>
                         <div class="fs-7">'.$client->email.'</div>
                     </div>

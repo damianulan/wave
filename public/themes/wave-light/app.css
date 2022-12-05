@@ -32946,36 +32946,37 @@ table.table-wave {
   border-collapse: separate;
 }
 
-.table-wave thead {
+table.table-wave thead {
   border: transparent;
 }
 
-.table-wave tr.trow {
+table.table-wave tr.trow {
   border-radius: 0.5rem;
   box-shadow: 0.1rem 0.5rem 0.7rem #e9ecef !important;
 }
 
-.table-wave.checktable tr.trow {
+table.table-wave.checktable tr.trow {
   cursor: pointer;
   background-color: #fff;
 }
 
-.table-wave.checktable tr.trow:hover {
+table.table-wave.checktable tr.trow:hover {
   top: -15px;
   background-color: rgba(24, 115, 172, 0.1);
   transition: all 0.2s ease-in-out;
 }
 
-.table-wave tbody {
+table.table-wave tbody {
   border: transparent !important;
   padding: 1rem;
 }
 
-.table-wave td, .table-wave th {
+table.table-wave td, .table-wave th {
   padding: 1rem;
+  vertical-align: middle;
 }
 
-.table-wave th.headers {
+table.table-wave th.headers {
   font-size: 0.8rem;
   border: none;
   padding: 0.3rem 1rem;
@@ -33032,6 +33033,11 @@ table.list-settings th {
 table.list-settings .name {
   text-align: center;
   width: 20%;
+}
+
+table .row .flex-element {
+  flex: 0 0 auto;
+  width: auto;
 }
 
 nav::-webkit-scrollbar {
@@ -35374,9 +35380,13 @@ textarea::-webkit-scrollbar-thumb:active {
 }
 
 i.bi {
-  font-size: 0.9rem;
+  font-size: 1rem;
 }
 
 .top-menu i.bi {
-  font-size: 1rem;
+  font-size: 1.1rem;
+}
+
+.page-header i.bi {
+  font-size: 1.4rem;
 }

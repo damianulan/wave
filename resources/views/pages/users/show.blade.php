@@ -6,9 +6,9 @@
         <div class="card">
             <div class="card-header p-4 pb-0 m-0">
                 <h2 class="page-header">{{$user->name()}}
-                    <a href="{{route('users.edit', $user->id)}}" class="ms-3 me-1 mt-2 fs-4" data-mdb-toggle="tooltip" data-mdb-placement="bottom" data-mdb-original-title="{{__('buttons.edit')}}"><i class="bi bi-pencil"></i></a>
-                    <a href="{{route('users.edit', $user->id)}}" class="mx-1 mt-2 fs-3" data-mdb-toggle="tooltip" data-mdb-placement="bottom" data-mdb-original-title="{{__('buttons.add_task')}}"><i class="bi bi-check2-circle"></i></a>
-                    <a href="{{route('users.edit', $user->id)}}" class="mx-1 mt-2 fs-3" data-mdb-toggle="tooltip" data-mdb-placement="bottom" data-mdb-original-title="{{__('buttons.add_note')}}" data-bs-toggle="modal" data-bs-target="#note"><i class="bi bi-journal-plus"></i></a>
+                    <a href="{{route('users.edit', $user->id)}}" class="ms-3 me-1 mt-2" data-mdb-toggle="tooltip" data-mdb-placement="bottom" data-mdb-original-title="{{__('buttons.edit')}}"><i class="bi bi-pencil"></i></a>
+                    <a href="{{route('users.edit', $user->id)}}" class="mx-1 mt-2" data-mdb-toggle="tooltip" data-mdb-placement="bottom" data-mdb-original-title="{{__('buttons.add_task')}}"><i class="bi bi-check2-square"></i></a>
+                    <a href="{{route('users.edit', $user->id)}}" class="mx-1 mt-2" data-mdb-toggle="tooltip" data-mdb-placement="bottom" data-mdb-original-title="{{__('buttons.add_note')}}" data-bs-toggle="modal" data-bs-target="#note"><i class="bi bi-journal-plus"></i></a>
                 </h2>
             </div>
             <div class="card-body">
@@ -105,10 +105,10 @@
                                         @else
                                             <a class="fs-5 ms-2" href="{{route('users.watch', $user->id)}}" data-mdb-toggle="tooltip" data-mdb-placement="bottom" data-mdb-original-title="{{__('buttons.watch')}}"><i class="bi bi-eye-fill"></i></a>
                                         @endif
-                                        <a class="fs-5 ms-2" href="#" data-mdb-toggle="tooltip" data-mdb-placement="bottom" data-mdb-original-title="{{__('forms.permissions')}}" data-bs-toggle="modal" data-bs-target="#permissions"><i class="bi bi-key-fill"></i></a>
-                                        <a class="fs-5 ms-2" href="#" data-mdb-toggle="tooltip" data-mdb-placement="bottom" data-mdb-original-title="{{__('forms.notifications')}}"><i class="bi bi-bell-fill"></i></a>
-                                        <a class="fs-5 ms-2" href="#" data-mdb-toggle="tooltip" data-mdb-placement="bottom" data-mdb-original-title="{{__('buttons.reset_password')}}"><i class="bi bi-send-check-fill"></i></a>
-                                        <a class="fs-5 ms-2" href="#" data-mdb-toggle="tooltip" data-mdb-placement="bottom" data-mdb-original-title="{{__('buttons.show_logs')}}"><i class="bi bi-person-badge-fill"></i></a>
+                                        <a class="ms-2" href="#" data-mdb-toggle="tooltip" data-mdb-placement="bottom" data-mdb-original-title="{{__('forms.permissions')}}" data-bs-toggle="modal" data-bs-target="#permissions"><i class="bi bi-key-fill"></i></a>
+                                        <a class="ms-2" href="#" data-mdb-toggle="tooltip" data-mdb-placement="bottom" data-mdb-original-title="{{__('forms.notifications')}}"><i class="bi bi-bell-fill"></i></a>
+                                        <a class="ms-2" href="#" data-mdb-toggle="tooltip" data-mdb-placement="bottom" data-mdb-original-title="{{__('buttons.reset_password')}}"><i class="bi bi-send-check-fill"></i></a>
+                                        <a class="ms-2" href="#" data-mdb-toggle="tooltip" data-mdb-placement="bottom" data-mdb-original-title="{{__('buttons.show_logs')}}"><i class="bi bi-person-badge-fill"></i></a>
                                         @can('users/edit')
                                             @if ($user->isActive())
                                                 <a class="fs-5 ms-2" href="{{route('users.block', $user->id)}}" data-mdb-toggle="tooltip" data-mdb-placement="bottom" data-mdb-original-title="{{__('buttons.block')}}"><i class="bi bi-shield-fill"></i></a>
@@ -117,7 +117,7 @@
                                             @endif
                                         @endcan
 
-                                        <a class="fs-5 ms-2" href="{{route('users.delete', $user->id)}}" data-mdb-toggle="tooltip" data-mdb-placement="bottom" data-mdb-original-title="{{__('buttons.delete')}}"><i class="bi bi-trash-fill"></i></a>
+                                        <a class="ms-2" href="{{route('users.delete', $user->id)}}" data-mdb-toggle="tooltip" data-mdb-placement="bottom" data-mdb-original-title="{{__('buttons.delete')}}"><i class="bi bi-trash-fill"></i></a>
                                     </td>
                                 </tr>
                             </tbody>

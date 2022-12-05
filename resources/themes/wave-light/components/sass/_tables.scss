@@ -5,34 +5,35 @@ table.table-wave {
     border-collapse: separate;
 }
 
-.table-wave thead {
+table.table-wave thead {
     border: transparent;
 }
 
-.table-wave tr.trow {
+table.table-wave tr.trow {
     border-radius: .5rem;
     box-shadow: 0.1rem 0.5rem .7rem $gray-200 !important;
 }
 
-.table-wave.checktable tr.trow {
+table.table-wave.checktable tr.trow {
     cursor: pointer;
     background-color: #fff;
 }
-.table-wave.checktable tr.trow:hover {
+table.table-wave.checktable tr.trow:hover {
     top: -15px;
     background-color: $primary-100;
     transition: all .2s ease-in-out;
 }
 
-.table-wave tbody {
+table.table-wave tbody {
     border: transparent !important;
     padding: 1rem;
 }
-.table-wave td, .table-wave th {
+table.table-wave td, .table-wave th {
     padding: 1rem;
+    vertical-align: middle;
 }
 
-.table-wave th.headers {
+table.table-wave th.headers {
     font-size: .8rem;
     border: none;
     padding: .3rem 1rem;
@@ -88,4 +89,9 @@ table.list-settings th{
 table.list-settings .name {
     text-align: center;
     width: 20%;
+}
+
+table .row .flex-element {
+    flex: 0 0 auto;
+    width: auto;
 }

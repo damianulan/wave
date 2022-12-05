@@ -13850,11 +13850,11 @@ var Input = /*#__PURE__*/function () {
     /*
     _getIcons() {
       this._leadingIcon = SelectorEngine.findOne('i.leading', this._element);
-        if (this._leadingIcon !== null) {
+       if (this._leadingIcon !== null) {
         this._applyLeadingIcon();
       }
     }
-      _applyLeadingIcon() {
+     _applyLeadingIcon() {
       this._label.innerHTML = ` ${this._label.innerHTML}`;
       this._label.insertBefore(this._leadingIcon, this._label.firstChild);
     }
