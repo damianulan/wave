@@ -35,19 +35,8 @@ class Config extends Model
 
     public static function owner()
     {
-        $config = Config::where(['slug' => 'owner'])->get();
+        $config = self::get()['app']['owner'];
         return User::findOrFail($config[0]->value);
-    }
-
-    public static function setModules()
-    {
-        $all = Config::where(['type' => 'modules'])->get();
-        $modules = [];
-        foreach ($all as $rule){
-            $modules[$rule->slug] = $rule->value;
-        }
-        Session::put('modules', $modules);
-        return true;
     }
 
     public static function hasModule($module): bool
@@ -69,27 +58,27 @@ class Config extends Model
 
     public static function getTheme()
     {
-        return Cache::get('config')['app']['theme'];
+        return self::get()['app']['theme'];
     }
 
     public static function getLocale()
     {
-        return Cache::get('config')['app']['locale'];
+        return self::get()['app']['locale'];
     }
 
     public static function getAvatarFemale()
     {
-        return Cache::get('config')['app']['avatarfemale'];
+        return self::get()['app']['avatarfemale'];
     }
 
     public static function getAvatarMale()
     {
-        return Cache::get('config')['app']['avatarmale'];
+        return self::get()['app']['avatarmale'];
     }
 
     public static function build()
     {
-        return Cache::get('config')['app']['build'];
+        return self::get()['app']['build'];
     }
 
     public static function upgrade(): bool
