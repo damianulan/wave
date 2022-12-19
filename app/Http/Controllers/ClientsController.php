@@ -63,10 +63,10 @@ class ClientsController extends Controller
             'phone' => 'min:8|max:11|nullable',
         ]);
         $avatar = $this->getAvatarDefault($request->input('gender'));
-
-        $request->merge(['avatar' => $avatar]);
+        $local_id = Client::getLID();
+        $request->merge(['avatar' => $avatar, 'local_id' => $local_id]);
         $client = Client::create($request->all());
-        return redirect()->route('clients.index')->with('success', __('alerts.client_created', ['client' => $client->name()]));
+        return redirect()->route('clients.index')->with('success', __('alerts.success.model_created', ['model' => $client->name()]));
     }
 
     /**
@@ -121,7 +121,7 @@ class ClientsController extends Controller
         $request->birthdate = $date;
         $client = Client::findOrFail($id);
         $client->update($request->all());
-        return redirect()->back()->with('success', __('alerts.client_edited', ['client' => $client->name()]));
+        return redirect()->back()->with('success', __('alerts.success.model_edited', ['model' => $client->name()]));
     }
 
     /**
@@ -134,7 +134,7 @@ class ClientsController extends Controller
     {
         $client = Client::findOrFail($id);
         $client->delete();
-        return redirect()->route('clients.index')->with('success', __('alerts.client_deleted', ['client' => $client->name()]));;    
+        return redirect()->route('clients.index')->with('success', __('alerts.success.model_deleted', ['model' => $client->name()]));;    
     }
 
     /**

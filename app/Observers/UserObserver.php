@@ -68,7 +68,7 @@ class UserObserver
             $log = new Activity();
             $log->user_id = auth()->user()->id;
             $log->ip = request()->ip();
-            $log->action = "destroy";
+            $log->action = "delete";
             $log->model = 'users';
             $log->target_id = $user->id;
             $log->save();
@@ -83,15 +83,7 @@ class UserObserver
      */
     public function restored(User $user)
     {
-        if(auth()->check()){
-            $log = new Activity();
-            $log->user_id = auth()->user()->id;
-            $log->ip = request()->ip();
-            $log->action = "destroy";
-            $log->model = 'users';
-            $log->target_id = $user->id;
-            $log->save();
-        }   
+
     }
 
     /**

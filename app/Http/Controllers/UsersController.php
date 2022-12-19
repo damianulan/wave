@@ -80,8 +80,8 @@ class UsersController extends Controller
         }
         $password = Hash::make('123456');
         $user = new User();
-        $date = $user->birthdateFromInput($request->input('birth'));
-        $avatar = $user->getAvatarDefault($request->input('gender'));
+        $date = $this->birthdateFromInput($request->input('birth'));
+        $avatar = $this->getAvatarDefault($request->input('gender'));
         $request->merge([
             'avatar' => $avatar,
             'password' => $password,
@@ -166,7 +166,7 @@ class UsersController extends Controller
             $excepts[] = 'location_id';
         }
         $user = User::findOrFail($id);
-        $date = $user->birthdateFromInput($request->input('birth'));
+        $date = $this->birthdateFromInput($request->input('birth'));
         $request->merge([
             'birthdate' => $date,
         ]);

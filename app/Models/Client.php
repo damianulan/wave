@@ -26,6 +26,7 @@ class Client extends Model
     public $timestamps = true;
     
     protected $fillable = [
+        'local_id',
         'firstname',
         'lastname',
         'email',
@@ -60,23 +61,6 @@ class Client extends Model
         }
         return null;
     }
-    
-    public function getAvatarDefault($gender = null)
-    {
-        $g = '0';
-        if($gender != null){
-            $g = $gender;
-        } else {
-            $g = $this->gender;
-        }
-        if($g == '0'){
-            return Config::getAvatarFemale();
-        } elseif ($g == '1'){
-            return Config::getAvatarMale();
-        }
-
-        return null;
-    }
 
     public function hasAccount()
     {
@@ -98,7 +82,11 @@ class Client extends Model
 
     public function hairLength() 
     {
-        return __('forms.hair_length_'.$this->hair_length);
+        if ($this->hair_length != null){
+            return __('forms.hair_length_'.$this->hair_length);
+        }
+
+        return __('forms.no_record');
     }
 
     public function affiliated_tasks() {

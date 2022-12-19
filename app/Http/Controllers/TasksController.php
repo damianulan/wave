@@ -19,7 +19,7 @@ class TasksController extends Controller
         return view('pages.tasks.index', [
             'title' => $title,
             'clients' => Client::all(),
-            'users' => User::allActive(),
+            'users' => User::allActiveButMe(),
         ]); 
     }
 
@@ -34,7 +34,7 @@ class TasksController extends Controller
         return view('pages.tasks.commissioned', [
             'title' => $title,
             'clients' => Client::all(),
-            'users' => User::allActive(),
+            'users' => User::allActiveButMe(),
         ]); 
     }
 
@@ -49,7 +49,7 @@ class TasksController extends Controller
         return view('pages.tasks.completed', [
             'title' => $title,
             'clients' => Client::all(),
-            'users' => User::allActive(),
+            'users' => User::allActiveButMe(),
         ]); 
     }
 

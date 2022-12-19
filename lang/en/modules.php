@@ -14,6 +14,7 @@ return [
 'title' => 'Title',
 'contents' => 'Contents',
 'assign_to' => 'Assign to',
+'assigned_to' => 'Assigned to',
 'affiliate' => 'Affiliate',
 'affiliated_client' => 'Affiliated client',
 'author' => 'Author',

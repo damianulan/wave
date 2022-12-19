@@ -3,7 +3,7 @@
 namespace App\Observers;
 
 use App\Models\Client;
-use App\Models\Log;
+use App\Models\Activity;
 
 class ClientObserver
 {
@@ -17,14 +17,12 @@ class ClientObserver
     public function created(Client $client)
     {
         if(auth()->check()){
-            $log = new Log();
+            $log = new Activity();
             $log->user_id = auth()->user()->id;
             $log->ip = request()->ip();
             $log->action = "create";
-            $log->data = [
-                'table' => 'clients',
-                'id' => $client->id
-            ];
+            $log->model = 'clients';
+            $log->target_id = $client->id;
             $log->save();
         }
 
@@ -40,14 +38,12 @@ class ClientObserver
     {
         if(auth()->check()){
 
-            $log = new Log();
+            $log = new Activity();
             $log->user_id = auth()->user()->id;
             $log->ip = request()->ip();
             $log->action = "edit";
-            $log->data = [
-                'table' => 'clients',
-                'id' => $client->id
-            ];
+            $log->model = 'clients';
+            $log->target_id = $client->id;
             $log->save();
         }
     }
@@ -61,14 +57,12 @@ class ClientObserver
     public function deleted(Client $client)
     {
         if(auth()->check()){
-            $log = new Log();
+            $log = new Activity();
             $log->user_id = auth()->user()->id;
             $log->ip = request()->ip();
-            $log->action = "destroy";
-            $log->data = [
-                'table' => 'clients',
-                'id' => $client->id
-            ];
+            $log->action = "delete";
+            $log->model = 'clients';
+            $log->target_id = $client->id;
             $log->save();
         }
     }

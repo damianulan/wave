@@ -148,30 +148,6 @@ class User extends Authenticatable
         return null;
     }
 
-    public function birthdateFromInput($input) {
-        if($input != null){
-            return date("Y-m-d", strtotime($input));
-        }
-        return null;
-    }
-
-    public function getAvatarDefault($gender = null)
-    {
-        $g = '0';
-        if($gender != null){
-            $g = $gender;
-        } else {
-            $g = $this->gender;
-        }
-        if($g == '0'){
-            return Config::getAvatarFemale();
-        } elseif ($g == '1'){
-            return Config::getAvatarMale();
-        }
-
-        return null;
-    }
-
     public function getRole()
     {
         return __('forms.'.$this->roles[0]->slug);

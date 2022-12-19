@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Validator;
 trait LocalID
 {
 
-    public static function getLID(int $size)
+    public static function getLID(int $size = 5)
     {
         $id = self::generateLID($size);
         while(self::validateLID($id, $size) == false){

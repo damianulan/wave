@@ -24,7 +24,7 @@
                                 {{ __('modules.deadline') }}
                             </th> 
                             <th class="text-center" width="15%">
-                                {{ __('modules.author') }}
+                                {{ __('modules.assigned_to') }}
                             </th>
                             <th class="text-center" width="10%">
                                 {{ __('modules.actions') }}
@@ -66,9 +66,9 @@
                                     <td class="text-center align-middle">
                                         <div class="row">
                                             <div class="col-md-12">
-                                                <a class="" href="{{ route('clients.show', $task->author->id) }}">
-                                                    <img class="rounded-circle" width="40" height="40" src="{{ asset($task->author->avatar) }}">
-                                                    {{ $task->author->name() }}
+                                                <a class="" href="{{ route('clients.show', $task->target->id) }}">
+                                                    <img class="rounded-circle" width="40" height="40" src="{{ asset($task->target->avatar) }}">
+                                                    {{ $task->target->name() }}
                                                 </a>
                                             </div>
                                         </div>
@@ -92,30 +92,6 @@
         </div>
     </div>
 </div>
-@section('page-scripts')
-<script>
-    function taskChecked(e, id){
-        var elementId = '#'+id;
-        $(elementId).toggleClass('text-decoration-line-through');
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        });
-        if(e.checked){
-            var url = "{{url('/')}}" + "/tasks/" + id + "/done";
-        } else {
-            var url = "{{url('/')}}" + "/tasks/" + id + "/undone";
-        }
 
-        $.get(url, function (response) {
-            if(!response.success){
-                alert(response.error);
-            }
-        });
-
-    }
-</script>
-@endsection
 
 @endsection

@@ -21,4 +21,29 @@
 @include('pages.tasks.nav')
 @yield('tasks-content')
 @include('pages.tasks.create')
+@section('page-scripts')
+<script>
+    function taskChecked(e, id){
+        var elementId = '#'+id;
+        $(elementId).toggleClass('text-decoration-line-through');
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        if(e.checked){
+            var url = "{{url('/')}}" + "/tasks/" + id + "/done";
+        } else {
+            var url = "{{url('/')}}" + "/tasks/" + id + "/undone";
+        }
+
+        $.get(url, function (response) {
+            if(!response.success){
+                alert(response.error);
+            }
+        });
+
+    }
+</script>
+@endsection
 @endsection

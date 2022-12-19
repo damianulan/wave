@@ -22,7 +22,6 @@ class Log extends Model
         'user_id',
         'ip',
         'action',
-        'data'
     ];
 
 }

@@ -32781,6 +32781,12 @@ a:hover {
 .btn-round {
   border-radius: 2rem;
   padding: 0.3rem 0.5rem;
+  width: 36px;
+  height: 36px;
+}
+
+.btn-round i.bi {
+  font-size: 1rem !important;
 }
 
 .form-select {
@@ -35384,7 +35390,7 @@ i.bi {
 }
 
 .top-menu i.bi {
-  font-size: 1.1rem;
+  font-size: 1.2rem;
 }
 
 .page-header i.bi {

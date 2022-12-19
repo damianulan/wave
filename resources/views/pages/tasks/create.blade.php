@@ -50,9 +50,11 @@
                                         <label>{{__('modules.affiliate')}}</label>
                                         <select name="affiliated_client" type="text" class="form-control" placeholder="{{__('modules.affiliate')}}">
                                             <option value="-1">{{__('vocabulary.choose')}}</option>
-                                            @foreach ($clients as $client)
+                                            @if (count($clients)>0)
+                                                @foreach ($clients as $client)
                                                 <option value="{{$client->id}}">{{$client->name()}}</option>
-                                            @endforeach
+                                                @endforeach
+                                            @endif
                                         </select>
                                     </div>
                                 </div>
@@ -72,9 +74,11 @@
                                     <div class="controls">
                                         <label>{{__('modules.assign_to')}}</label>
                                         <select name="target" type="text" class="form-control" placeholder="{{__('modules.assign_to')}}">
-                                            @foreach ($users as $user)
+                                            @if (count($users)>0)
+                                                @foreach ($users as $user)
                                                 <option value="{{$user->id}}">{{$user->name()}}</option>
-                                            @endforeach
+                                                @endforeach
+                                            @endif
                                         </select>
                                     </div>
                                 </div>
