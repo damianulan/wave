@@ -8,11 +8,11 @@
                 {{__('messages.in_progress')}}
             </h4>
             <p class="mx-2 mb-0">{{__('messages.demo')}}</p>
-            <p class="mx-2 mb-0"><a target="_blank" href="#">{{__('messages.learn')}}</a></p>
+            <p class="mx-2 mb-0"><a target="_blank" href="https://github.com/damianulan/wave#readme">{{__('messages.learn')}}</a></p>
         </div>
     </div>
 </div>
-<div class="row justify-content-center">
+<div class="row justify-content-center pb-3">
     <div class="col-md-12">
         <div class="card card-hello">
             <div class="card-body text-center">

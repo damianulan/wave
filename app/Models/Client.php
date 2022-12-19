@@ -17,7 +17,6 @@ class Client extends Model
 {
     use UUID;
     use HasFactory, Notifiable, SoftDeletes, Taggable, Notable, LocalID;
-    //use Taggable;
 
     protected $table = 'clients';
     protected $model = 'client';

@@ -4,7 +4,6 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\User;
 
 class Activity extends Model
 {
@@ -35,8 +34,11 @@ class Activity extends Model
     public function getTargetData()
     {
         if ($this->model == 'users'){
-            $user = User::findOrFail($this->target_id);
-            return $user;
+            return \App\Models\User::findOrFail($this->target_id);
         }
+        if ($this->model == 'clients'){
+            return \App\Models\Client::findOrFail($this->target_id);
+        }
+        return null;
     }
 }

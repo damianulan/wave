@@ -19,6 +19,14 @@ trait Trackable
         $log->save();
     }
 
+    public function getActivity(int $rows = null)
+    {
+        if($rows != null){
+            return Activity::where('user_id', $this->id)->orderByDesc('created_at')->take($rows)->get();
+        }
+        return Activity::where('user_id', $this->id)->orderByDesc('created_at')->get();
+    }
+
     public function getTrackingInfo()
     {
         return Activity::where('target_id', $this->id)->orderByDesc('created_at')->get();

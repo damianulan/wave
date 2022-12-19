@@ -27,20 +27,6 @@ trait Loggable
 
     }
 
-    /**
-     * @param integer $rows
-     */
-    public function getActivity($rows = null)
-    {
-        $logs = Activity::where('user_id', $this->id)->orderBy('created_at');
-        if($rows == null){
-            $logs = $logs->get();
-        } else {
-            $logs = $logs->take($rows)->get();
-        }
-        return $logs;
-    }
-
     public function getLogs($rows = null){
         $logs = Log::select('action', 'created_at')->where(function ($query){
             $query->where('action', 'login')->orWhere('action', 'login_failed');

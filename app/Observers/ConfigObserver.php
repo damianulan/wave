@@ -16,10 +16,6 @@ class ConfigObserver
             $log->action = "edit";
             $log->model = 'config';
             $log->target_id = $config->id;
-            // $log->data = [
-            //     'table' => 'config',
-            //     'id' => $config->id
-            // ];
             $log->save();
         }
     }
