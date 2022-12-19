@@ -31,7 +31,7 @@ class ClientFactory extends Factory
             'gender' => '0',
             'hair_length' => $hair_length,
             'phone' => $this->faker->unique()->e164PhoneNumber,
-            'avatar' => $model->getAvatarDefault('0'),
+            'avatar' => 'images/portrait/small/avatar-female.png',
             'city' => $this->faker->city()
         ];
     }
