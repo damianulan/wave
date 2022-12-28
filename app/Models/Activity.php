@@ -34,10 +34,10 @@ class Activity extends Model
     public function getTargetData()
     {
         if ($this->model == 'users'){
-            return \App\Models\User::findOrFail($this->target_id);
+            return \App\Models\User::withTrashed()->findOrFail($this->target_id);
         }
         if ($this->model == 'clients'){
-            return \App\Models\Client::findOrFail($this->target_id);
+            return \App\Models\Client::withTrashed()->findOrFail($this->target_id);
         }
         return null;
     }
