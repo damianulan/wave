@@ -27,30 +27,36 @@
             {{__('menus.calendar')}}
         </a>
       </li>
+      @module('tasks')
       <li class="nav-item">
         <a href="{{route('tasks.index')}}" class="nav-link {{ request()->routeIs('tasks.*') ? 'active' : '' }}">
             <i class="bi bi-check2-square"></i>
             {{__('menus.todo')}}
         </a>
       </li>
+      @endmodule
       <li class="nav-item">
         <a href="{{route('clients.index')}}" class="nav-link {{ request()->routeIs('clients.*') ? 'active' : '' }}">
             <i class="bi bi-people"></i>
             {{__('menus.clients')}}
         </a>
       </li>
+      @module('products')
       <li class="nav-item">
         <a href="{{route('products.index')}}" class="nav-link {{ request()->routeIs('products.*') ? 'active' : '' }}">
             <i class="bi bi-box-seam"></i>
             <span class="menu-title">{{__('menus.products')}}</span>
         </a>
       </li>
+      @endmodule
+      @module('loyalties')
       <li class="nav-item">
         <a href="{{route('loyalties.index')}}" class="nav-link {{ request()->routeIs('loyalties.*') ? 'active' : '' }}">
             <i class="bi bi-wallet2"></i>
             {{__('menus.loyalties')}}
         </a>
       </li>
+      @endmodule
       <li class="navigation-header">
         <span>{{__('menus.business')}}</span>
       </li>
@@ -66,12 +72,14 @@
             {{__('menus.analytics')}}
         </a>
       </li>
+      @module('finances')
       <li class="nav-item">
         <a href="#" class="nav-link">
             <i class="bi bi-piggy-bank"></i>
             {{__('menus.finances')}}
         </a>
       </li>
+      @endmodule
       <li class="navigation-header">
         <span>{{__('menus.administration')}}</span>
       </li>

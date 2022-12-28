@@ -33,6 +33,10 @@ class ConfigController extends Controller
      */
     public function modulesSave(Request $request)
     {
+        $result = false;
+        $msg['type'] = 'warning';
+        $msg['text'] = __('alerts.no_changes');
+
         $modules = [
             'tasks' => $this->translateCheckboxValue($request->input('tasks')),
             'products' => $this->translateCheckboxValue($request->input('products')),
@@ -44,20 +48,22 @@ class ConfigController extends Controller
 
         foreach ($modules as $key => $value)
         {
-            $msg['type'] = 'warning';
-            $msg['text'] = __('alerts.no_changes');
             $config = Config::where(['slug' => $key])->get()[0];
             $config->value = $value;
             if($config->isDirty()){
                 $config->update();
                 Config::loadConfigToCache();
-                $msg['type'] = 'success';
-                $msg['text'] = __('alerts.settings_modules_success');
+                $result = true;
             }
-
-            $request->session()->regenerate();
-
-            return redirect()->back()->with($msg['type'], $msg['text']);
         }
+
+        if($result){
+            $msg['type'] = 'success';
+            $msg['text'] = __('alerts.success.settings_modules');
+        }
+
+        $request->session()->regenerate();
+
+        return redirect()->back()->with($msg['type'], $msg['text']);
     }
 }

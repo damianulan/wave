@@ -1,6 +1,8 @@
 @extends('auth.master')
 
 @section('content')
+<?php
+$build = \App\Models\Config::build() ?>
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-lg-6 col-sm-8">
@@ -20,7 +22,7 @@
                                     </div>
                                     <div class="col-6">
                                         <div class="fs-7 float-right">{{__('auth.admin_panel')}}</div><br/>
-                                        <div class="fs-7 float-right">Build: {{config('app.build')}}</div>
+                                        <div class="fs-7 float-right">Build: {{$build}}</div>
                                     </div>
                                 </div>
 
