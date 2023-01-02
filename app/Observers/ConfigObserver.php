@@ -10,13 +10,13 @@ class ConfigObserver
     {
         if(auth()->check()){
 
-            $log = new Activity();
-            $log->user_id = auth()->user()->id;
-            $log->ip = request()->ip();
-            $log->action = "edit";
-            $log->model = 'config';
-            $log->target_id = $config->id;
-            $log->save();
+            // $log = new Activity();
+            // $log->user_id = auth()->user()->id;
+            // $log->ip = request()->ip();
+            // $log->action = "edit";
+            // $log->model = 'config';
+            // $log->target_id = $config->id;
+            //$log->save();
         }
     }
 }
